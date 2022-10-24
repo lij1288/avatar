@@ -1,0 +1,6 @@
+## Spark的序列化问题
+
+- Driver创建一个class的实例，在函数中使用这个实例，实例对象伴随着Task发送到Executor，每个Task有一个实例，必须实现序列化接口
+- 在mapPartitions或foreachPartitons中创建class实例，每个Task中有一个实例对象
+- Driver创建一个object单例，在函数中使用这个单例，单例对象伴随着Task发送Executor，每个Executor有一个单例，必须实现序列化接口，可能出现线程安全问题
+- 在函数内部使用一个object，这个object在Executor中初始化，每个Executor有一个，不需要实现序列化接口，可能出现线程安全问题

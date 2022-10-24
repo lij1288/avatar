@@ -1,0 +1,19 @@
+## **PowerDesiger安装记录**
+
+![](assets/PowerDesiger安装记录/2191564-20210823084601712-1234625346.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084610874-892534101.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084618865-619654607.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084625606-2114528449.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084632358-313288031.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084638607-429210287.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084647741-2056533202.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084653687-1309478.jpg)
+
+![](assets/PowerDesiger安装记录/2191564-20210823084659650-341175789.jpg)

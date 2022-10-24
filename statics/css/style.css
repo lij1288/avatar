@@ -1,0 +1,72 @@
+/* 加粗 */
+.markdown-section strong {
+    color: rgb(239, 112, 96);
+}
+/* 一级标题加粗 */
+.markdown-section h1 strong {
+    color: #2c3e50;
+}
+/* 一级标题 */
+h1 span{
+    display:inline-block;
+    background: var(--theme-color);/* 颜色 */
+    padding: 10px 16px;/* 上下、左右内边距 */
+    border-radius: 5px;/* 圆角 */
+    box-shadow: 1px 1px 3px black;/* 阴影 */
+}
+/* 二级标题加粗 */
+.markdown-section h2 strong {
+    color: hsl(210, 29%, 24%);
+}
+/* 五级标题 */
+.markdown-section h5{
+    font-size: 1em;
+}
+/* 侧边栏设置 */
+aside.sidebar ul ul li a {
+    padding-left: 15px;
+}
+aside.sidebar ul ul ul li a {
+    padding-left: 25px;
+}
+/* 链接 */
+.markdown-section a {
+	color:var(--theme-color,hsl(204, 56%, 53%));
+	font-weight:600
+}
+/* 引用 */
+.markdown-section blockquote {
+	padding:0.5em;
+	border-left:4px solid var(--theme-color);
+}
+/* 分栏和标签 */
+:root {
+    --docsify-example-panels-document-width: 80%; /* 分栏设置-页边距（影响整体） */
+    --docsify-example-panels-left-panel-width : 50%; /* 分栏设置-左栏占比 */
+    --docsify-example-panels-right-panel-width : 50%; /* 分栏设置-右栏占比 */
+    --docsifytabs-border-color: hsl(0, 0%, 89%);/* 标签设置-边框 */
+    --docsifytabs-tab-highlight-color: hsl(210, 76%, 52%);/* 标签设置-标签 */
+}
+/* 图片 */
+img {
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1), 0 4px 12px rgba(0, 0, 0, .15);
+}
+img[data-origin="assets/README/本站地图.jpg"] {
+    box-shadow: 0 0 0 0;
+}
+#mypic {
+    box-shadow: 0 0 0 0;
+}
+/* 代码复制 */
+.docsify-copy-code-button {
+    background: hsl(210, 29%, 29%) !important;
+    color: #FFFFFF !important;
+    font-size: 7px !important;
+}
+/* root */
+:root {
+    --theme-color: hsl(211, 57%, 70%);/* 主题颜色 */
+    --heading-color: hsl(210, 29%, 29%);/* 标题颜色 */
+    --base-color: hsl(210, 29%, 29%);/* 正文颜色 */
+}
