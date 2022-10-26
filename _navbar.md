@@ -6,7 +6,6 @@
   - [基础知识](/?id=基础知识)
   - [项目管理](/?id=项目管理)
   - [其他内容](/?id=其他内容)
-
 - [**技术文档**]()
 
   - [Django](https://docs.djangoproject.com/en/4.0/)
@@ -23,7 +22,6 @@
   - [Scala](https://docs.scala-lang.org/)
   - [Spark](https://spark.apache.org/documentation.html)
   - [Tomcat](https://tomcat.apache.org/tomcat-8.0-doc/index.html)
-
 - [**网页工具**]()
   
   - [文献搜索](https://www.semanticscholar.org/)
@@ -39,7 +37,6 @@
   - [文件转换](https://convertio.co/zh/)
   - [HTML拾色](https://www.runoob.com/tags/html-colorpicker.html)
   - [CSS处理](https://www.runoob.com/csspack/)
-
 - [**常用链接**]()
   
   - [GitHub](https://github.com/)
@@ -50,5 +47,4 @@
   - [Gitee](https://gitee.com/)
   - [CDNJS](https://cdnjs.com/)
   - [CnBlogs](https://www.cnblogs.com/)
-  - [MHBlog](/blog/)
 

@@ -269,6 +269,8 @@ GitHub -> Settings -> SSH and GPG keys -> New SSH key，粘贴~/.ssh/id_rsa.pub�
 
 git init
 
+git branch -M main
+
 git remote add origin https://github.com/jiongli/avatar.git
 
 git pull origin main

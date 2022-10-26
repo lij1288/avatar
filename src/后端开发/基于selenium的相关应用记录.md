@@ -43,7 +43,7 @@ log_download()
 
 
 
-### 图片验证码识别+列表遍历文件下载
+### 图片验证码识别+列表遍历
 
 ```python
 # https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
