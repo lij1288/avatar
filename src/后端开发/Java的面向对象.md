@@ -103,7 +103,7 @@
   - 参数命名
 
   ```java
-  public Employee(String s, double s) {
+  public Employee(String n, double s) {
       name = n;
       salary = s;
   }
@@ -457,7 +457,7 @@ public class ExtendsDemo {
 		System.out.println(d.name);//ABC
 		//System.out.println(d.age);//父类对象无法调用子类中成员
 		
-		LittleDemo ld = new LittleDemo();
+		SubDemo ld = new SubDemo();
 		System.out.println(ld.age);//10
 		System.out.println(ld.name);//abc（若子类没有String name则打印ABC）
 		ld.show("qwe");
@@ -468,7 +468,7 @@ class Demo {
 	String name = "ABC";
 }
 
-class LittleDemo extends Demo {
+class SubDemo extends Demo {
 	String name = "abc";
 	int age = 10;
     
@@ -500,29 +500,29 @@ class LittleDemo extends Demo {
 public class ExtendsConstructorDemo {
 
 	public static void main(String[] args) {
-//		FatherClass f = new FatherClass();
-		SonClass s = new SonClass();
+//		SuperClass f = new SuperClass();
+		SubClass s = new SubClass();
 		
 	}
 }
-class FatherClass {
-	public FatherClass(String str) {
+class SuperClass {
+	public SuperClass(String str) {
 		System.out.println("父类的构造方法");
 	}
 }
-class SonClass extends FatherClass {
-//   public SonClass() {
+class SubClass extends SuperClass {
+//   public SubClass() {
 //		super("abc");//子类构造方法直接调用父类有参构造方法
 //		System.out.println("子类的构造方法");
 //	}
     
-	public SonClass() {
+	public SubClass() {
 		this("abc");//调用本类中的构造方法，间接调用父类有参构造方法
 		System.out.println("子类的构造方法");
 //      this("abc");//错误，必须放在第一行
 	}
 	
-	public SonClass(String str) {
+	public SubClass(String str) {
 		super(str);//父类中的构造方法
 	}
 }

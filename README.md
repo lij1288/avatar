@@ -56,6 +56,8 @@
 
 [【Linux】Linux的高级文本命令](src/运维部署/Linux的高级文本命令)
 
+[【Linux】Linux批量添加用户](src/运维部署/Linux批量添加用户)
+
 [【Linux】Crontab定时任务设置](src/运维部署/Crontab定时任务设置)
 
 [【MySQL】MySQL5.7.30安装配置记录](src/运维部署/MySQL5.7.30安装配置记录)
