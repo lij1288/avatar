@@ -578,6 +578,18 @@
 
 ## JavaScript
 
+[JavaScript的基础语法](src/前端综合/JavaScript的基础语法)
+
+[JavaScript的面向对象](src/前端综合/JavaScript的面向对象)
+
+[浅拷贝和深拷贝](src/前端综合/浅拷贝和深拷贝)
+
+[JavaScript的序列化](src/前端综合/JavaScript的序列化)
+
+[JavaScript的内建结构](src/前端综合/JavaScript的内建结构)
+
+[JavaScript的解构赋值](src/前端综合/JavaScript的解构赋值)
+
 [基于百度地图的热力图开发](src/前端综合/基于百度地图的热力图开发)
 
 [jQuery的回到顶部插件GoUp使用](src/前端综合/jQuery的回到顶部插件GoUp使用)
