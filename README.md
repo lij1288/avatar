@@ -426,6 +426,18 @@
 
 <!-- div:left-panel -->
 
+[Python的基础语法](src/后端开发/Python的基础语法)
+
+[Python的函数](src/后端开发/Python的函数)
+
+[Python的面向对象](src/后端开发/Python的面向对象)
+
+[Python的序列](src/后端开发/Python的序列)
+
+[Python的异常处理](src/后端开发/Python的异常处理)
+
+[Python的文件操作](src/后端开发/Python的文件操作)
+
 [基于urllib的ajax数据爬取](src/后端开发/基于urllib的ajax数据爬取)
 
 [时间序列模型Prophet使用](src/后端开发/时间序列模型Prophet使用)
@@ -438,6 +450,9 @@
 
 [基于smtplib的邮件发送](src/后端开发/基于smtplib的邮件发送)
 
+
+<!-- div:right-panel -->
+
 [基于ddddocr的图片验证码识别](src/后端开发/基于ddddocr的图片验证码识别)
 
 [pandas导入Excel到数据库](src/后端开发/pandas导入Excel到数据库)
@@ -445,8 +460,6 @@
 [pandas导入HTML表格到数据库](src/后端开发/pandas导入HTML表格到数据库)
 
 [Python的Microsoft_Visual_C++_14.0_is_required问题处理](src/后端开发/Python的Microsoft_Visual_C++_14.0_is_required问题处理)
-
-<!-- div:right-panel -->
 
 [Python的Can_not_execute_setup.py问题处理](src/后端开发/Python的Can_not_execute_setup.py问题处理)
 
@@ -698,4 +711,3 @@
 
 ***
 ![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic :size=100%')
-

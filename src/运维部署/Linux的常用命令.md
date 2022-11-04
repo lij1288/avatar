@@ -338,6 +338,10 @@
 - 添加用户
 
   > useradd [用户名]
+  
+  > useradd -d /home/sftp_user/avatar -s /sbin/nologin avatar
+  >
+  > passwd avatar
 
 #### passwd
 
