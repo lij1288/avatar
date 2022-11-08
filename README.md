@@ -591,6 +591,10 @@
 
 ## JavaScript
 
+<!-- panels:start -->
+
+<!-- div:left-panel -->
+
 [JavaScript的基础语法](src/前端综合/JavaScript的基础语法)
 
 [JavaScript的面向对象](src/前端综合/JavaScript的面向对象)
@@ -603,19 +607,31 @@
 
 [JavaScript的解构赋值](src/前端综合/JavaScript的解构赋值)
 
+<!-- div:right-panel -->
+
+[HTML DOM的节点操作](src/前端综合/HTML_DOM的节点操作)
+
+[HTML DOM的文档加载](src/前端综合/HTML_DOM的文档加载)
+
+[HTML DOM的CSS样式操作](src/前端综合/HTML_DOM的CSS样式操作)
+
+[HTML DOM的事件对象](src/前端综合/HTML_DOM的事件对象)
+
+[BOM相关操作](src/前端综合/BOM相关操作)
+
 [基于百度地图的热力图开发](src/前端综合/基于百度地图的热力图开发)
 
-[jQuery的回到顶部插件GoUp使用](src/前端综合/jQuery的回到顶部插件GoUp使用)
+<!-- panels:end -->
+
+## jQuery
+
+[回到顶部插件GoUp使用](src/前端综合/回到顶部插件GoUp使用)
 
 ## Django
 
 <!-- panels:start -->
 
 <!-- div:left-panel -->
-
-[基于Django的Neo4j知识图谱系统](src/前端综合/基于Django的Neo4j知识图谱系统)
-
-[知识图谱系统嵌入DVAdmin](src/前端综合/知识图谱系统嵌入DVAdmin)
 
 [Django的项目创建](src/前端综合/Django的项目创建)
 
@@ -627,11 +643,11 @@
 
 [Django的默认数据库变更](src/前端综合/Django的默认数据库变更)
 
-<!-- div:right-panel -->
-
 [Django的模型使用](src/前端综合/Django的模型使用)
 
 [Django的数据库操作](src/前端综合/Django的数据库操作)
+
+<!-- div:right-panel -->
 
 [Django的表单使用](src/前端综合/Django的表单使用)
 
@@ -642,6 +658,10 @@
 [Django渲染表单后显示This_field_is_required问题处理](src/前端综合/Django渲染表单后显示This_field_is_required问题处理)
 
 [Django启动项目一直Performing_system_checks问题处理](src/前端综合/Django启动项目一直Performing_system_checks问题处理)
+
+[基于Django的Neo4j知识图谱系统](src/前端综合/基于Django的Neo4j知识图谱系统)
+
+[知识图谱系统嵌入DVAdmin](src/前端综合/知识图谱系统嵌入DVAdmin)
 
 <!-- panels:end -->
 

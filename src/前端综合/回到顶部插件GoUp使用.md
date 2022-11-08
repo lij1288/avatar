@@ -1,4 +1,4 @@
-## **jQuery的回到顶部插件GoUp使用**
+## **回到顶部插件GoUp使用**
 
 - https://github.com/dnlnrs/jquery-goup
 
