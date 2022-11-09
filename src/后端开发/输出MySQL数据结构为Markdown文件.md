@@ -6,7 +6,7 @@
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 
-conn_str = 'mysql+pymysql://root:%s@10.0.43.108:3306/information_schema?charset=utf8' % quote_plus('********')
+conn_str = 'mysql+pymysql://root:%s@********:3306/information_schema?charset=utf8' % quote_plus('********')
 conn = create_engine(conn_str, echo=True)
 
 fs = open('数据结构.md', 'w', encoding='utf-8')

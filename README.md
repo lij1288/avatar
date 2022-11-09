@@ -625,6 +625,12 @@
 
 ## jQuery
 
+[jQuery的核心函数](src/前端综合/jQuery的核心函数)
+
+[jQuery的方法](src/前端综合/jQuery的方法)
+
+[jQuery的事件绑定](src/前端综合/jQuery的事件绑定)
+
 [回到顶部插件GoUp使用](src/前端综合/回到顶部插件GoUp使用)
 
 ## Django
