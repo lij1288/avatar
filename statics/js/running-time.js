@@ -1,25 +1,23 @@
-function siteTime() {
-    window.setTimeout("siteTime()", 1000);
-    var seconds = 1000;
-    var minutes = seconds * 60;
-    var hours = minutes * 60;
-    var days = hours * 24;
-    var years = days * 365;
-    var today = new Date();
-    var todayYear = today.getFullYear();
-    var todayMonth = today.getMonth() + 1;
-    var todayDate = today.getDate();
-    var todayHour = today.getHours();
-    var todayMinute = today.getMinutes();
-    var todaySecond = today.getSeconds();
-    var t1 = Date.UTC(2020, 06, 12, 17, 00, 00);
-    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-    var diff = t2 - t1;
-    var diffYears = Math.floor(diff / years);
-    var diffDays = Math.floor((diff / days) - diffYears * 365);
-    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
-    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+window.onload = setInterval(function() {
+    let seconds = 1000;
+    let minutes = seconds * 60;
+    let hours = minutes * 60;
+    let days = hours * 24;
+    let years = days * 365;
+    let today = new Date();
+    let todayYear = today.getFullYear();
+    let todayMonth = today.getMonth() + 1;
+    let todayDate = today.getDate();
+    let todayHour = today.getHours();
+    let todayMinute = today.getMinutes();
+    let todaySecond = today.getSeconds();
+    let t1 = Date.UTC(2020, 06, 12, 17, 00, 00);
+    let t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+    let diff = t2 - t1;
+    let diffYears = Math.floor(diff / years);
+    let diffDays = Math.floor((diff / days) - diffYears * 365);
+    let diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    let diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    let diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
     document.getElementById("sitetime").innerHTML = " 本站已安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分 " + diffSeconds + " 秒 ";
-}
-siteTime();
+},1000)

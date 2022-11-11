@@ -4,7 +4,7 @@ window.$docsify = {
         '/blog/': '#/blog/',
         '/': '#/',
     },
-    repo: 'https://www.lijiong.cn/#/blog/',
+    repo: 'https://www.lijiong.cn/',
     loadNavbar: true,
     noEmoji: true,
     auto2top: true,

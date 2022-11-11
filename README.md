@@ -1,6 +1,18 @@
 # **本站地图**
 
-![](assets/README/本站地图.jpg)
+<p>
+    <img src="/assets/README/本站地图.jpg" data-origin="assets/README/本站地图.jpg" id="pic1" usemap="#map1">
+    <map name="map1">
+        <area shape="rect" coords="173,139,238,236" class="class1" href="https://lijiong.cn/#/?id=运维部署" target="_self"></area>
+        <area shape="rect" coords="281,139,346,236" class="class1" href="https://lijiong.cn/#/?id=数据开发" target="_self"></area>
+        <area shape="rect" coords="389,139,454,236" class="class1" href="https://lijiong.cn/#/?id=后端开发" target="_self"></area>
+        <area shape="rect" coords="497,139,562,236" class="class1" href="https://lijiong.cn/#/?id=前端综合" target="_self"></area>
+        <area shape="rect" coords="605,139,670,236" class="class1" href="https://lijiong.cn/#/?id=基础知识" target="_self"></area>
+        <area shape="rect" coords="713,139,778,236" class="class1" href="https://lijiong.cn/#/?id=其他内容" target="_self"></area>
+    </map>
+</p>
+
+
 
 # **运维部署**
 
@@ -548,6 +560,8 @@
 [HTML的样式标签](src/前端综合/HTML的样式标签)
 
 [HTML的列表标签](src/前端综合/HTML的列表标签)
+
+[HTML的表单标签](src/前端综合/HTML的表单标签)
 
 <!-- div:right-panel -->
 

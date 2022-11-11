@@ -4,7 +4,6 @@
   - [后端开发](/?id=后端开发)
   - [前端综合](/?id=前端综合)
   - [基础知识](/?id=基础知识)
-  - [项目管理](/?id=项目管理)
   - [其他内容](/?id=其他内容)
 - [**技术文档**]()
 
@@ -14,14 +13,16 @@
   - [Flume](https://flume.apache.org/releases/content/1.9.0/FlumeUserGuide.html)
   - [Hadoop](https://hadoop.apache.org/docs/)
   - [Java](https://docs.oracle.com/javase/8/docs/api/index.html)
+  - [JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
   - [Kafka](https://kafka.apache.org/documentation/)
-  - [K8S](https://kubernetes.io/zh/docs/home/)
+  - [Kubernetes](https://kubernetes.io/zh/docs/home/)
   - [Kudu](https://kudu.apache.org/docs/)
   - [Nginx](http://nginx.org/en/docs/)
   - [Python](https://docs.python.org/3/)
   - [Scala](https://docs.scala-lang.org/)
   - [Spark](https://spark.apache.org/documentation.html)
   - [Tomcat](https://tomcat.apache.org/tomcat-8.0-doc/index.html)
+  - [Vue](https://cn.vuejs.org/api/)
 - [**网页工具**]()
   
   - [文献搜索](https://www.semanticscholar.org/)
@@ -47,4 +48,5 @@
   - [Gitee](https://gitee.com/)
   - [CDNJS](https://cdnjs.com/)
   - [CnBlogs](https://www.cnblogs.com/)
+  - [MyBlog](https://www.lijiong.cn/#/blog/)
 
