@@ -9,7 +9,7 @@
 
   - [Django](https://docs.djangoproject.com/en/4.0/)
   - [Docker](https://docs.docker.com/get-started/)
-  - [Flink](https://nightlies.apache.org/flink/flink-docs-release-1.15/)
+  - [Flink](https://nightlies.apache.org/flink/)
   - [Flume](https://flume.apache.org/releases/content/1.9.0/FlumeUserGuide.html)
   - [Hadoop](https://hadoop.apache.org/docs/)
   - [Java](https://docs.oracle.com/javase/8/docs/api/index.html)
