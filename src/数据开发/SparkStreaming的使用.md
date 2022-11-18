@@ -2,11 +2,11 @@
 
 ### StreamingContext
 
-- 式SparkContext的包装类，是对SparkContext的增强，里面持有SparkContext的引用，并且要指定生成批次的时间间隔，用来创建原始的DStream
+- SparkContext的包装类，是对SparkContext的增强，里面持有SparkContext的引用，并且要指定生成批次的时间间隔，用来创建原始的DStream
 
 ### DStream
 
-- 是SparkStreaming中最基本的抽象，是对RDD的进一步封装，DStream可以定期生成RDD
+- SparkStreaming中最基本的抽象，是对RDD的进一步封装，DStream可以定期生成RDD
 
 
 
