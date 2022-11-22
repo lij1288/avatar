@@ -2,6 +2,8 @@
 
 ### 上传解压安装包
 
+- flink对应的kafka版本查看flink-connector-kafka源码的pom文件
+
 ### 修改配置文件
 
 - vi server.properties
@@ -13,8 +15,7 @@ broker.id=1
 log.dirs=/opt/app/data/kafka
 #指定zk地址
 zookeeper.connect=linux01:2181,linux02:2181,linux03:2181
-#可以删除topic的数据(生产环境不配置)
-delete.topic.enable=true
+# delete.topic.enable=true
 ```
 
 ### 将配置好的kafka拷贝到其他节点

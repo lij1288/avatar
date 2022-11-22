@@ -469,8 +469,6 @@
 
 [Python的ModuleNotFoundError_No_module_named_'_ctypes'问题处理](src/后端开发/Python的ModuleNotFoundError_No_module_named_'_ctypes'问题处理)
 
-[selenium的element_not_interactable问题处理](src/后端开发/selenium的element_not_interactable问题处理)
-
 [selenium的click使用try后失效问题处理](src/后端开发/selenium的click使用try后失效问题处理)
 
 [输出MySQL数据结构为Markdown文件](src/后端开发/输出MySQL数据结构为Markdown文件)
