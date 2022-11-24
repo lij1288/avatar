@@ -7,6 +7,7 @@
 ```python
 import pandas
 from sqlalchemy import create_engine
+import pymysql
 import datetime
 from urllib.parse import quote_plus
 import openpyxl
