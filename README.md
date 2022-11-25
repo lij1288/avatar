@@ -36,6 +36,8 @@
 
 [【Java】JDK安装配置记录](src/运维部署/JDK安装配置记录)
 
+[【Java】卸载CentOS自带JDK记录](src/运维部署/卸载CentOS自带JDK记录)
+
 [【Kafka】基于Docker的Kafka安装记录](src/运维部署/基于Docker的Kafka安装记录)
 
 [【Kafka】Kafka安装部署记录](src/运维部署/Kafka安装部署记录)

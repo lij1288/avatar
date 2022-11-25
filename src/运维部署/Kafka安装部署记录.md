@@ -13,12 +13,17 @@
 > vi server.properties
 
 ```properties
-#指定broker的id
+# 指定broker的id
 broker.id=1
-#数据存储的目录
+# 数据存储的目录
 log.dirs=/opt/app/data/kafka-logs
-#指定zk地址
+# 数据留存时间
+log.retention.hours=168
+# 数据留存大小
+log.segment.bytes=1073741824
+# 指定zk地址
 zookeeper.connect=192.168.1.101:2181,192.168.1.102:2181,192.168.1.103:2181
+# 允许删除topic
 # delete.topic.enable=true
 ```
 
@@ -57,4 +62,3 @@ fi
 ```
 
 > [root@192.168.1.101 utils]# sh kfk.sh start
->
