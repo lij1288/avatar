@@ -1,6 +1,6 @@
 ## **Node环境安装记录**
 
-### 下载并解压安装包
+### 上传解压安装包
 
 - 下载地址：https://nodejs.org/en/download/
 

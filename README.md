@@ -34,6 +34,8 @@
 
 [【Hive】Hive安装部署记录](src/运维部署/Hive安装部署记录)
 
+[【Java】JDK安装配置记录](src/运维部署/JDK安装配置记录)
+
 [【Kafka】基于Docker的Kafka安装记录](src/运维部署/基于Docker的Kafka安装记录)
 
 [【Kafka】Kafka安装部署记录](src/运维部署/Kafka安装部署记录)
@@ -57,6 +59,8 @@
 [【Linux】Linux的高级文本命令](src/运维部署/Linux的高级文本命令)
 
 [【Linux】Linux批量添加用户](src/运维部署/Linux批量添加用户)
+
+[【Linux】SSH免密登录设置](src/运维部署/SSH免密登录设置)
 
 [【Linux】Crontab定时任务设置](src/运维部署/Crontab定时任务设置)
 

@@ -7,7 +7,7 @@
 # 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 import time
-import MHLogin
+import loginutils
 
 def log_download():
     global driver
@@ -16,12 +16,12 @@ def log_download():
         # driver = webdriver.Edge()
         Keys = webdriver.common.keys.Keys
         By = webdriver.common.by.By
-        driver.get(MHLogin.get_addr('jzrj'))
+        driver.get(loginutils.get_addr('jzrj'))
         time.sleep(1)
         # print(driver.page_source)
-        driver.find_element(By.NAME, 'F_email').send_keys(MHLogin.get_user('jzrj'))
+        driver.find_element(By.NAME, 'F_email').send_keys(loginutils.get_user('jzrj'))
         driver.find_element(By.NAME, 'F_email').send_keys(Keys.TAB)
-        driver.find_element(By.NAME, 'F_password').send_keys(MHLogin.get_pwd('jzrj'))
+        driver.find_element(By.NAME, 'F_password').send_keys(loginutils.get_pwd('jzrj'))
         driver.find_element(By.NAME, 'action').click()
         time.sleep(3)
         driver.switch_to.frame('main')
@@ -55,7 +55,7 @@ import shutil
 import time
 import ddddocr
 import base64
-import MHLogin
+import loginutils
 
 
 # 图片验证码识别
@@ -83,11 +83,11 @@ def csm_download():
 
     Keys = webdriver.common.keys.Keys
     By = webdriver.common.by.By
-    driver.get(MHLogin.get_addr('csm'))
+    driver.get(loginutils.get_addr('csm'))
     time.sleep(1)
     # print(driver.page_source)
-    driver.find_element(By.NAME, 'username').send_keys(MHLogin.get_user('csm'))
-    driver.find_element(By.NAME, 'password').send_keys(MHLogin.get_pwd('csm'))
+    driver.find_element(By.NAME, 'username').send_keys(loginutils.get_user('csm'))
+    driver.find_element(By.NAME, 'password').send_keys(loginutils.get_pwd('csm'))
     img = driver.find_element(By.XPATH, '//html//body//div//div//form//div[4]//div//div[2]//img').get_attribute('src').split(',')[1]
     yzm_res = yzm_ocr(img)
     print(yzm_res)
@@ -124,7 +124,7 @@ csm_download()
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-import MHLogin
+import loginutils
 
 
 options = Options()
@@ -132,7 +132,7 @@ driver = webdriver.Chrome()
 # driver = webdriver.Edge()
 Keys = webdriver.common.keys.Keys
 By = webdriver.common.by.By
-driver.get(MHLogin.get_addr('qyml'))
+driver.get(loginutils.get_addr('qyml'))
 time.sleep(1)
 # print(driver.page_source)
 with open('D:\\WorkSpace\\unicloud\\企业基本信息\\企业名录.txt', 'a', encoding='utf8') as file:
@@ -157,7 +157,7 @@ from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 import datetime
 import time
-import MHLogin
+import loginutils
 
 
 now_time = datetime.datetime.now().strftime('%Y%m%d')
@@ -197,7 +197,7 @@ driver = webdriver.Chrome()
 # driver = webdriver.Edge()
 Keys = webdriver.common.keys.Keys
 By = webdriver.common.by.By
-driver.get(MHLogin.get_addr('qyxx'))
+driver.get(loginutils.get_addr('qyxx'))
 time.sleep(5)
 # print(driver.page_source)
 
@@ -356,7 +356,7 @@ import ddddocr
 import os
 from PIL import Image
 from io import BytesIO
-import MHLogin
+import loginutils
 
 
 # 图片验证码识别
@@ -388,11 +388,11 @@ def loujian_download():
 
     Keys = webdriver.common.keys.Keys
     By = webdriver.common.by.By
-    driver.get(MHLogin.get_addr('louj'))
+    driver.get(loginutils.get_addr('louj'))
     time.sleep(1)
     # print(driver.page_source)
-    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[1]//input').send_keys(MHLogin.get_user('louj'))
-    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[2]//input').send_keys(MHLogin.get_pwd('louj'))
+    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[1]//input').send_keys(loginutils.get_user('louj'))
+    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[2]//input').send_keys(loginutils.get_pwd('louj'))
     img = driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[3]//div[2]//img')
     # x, y = img.location.values()
     h, w = img.size.values()

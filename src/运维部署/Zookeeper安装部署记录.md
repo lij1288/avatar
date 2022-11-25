@@ -6,45 +6,47 @@
 
 ### 修改配置文件
 
+> cd conf
+
 > cp zoo_sample.cfg zoo.cfg
 
 - vi zoo.cfg
 
 ```shell
-dataDir=/opt/zkdata
+dataDir=/opt/data/zkdata
 
 # Set to "0" to disable auto purge feature
 #autopurge.purgeInterval=1
-server.1=linux01:2888:3888
-server.2=linux02:2888:3888
-server.3=linux03:2888:3888
+server.1=192.168.1.101:2888:3888
+server.2=192.168.1.102:2888:3888
+server.3=192.168.1.103:2888:3888
 ```
 
 - 在各个节点上，手动创建数据存储目录
 
-> mkdir -p /opt/zkdata/
+> mkdir -p /opt/data/zookeeper
 
 - 在各个节点的数据存储目录中，生成一个myid文件，内容为它的id
 
-> echo 1 > /opt/zkdata/myid
->
-> echo 2 > /opt/zkdata/myid
->
-> echo 3 > /opt/zkdata/myid
+> echo 1 > /opt/data/zookeeper/myid
+
+> echo 2 > /opt/data/zookeeper/myid
+
+> echo 3 > /opt/data/zookeeper/myid
 
 ### 拷贝到其他机器
 
-scp -r zookeeper-3.4.6/ linux02:/opt/app
+> scp -r zookeeper-3.4.6/ 192.168.1.102:$PWD
 
-scp -r zookeeper-3.4.6/ linux03:/opt/app
+> scp -r zookeeper-3.4.6/ 192.168.1.103:$PWD
 
-### 启动Zookeeper
+### 启停Zookeeper
 
 > bin/zkServer.sh start
 >
 > bin/zkServer.sh stop
 
-- 批启动脚本
+- 批量启停脚本
 
 > vi zk.sh
 
@@ -53,7 +55,7 @@ scp -r zookeeper-3.4.6/ linux03:/opt/app
 
 for i in {1..3}
 do
-ssh linux0${i} "source /etc/profile;/opt/app/zookeeper-3.4.6/bin/zkServer.sh $1 "
+ssh 192.168.1.10${i} "source /etc/profile;/opt/app/zookeeper-3.4.6/bin/zkServer.sh $1 "
 done
 
 sleep 2
@@ -62,29 +64,47 @@ if [ $1 == start ]
 then
 for i in {1..3}
 do
-ssh linux0${i} "source /etc/profile;/opt/app/zookeeper-3.4.6/bin/zkServer.sh status "
+ssh 192.168.1.10${i} "source /etc/profile;/opt/app/zookeeper-3.4.6/bin/zkServer.sh status "
 done
 fi
 ```
 
-> [root@linux01 zookeeper-3.4.6]# sh zk.sh start
+> [root@192.168.1.101 zookeeper-3.4.6]# sh zk.sh start
+>
 > JMX enabled by default
+>
 > Using config: /opt/app/zookeeper-3.4.6/bin/../conf/zoo.cfg
+>
 > Starting zookeeper ... STARTED
+>
 > JMX enabled by default
+>
 > Using config: /opt/app/zookeeper-3.4.6/bin/../conf/zoo.cfg
+>
 > Starting zookeeper ... STARTED
+>
 > JMX enabled by default
+>
 > Using config: /opt/app/zookeeper-3.4.6/bin/../conf/zoo.cfg
+>
 > Starting zookeeper ... STARTED
+>
 > JMX enabled by default
+>
 > Using config: /opt/app/zookeeper-3.4.6/bin/../conf/zoo.cfg
+>
 > Mode: follower
+>
 > JMX enabled by default
+>
 > Using config: /opt/app/zookeeper-3.4.6/bin/../conf/zoo.cfg
+>
 > Mode: leader
+>
 > JMX enabled by default
+>
 > Using config: /opt/app/zookeeper-3.4.6/bin/../conf/zoo.cfg
+>
 > Mode: follower
 
 ### 查看状态

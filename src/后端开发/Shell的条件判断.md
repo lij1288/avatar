@@ -5,7 +5,7 @@
 
 ### 字符串
 
-```powershell
+```shell
 test str1 == str2	#判断字符串是否相等
 test str1 != str2	#判断字符串是否不相等
 test str1	#判断字符串是否为空
