@@ -71,21 +71,15 @@ Login Succeeded
 
 ### 重新加载配置文件
 
-```shell
-sudo systemctl daemon-reload
-```
+> sudo systemctl daemon-reload
 
 ### 重启Docker
 
-```shell
-sudo systemctl restart docker
-```
+> sudo systemctl restart docker
 
 ### 验证开启结果
 
-```shell
-docker info | grep Experimental
-```
+> docker info | grep Experimental
 
 ```
 [root@avatar ~]# docker info | grep Experimental

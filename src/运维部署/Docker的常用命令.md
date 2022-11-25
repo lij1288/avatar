@@ -3,9 +3,7 @@
 
 #### 拉取镜像
 
-```shell
-docker pull [选项] [仓库地址[:端口号]/]仓库名[:标签]
-```
+> docker pull [选项] [仓库地址[:端口号]/]仓库名[:标签]
 
 - 默认仓库地址为Docker Hub
 - 仓库名为用户名/软件名，Docker Hub中默认用户名为library（官方镜像）
@@ -15,93 +13,69 @@ docker pull [选项] [仓库地址[:端口号]/]仓库名[:标签]
 
 #### 查看镜像
 
-```shell
-docker image ls
-```
+> docker image ls
 
 - 显示仓库名、标签、镜像ID、创建时间、所占用空间
 - Docker Hub中显示体积为压缩状态体积，与拉取后的不同
 - 显示镜像ID
 
-```shell
-docker image ls -q
-```
+> docker image ls -q
 
 - 查看悬虚镜像
   - 悬虚镜像：由于新旧镜像同名，旧镜像名称被取消，仓库名、标签名均为\<none>的镜像
 
-```shell
-docker image ls -f dangling=true
-```
+> docker image ls -f dangling=true
 
 - 查看中间层镜像在内的所有镜像
   - 中间层镜像：为了加速镜像构建、重复利用资源而产生，显示为无标签镜像
 
-```shell
-docker image ls -a
-```
+> docker image ls -a
 
 - 根据仓库名查看镜像
 
-```shell
-docker image ls [仓库名]
-```
+> docker image ls [仓库名]
 
 - 查看某个镜像
 
-```shell
-docker image ls [仓库名:标签名]
-```
+> docker image ls [仓库名:标签名]
 
 - 根据创建时间过滤镜像
 
-```shell
-docker image ls -f since=[镜像名/ID]
-docker image ls -f before=[镜像名/ID]
-```
+> docker image ls -f since=[镜像名/ID]
+
+> docker image ls -f before=[镜像名/ID]
 
 - 根据镜像构建时定义的label过滤镜像
 
-```shell
- docker image ls -f label=com.example.version=0.1
-```
+>  docker image ls -f label=com.example.version=0.1
 
 - 自定义列查看
 
-```shell
-docker image ls --format "{{.Repository}}: {{.Size}}"
-docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"
-```
+> docker image ls --format "{{.Repository}}: {{.Size}}"
+
+> docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"
 
 #### 删除镜像
 
-```shell
-docker image rm [选项] <镜像1> [<镜像2> ...]
-```
+> docker image rm [选项] <镜像1> [<镜像2> ...]
 
 - 可根据镜像短ID、镜像长ID、镜像名、镜像摘要删除
 
 #### 查看占用空间
 
-```shell
-docker system df
-```
+> docker system df
 
 - 查看镜像、容器、数据卷所占用空间
 
 #### 删除悬虚镜像
 
-```shell
-docker image prune
-```
+> docker image prune
 
 #### 定制镜像
 
 ##### docker commit
 
-```shell
-docker commit [选项] <容器ID或容器名> [<仓库名>[:<标签>]]
-```
+> docker commit [选项] <容器ID或容器名> [<仓库名>[:<标签>]]
 
 - 会添加大量无关内容，导致镜像臃肿
 - 操作为黑箱操作，维护困难
@@ -172,9 +146,7 @@ ea335eea17ab   20 hours ago         /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon
 
 ##### docker build
 
-```shell
-docker build [选项] <上下文路径/URL/->
-```
+> docker build [选项] <上下文路径/URL/->
 
 - 在本机执行的docker功能，是使用远程调用的形式在服务端即Docker引擎完成，上下文是为了在这种客户度/服务端的架构中，让服务端获取本地文件，构建过程中上下文路径下的文件会被打包上传给Docker引擎。
 - Dockerfile应置于空目录下，或项目根目录下，可通过.dockerignore文件剔除不需要作为上下文传递给Docker引擎的文件。
@@ -220,37 +192,27 @@ wurstmeister/zookeeper   latest    3f43f72cb283   2 years ago      510MB
 
 #### 保存镜像
 
-```shell
- docker save <镜像> -o <文件名>
-```
+>  docker save <镜像> -o <文件名>
 
 - 将镜像保存为文件
 - 进行压缩：
 
-```shell
-docker save alpine | gzip > alpine-latest.tar.gz
-```
+> docker save alpine | gzip > alpine-latest.tar.gz
 
 #### 加载镜像
 
-```shell
-docker load -i <文件名>
-```
+> docker load -i <文件名>
 
 - 从文件加载镜像
 - 将镜像从一台机器迁移到另一台机器，并显示进度
 
-```shell
-docker save <镜像名> | bzip2 | pv | ssh <用户名>@<主机名> 'cat | docker load'
-```
+> docker save <镜像名> | bzip2 | pv | ssh <用户名>@<主机名> 'cat | docker load'
 
 ### 容器命令
 
 #### 新建并启动容器
 
-```shell
-docker run
-```
+> docker run
 
 - 参数：
   - -t：分配一个伪终端并绑定到容器的标准输入上
@@ -271,45 +233,31 @@ docker run
 
 #### 查看端口映射
 
-```shell
-docker port
-```
+> docker port
 
 #### 启动已终止容器
 
-```shell
-docker container start
-```
+> docker container start
 
 #### 终止容器
 
-```shell
-docker container stop
-```
+> docker container stop
 
 #### 重启容器
 
-```shell
-docker container restart
-```
+> docker container restart
 
 #### 查看容器
 
-```shell
-docker ps
-```
+> docker ps
 
-```shell
-docker container ls
-```
+> docker container ls
 
 - -a：显示终止状态的容器
 
 #### 进入容器
 
-```shell
-docker exec
-```
+> docker exec
 
 - 若使用docker attach，exit后容器停止
 - bash进入命令行
@@ -320,70 +268,49 @@ docker exec
 
 #### 导出容器
 
-```shell
-docker export
-```
+> docker export
 
 #### 导入容器
 
-```shell
-docker import
-```
+> docker import
 
 - docker import：导入容器快照到本地镜像库，容器快照文件仅保存容器当时快照状态，无历史记录和元数据信息，可以重新指定标签等元数据信息。
 - docker load：导入镜像存储文件到本地镜像库，保存完整记录，体积较大。
 
 #### 删除容器
 
-```shell
-docker container rm 
-```
+> docker container rm 
 
 #### 清理终止状态容器
 
-```shell
-docker container prune
-```
+> docker container prune
 
 #### 上传到容器
-```shell
-docker cp [本地路径] <容器ID或容器名>:[容器路径]
-```
+> docker cp [本地路径] <容器ID或容器名>:[容器路径]
 
 #### 查看每个容器占用空间
-```shell
-docker system df -v
-```
+> docker system df -v
+
 ### 仓库命令
 
 #### 登录仓库
 
-```shell
-docker login
-```
+> docker login
 
 #### 查找镜像
 
-```shell
-docker search
-```
+> docker search
 
 #### 拉取镜像
 
-```shell
-docker pull
-```
+> docker pull
 
 #### 推送镜像
 
 - 标记本地镜像
 
-```shell
-docker tag ubuntu:18.04 username/ubuntu:18.04
-```
+> docker tag ubuntu:18.04 username/ubuntu:18.04
 
 - 推送镜像
 
-```shell
-docker push username/ubuntu:18.04
-```
+> docker push username/ubuntu:18.04

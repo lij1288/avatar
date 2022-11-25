@@ -2,9 +2,7 @@
 
 ### 拉取镜像源
 
-```shell
-docker pull neo4j
-```
+> docker pull neo4j
 
 ### 启动容器
 
@@ -44,9 +42,7 @@ docker container restart neo4jtest
 
 1. 查看推荐内存
 
-```
-bin/neo4j-admin memrec --memory=32g --docker
-```
+> bin/neo4j-admin memrec --memory=32g --docker
 
 ```
 ...
@@ -67,6 +63,4 @@ dbms.memory.pagecache.size=4g
 
 3. 重启容器
 
-```
-docker container restart neo4jtest
-```
+> docker container restart neo4jtest

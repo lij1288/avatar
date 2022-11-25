@@ -10,9 +10,7 @@ https://github.com/docker-practice/docker-registry-cn-mirror-test/actions
 
 ### 查看是否在docker.service文件中配置过镜像地址
 
-```
-systemctl cat docker | grep '\-\-registry\-mirror'
-```
+> systemctl cat docker | grep '--registry-mirror'
 
 若有输出，则执行`systemctl cat docker`查看`ExecStart`出现位置，修改对应文件去掉`--registry-mirror`参数及其值，再执行接下来的步骤
 
@@ -44,21 +42,15 @@ systemctl cat docker | grep '\-\-registry\-mirror'
 
 ### 重新加载配置文件
 
-```
-sudo systemctl daemon-reload
-```
+> sudo systemctl daemon-reload
 
 ### 重启Docker
 
-```
-sudo systemctl restart docker
-```
+> sudo systemctl restart docker
 
 ### 查看加速是否生效
 
-```
-docker info
-```
+> docker info
 
 输出显示
 

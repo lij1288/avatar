@@ -15,9 +15,7 @@ sudo yum remove docker \
 
 ### 安装依赖包
 
-```shell
-sudo yum install -y yum-utils
-```
+> sudo yum install -y yum-utils
 
 ### 配置Docker仓库
 
@@ -43,27 +41,19 @@ repo saved to /etc/yum.repos.d/docker-ce.repo
 
 ### 安装Docker
 
-```shell
-sudo yum install docker-ce docker-ce-cli containerd.io
-```
+> sudo yum install docker-ce docker-ce-cli containerd.io
 
 ### 设置开机启动
 
-```shell
-sudo systemctl enable docker
-```
+> sudo systemctl enable docker
 
 ### 启动Docker
 
-```shell
-sudo systemctl start docker
-```
+> sudo systemctl start docker
 
 ### Hello-World
 
-```shell
-sudo docker run hello-world
-```
+> sudo docker run hello-world
 
 ```shell
 [root@avatar ~]# sudo docker run hello-world
