@@ -273,6 +273,7 @@ git init
 
 git branch -M main
 
+
 git remote add origin https://github.com/lij1288/avatar.git
 
 git pull origin main
