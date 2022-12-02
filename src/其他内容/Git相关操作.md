@@ -269,12 +269,7 @@ git config --global user.email "lij1288@outlook.com"
 ssh-keygen -t rsa -C "lij1288@outlook.com"
 GitHub -> Settings -> SSH and GPG keys -> New SSH key，粘贴~/.ssh/id_rsa.pub中的内容
 
-git init
-
-git branch -M main
-
-
-git remote add origin https://github.com/lij1288/avatar.git
+git clone https://github.com/lij1288/avatar.git
 
 git pull origin main
 
