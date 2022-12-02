@@ -172,7 +172,11 @@
 
 ### 远程操作
 
+![](assets/Git相关操作/quicksetup.jpg)
+
 #### GitHub
+
+##### SSH key设置
 
 - 创建ssh key
 
@@ -188,9 +192,16 @@
 
 ![](assets/Git相关操作/验证.jpg)
 
-![](assets/Git相关操作/quicksetup.jpg)
+##### Token设置
 
-- GitHub Pages设置
+- GitHub -> Settings -> Developer settings -> Generate new token
+
+- 控制面板 -> 用户账户 -> 凭据管理器 -> Windows凭据 -> 普通凭据 -> 添加普通凭据
+  - 网络地址：git:https://github.com
+  - 用户名：github username
+  - 密码：token
+
+##### GitHub Pages设置
 
 ![](assets/Git相关操作/解析.jpg)
 
@@ -215,8 +226,6 @@
 - 修改仓库名
 
   > git remote rename [alias1] [alias2]
-
-![](assets/Git相关操作/remote.jpg)
 
 #### git fetch
 
@@ -261,20 +270,6 @@
 - 本地版本和远程版本不同
 
   > git push --force [alias] [local_branch]
-
-```
-git config --global user.name "Avatar"
-git config --global user.email "lij1288@outlook.com"
-
-ssh-keygen -t rsa -C "lij1288@outlook.com"
-GitHub -> Settings -> SSH and GPG keys -> New SSH key，粘贴~/.ssh/id_rsa.pub中的内容
-
-git clone https://github.com/lij1288/avatar.git
-
-git pull origin main
-
-git push origin main
-```
 
 ### 分支管理
 
