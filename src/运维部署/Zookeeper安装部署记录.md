@@ -1,4 +1,4 @@
-## **Zookeeper安装部署记录**
+## **ZooKeeper安装部署记录**
 
 ### 解压安装包
 
@@ -13,7 +13,7 @@
 - vi zoo.cfg
 
 ```shell
-dataDir=/opt/data/zkdata
+dataDir=/opt/data/zookeeper
 
 # Set to "0" to disable auto purge feature
 #autopurge.purgeInterval=1

@@ -94,7 +94,7 @@
 
 [【VMware】VMware_Pro_16安装方式](src/运维部署/VMware_Pro_16安装方式)
 
-[【Zookeeper】Zookeeper安装部署记录](src/运维部署/Zookeeper安装部署记录)
+[【ZooKeeper】ZooKeeper安装部署记录](src/运维部署/ZooKeeper安装部署记录)
 
 <!-- panels:end -->
 
