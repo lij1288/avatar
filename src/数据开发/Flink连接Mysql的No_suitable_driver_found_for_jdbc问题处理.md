@@ -6,4 +6,4 @@
 
 ### 解决过程
 
-- 之前是将mysql-connector-java-5.1.39.jar放在Flink的lib目录下，改为mysql-connector-java-6.0.2-bin.jar。
+- 将Flink的lib目录下的mysql-connector-java-5.1.39.jar替换为mysql-connector-java-6.0.2-bin.jar。

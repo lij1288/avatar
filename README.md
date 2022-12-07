@@ -26,6 +26,8 @@
 
 [【Docsify】Docsify安装记录](src/运维部署/Docsify安装记录)
 
+[【DolphinScheduler】DolphinScheduler安装部署记录](src/运维部署/DolphinScheduler安装部署记录)
+
 [【Hadoop】Hadoop安装部署记录](src/运维部署/Hadoop安装部署记录)
 
 [【Hadoop】DataNode的上线下线操作](src/运维部署/DataNode的上线下线操作)
@@ -526,15 +528,17 @@
 
 [Shell的条件判断](src/后端开发/Shell的条件判断)
 
-<!-- div:right-panel -->
-
 [Shell的流程控制](src/后端开发/Shell的流程控制)
+
+<!-- div:right-panel -->
 
 [Shell的函数](src/后端开发/Shell的函数)
 
 [Shell脚本调试](src/后端开发/Shell脚本调试)
 
 [Hive和Oracle数据比对](src/后端开发/Hive和Oracle数据比对)
+
+[DolphinScheduler部署脚本](src/后端开发/DolphinScheduler部署脚本)
 
 <!-- panels:end -->
 
