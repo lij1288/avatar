@@ -14,11 +14,11 @@
 
 ### 修改配置文件
 
-- 伪集群方式
-
 #### install_env.sh
 
 > vi bin/env/install_env.sh
+
+- 伪集群部署
 
 ```shell
 # ---------------------------------------------------------
@@ -33,15 +33,31 @@ alertServer="localhost"
 apiServers="localhost"
 
 # DolphinScheduler installation path, it will auto-create if not exists
-installPath=/opt/app/dolphinscheduler
+installPath="/opt/app/dolphinscheduler"
 
 # Deploy user, use the user you create in section **Configure machine SSH password-free login**
 deployUser="root"
+
+# The root of zookeeper, for now DolphinScheduler default registry server is zookeeper.
+zkRoot="/dolphinscheduler"
+```
+
+- 集群部署
+
+```shell
+ips="192.168.1.101,192.168.1.102,192.168.1.103"
+sshPort="22"
+masters="192.168.1.101"
+workers="192.168.1.101,192.168.1.102,192.168.1.103"
+alertServer="192.168.1.102"
+apiServers="192.168.1.103"
 ```
 
 #### dolphinscheduler_env.sh
 
 > vi bin/env/dolphinscheduler_env.sh
+
+- 伪集群部署
 
 ```shell
 # JAVA_HOME, will use it to start DolphinScheduler server
@@ -76,6 +92,8 @@ export DATAX_HOME=${DATAX_HOME:-/opt/soft/datax}
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME/bin:$PATH
 ```
 
+
+
 ### 数据源配置
 
 #### 下载驱动
@@ -93,7 +111,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:
 
 #### 创建数据库
 
-```mysql
+```sql
 CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 ```
 
@@ -105,9 +123,44 @@ CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8
 
 > bash bin/install.sh
 
+![](assets/DolphinScheduler安装部署记录/cluster.jpg)
+
 ### 访问DolphinScheduler
 
--  http://localhost:12345/dolphinscheduler/ui
+-  http://192.168.1.103:12345/dolphinscheduler/ui
   - admin/dolphinscheduler123
 
 ![](assets/DolphinScheduler安装部署记录/DolphinScheduler.jpg)
+
+### 启停服务
+
+- 启停集群所有服务
+
+  > bash ./bin/stop-all.sh
+  >
+  > bash ./bin/start-all.sh
+
+- 启停Master
+
+  > bash ./bin/dolphinscheduler-daemon.sh stop master-server
+  >
+  > bash ./bin/dolphinscheduler-daemon.sh start master-server
+
+- 启停Worker
+
+  > bash ./bin/dolphinscheduler-daemon.sh start worker-server
+  >
+  > bash ./bin/dolphinscheduler-daemon.sh stop worker-server
+
+- 启停Api
+
+  > bash ./bin/dolphinscheduler-daemon.sh start api-server
+  >
+  > bash ./bin/dolphinscheduler-daemon.sh stop api-server
+
+- 启停Alert
+
+  > bash ./bin/dolphinscheduler-daemon.sh start alert-server
+  >
+  > bash ./bin/dolphinscheduler-daemon.sh stop alert-server
+

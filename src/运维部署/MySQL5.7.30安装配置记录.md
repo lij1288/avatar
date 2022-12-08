@@ -185,7 +185,7 @@ mysql>
 
 ### 修改root账户密码
 
-> mysql> alter user user() identified by "******";
+> mysql> alter user user() identified by "\*\*\*\*\*\*";
 >
 > mysql> flush privileges;
 
