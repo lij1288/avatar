@@ -10,7 +10,7 @@
 
 - ZooKeeper3.4.6+
 
-- SSH免密登陆
+- SSH免密登录
 
 ### 修改配置文件
 
@@ -18,19 +18,19 @@
 
 > vi bin/env/install_env.sh
 
-- 伪集群部署
+- 集群部署
 
 ```shell
 # ---------------------------------------------------------
 # INSTALL MACHINE
 # ---------------------------------------------------------
 # Due to the master, worker, and API server being deployed on a single node, the IP of the server is the machine IP or localhost
-ips="localhost"
+ips="10.0.43.101,10.0.43.102,10.0.43.103"
 sshPort="22"
-masters="localhost"
-workers="localhost:default"
-alertServer="localhost"
-apiServers="localhost"
+masters="10.0.43.101"
+workers="10.0.43.101:default,10.0.43.102:default,10.0.43.103:default"
+alertServer="10.0.43.102"
+apiServers="10.0.43.101"
 
 # DolphinScheduler installation path, it will auto-create if not exists
 installPath="/opt/app/dolphinscheduler"
@@ -42,22 +42,20 @@ deployUser="root"
 zkRoot="/dolphinscheduler"
 ```
 
-- 集群部署
+- 伪集群部署
 
 ```shell
-ips="192.168.1.101,192.168.1.102,192.168.1.103"
+ips="localhost"
 sshPort="22"
-masters="192.168.1.101"
-workers="192.168.1.101,192.168.1.102,192.168.1.103"
-alertServer="192.168.1.102"
-apiServers="192.168.1.103"
+masters="localhost"
+workers="localhost:default"
+alertServer="localhost"
+apiServers="localhost"
 ```
 
 #### dolphinscheduler_env.sh
 
 > vi bin/env/dolphinscheduler_env.sh
-
-- 伪集群部署
 
 ```shell
 # JAVA_HOME, will use it to start DolphinScheduler server
@@ -66,7 +64,7 @@ export JAVA_HOME=/opt/app/jdk1.8.0_202
 # Database related configuration, set database type, username and password
 export DATABASE=mysql
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:mysql://192.168.1.101:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
+export SPRING_DATASOURCE_URL="jdbc:mysql://10.0.43.101:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
 export SPRING_DATASOURCE_USERNAME=root
 export SPRING_DATASOURCE_PASSWORD=********
 
@@ -127,7 +125,7 @@ CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8
 
 ### 访问DolphinScheduler
 
--  http://192.168.1.103:12345/dolphinscheduler/ui
+-  http://10.0.43.101:12345/dolphinscheduler/ui
   - admin/dolphinscheduler123
 
 ![](assets/DolphinScheduler安装部署记录/DolphinScheduler.jpg)
