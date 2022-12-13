@@ -6,21 +6,19 @@
 
 ### 删除文档
 
-位置：$HADOOP_HOME/share
-
-> rm -rf doc
+> rm -rf share/doc
 
 ### 修改配置文件
 
-#### HDFS配置
+> cd etc/hadoop
 
-位置：$HADOOP_HOME/etc/hadoop/
+#### HDFS配置
 
 > vi hadoop-env.sh
 
 ```shell
 # The java implementation to use.
-export JAVA_HOME=/opt/app/jdk1.8.0_202/
+export JAVA_HOME=/opt/app/jdk1.8.0_202
 ```
 
 > vi hdfs-site.xml
@@ -30,27 +28,27 @@ export JAVA_HOME=/opt/app/jdk1.8.0_202/
 <!--namenode的rpc通信地址-->
 <property>
 <name>dfs.namenode.rpc-address</name>
-<value>linux01:9000</value>
+<value>192.168.1.101:9000</value>
 </property>
 <!--secondary namenode的http地址-->
 <property>
 <name>dfs.namenode.secondary.http-address</name>
-<value>linux02:50090</value>
+<value>192.168.1.102:50090</value>
 </property>
 <!--namenode的元数据持久化存储目录-->
 <property>
 <name>dfs.namenode.name.dir</name>
-<value>/opt/hdpdata/name/</value>
+<value>/opt/data/dfs/name/</value>
 </property>
 <!--secondarynamenode的存储目录-->
 <property>
 <name>dfs.namenode.checkpoint.dir</name>
-<value>/opt/hdpdata/secondayname/</value>
+<value>/opt/data/dfs/namesecondary/</value>
 </property>
 <!--data的块存储目录-->
 <property>
 <name>dfs.datanode.data.dir</name>
-<value>/opt/hdpdata/data/</value>
+<value>/opt/data/dfs/data/</value>
 </property>
 </configuration>
 ```
@@ -58,11 +56,13 @@ export JAVA_HOME=/opt/app/jdk1.8.0_202/
 > vi core-site.xml
 
 ```xml
+<configuration>
 <!--hdfs客户端默认访问的文件系统-->
 <property>
 <name>fs.defaultFS</name>
-<value>hdfs://linux01:9000/</value>
+<value>hdfs://192.168.1.101:9000/</value>
 </property>
+</configuration>
 ```
 
 #### Yarn配置
@@ -70,17 +70,18 @@ export JAVA_HOME=/opt/app/jdk1.8.0_202/
 > vi yarn-site.xml 
 
 ```xml
+<configuration>
 <!--主节点所在机器-->
 <property>
 <name>yarn.resourcemanager.hostname</name>
-<value>linux01</value>
+<value>192.168.1.101</value>
 </property>
-
 <!--为mr程序提供shuffle服务-->
 <property>
 <name>yarn.nodemanager.aux-services</name>
 <value>mapreduce_shuffle</value>
 </property>
+</configuration>
 ```
 
 #### MapReduce配置
@@ -90,22 +91,23 @@ export JAVA_HOME=/opt/app/jdk1.8.0_202/
 > vi mapred-site.xml
 
 ```xml
+<configuration>
 <!--mr运行模型，默认为local-->
 <property>
   <name>mapreduce.framework.name</name>
   <value>yarn</value>
 </property>
+</configuration>
 ```
 
 ### 拷贝到其他机器
 
-> for i in {2..3}
->
-> \> do
->
-> \> scp -r /opt/app/hadoop-2.8.5 linux0${i}:/opt/app/
->
-> \> done
+```shell
+for i in {2..3} 
+do 
+scp -r /opt/app/hadoop-2.8.5 192.168.1.10${i}:$PWD 
+done
+```
 
 ### 配置环境变量
 
@@ -146,9 +148,9 @@ export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 > vi slaves
 
 ```
-linux01
-linux02
-linux03
+192.168.1.101
+192.168.1.102
+192.168.1.103
 ```
 
 > start-dfs.sh
@@ -185,7 +187,7 @@ linux03
 
 - 元数据目录不会像DateNode块存储目录那样根据配置文件自动创建
 
-> cat /opt/hdpdata/name/current/VERSION
+> cat /opt/data/dfs/name/current/VERSION
 
 ```shell
 #Mon Jan 11 17:34:40 CST 2021
@@ -199,14 +201,14 @@ layoutVersion=-63
 
 - 新的DateNode会去找NameNode注册，NameNode会返回集群ID、块池ID给DateNode，DateNode创建集群存储目录
 
-> ll /opt/hdpdata/data/current
+> ll /opt/data/dfs/data/current
 
 ```
 drwx------. 4 root root 4096 Jan 11 18:42 BP-1113767523-192.168.1.101-1610357680824
 -rw-r--r--. 1 root root  229 Jan 11 18:42 VERSION
 ```
 
-> cat /opt/hdpdata/data/current/VERSION
+> cat /opt/data/dfs/data/current/VERSION
 
 ```shell
 #Mon Jan 11 18:42:04 CST 2021

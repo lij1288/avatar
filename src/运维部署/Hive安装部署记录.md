@@ -7,7 +7,7 @@
 - 设置远程登陆权限（给root用户授予从任何机器上登陆mysql服务器的权限）
 
 
-> mysql > grant all privileges on \*.* to 'root'@'%' identified by 'password' with grant option;
+> mysql > grant all privileges on \*.* to 'root'@'%' identified by '\*\*\*\*\*\*\*\*' with grant option;
 >
 > mysql > flush privileges;
 
@@ -31,14 +31,14 @@
 
 #### 修改配置文件
 
-- vi hive-site.xml
+> vi conf/hive-site.xml
 
 ```xml
 <configuration>
-<!-- 在mysql中创建名字为hive的库; 不使用ssl-->
+<!-- 在mysql中创建名字为hive的数据库 -->
 <property>
 <name>javax.jdo.option.ConnectionURL</name>
-<value>jdbc:mysql://linux01:3306/hive?createDatabaseIfNotExist=true&amp;useSSL=false</value>
+<value>jdbc:mysql://192.168.1.101:3306/hive?createDatabaseIfNotExist=true&amp;useSSL=false</value>
 </property>
 <property>
 <name>javax.jdo.option.ConnectionDriverName</name>
@@ -50,14 +50,14 @@
 </property>
 <property>
 <name>javax.jdo.option.ConnectionPassword</name>
-<value>root</value>
+<value>********</value>
 </property>
 </configuration>
 ```
 
 #### 添加hadoop配置
 
-- vi core-site.xml
+> vi $HADOOP_HOME/etc/hadoop/core-site.xml
 
 ```xml
 <property>
@@ -72,9 +72,7 @@
 
 ### 拷贝mysql的jdbc驱动jar包
 
--  拷贝一个mysql的jdbc驱动jar包到hive的lib目录中
-
-> mysql-connector-java-5.1.39.jar
+-  拷贝一个mysql的jdbc驱动jar包mysql-connector-java到hive的lib目录中
 
 ### 初始化Hive的元数据库
 
@@ -96,11 +94,14 @@
 
 - 连hiveserver2
 
-> beeline> !connect jdbc:hive2://linux01:10000
-> Connecting to jdbc:hive2://linux01:10000
-> Enter username for jdbc:hive2://linux01:10000: root
-> Enter password for jdbc:hive2://linux01:10000:
+> beeline> !connect jdbc:hive2://192.168.1.101:10000
+>
+> Connecting to jdbc:hive2://192.168.1.101:10000
+>
+> Enter username for jdbc:hive2://192.168.1.101:10000: root
+>
+> Enter password for jdbc:hive2://192.168.1.101:10000:
 
 - 启动beeline并连接hiveserver2
 
-> bin/beeline -u jdbc:hive2://linux01:10000 -n root
+> bin/beeline -u jdbc:hive2://192.168.1.101:10000 -n root
