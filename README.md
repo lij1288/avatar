@@ -324,7 +324,7 @@
 
 [Kafka的相关概念](src/数据开发/Kafka的相关概念)
 
-[Kafka的相关操作](src/数据开发/Kafka的相关操作)
+[Kafka的命令行操作](src/数据开发/Kafka的命令行操作)
 
 [Kafka的API使用](src/数据开发/Kafka的API使用)
 
