@@ -1,10 +1,10 @@
 ## **Kafka的命令行操作**
 
-### 查看topic
+### 列出topic
 
 > kafka-topics.sh --zookeeper 10.0.43.101:2181/kafka --list
 
-### 查看topic状态
+### 查看topic信息
 
 > kafka-topics.sh --zookeeper 10.0.43.101:2181/kafka --describe --topic test
 
@@ -43,17 +43,29 @@ partition0所在broker为0、1且leader为0，partition1所在broker为1、2且l
 
 ### 启动命令行消费者
 
-- --from-beginning 消费以前产生的所有数据，否则消费消费者组未消费的数据
+- 指定起始偏移量重置策略
 
 > kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic test --from-beginning
 
-- --group 指定消费者组
+- 指定消费者组
 
 > kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic test --from-beginning --group g01
 
 - 指定分区及偏移量
 
 > kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic test --partition 2 --offset 1
+
+- 指定再均衡分配策略
+
+> kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic demo --group g01 --consumer-property partition.assignment.strategy=org.apache.kafka.clients.consumer.RoundRobinAssignor
+
+### 列出消费者组
+
+> kafka-consumer-groups.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --list test-consumer-group
+
+### 查看消费者组信息
+
+> kafka-consumer-groups.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --describe --group g01
 
 ### 查看偏移量
 
@@ -120,3 +132,33 @@ numChildren = 0
 > kafka-configs.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --alter --entity-type topics --entity-name test --delete-config flush.messages
 
 > kafka-topics.sh --zookeeper 10.0.43.101:2181/kafka --alter --topic test --delete-config flush.messages
+
+### 解析存储文件
+
+> kafka-run-class.sh kafka.tools.DumpLogSegments --files 00000000000000000000.index --print-data-log
+
+```
+Dumping 00000000000000000000.index
+offset: 55 position: 4150
+offset: 300 position: 8330
+```
+
+> kafka-run-class.sh kafka.tools.DumpLogSegments --files 00000000000000000000.log --print-data-log
+
+```
+Dumping 00000000000000000000.log
+Starting offset: 0
+baseOffset: 0 lastOffset: 0 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 0 CreateTime: 1672034989919 size: 74 magic: 2 compresscodec: NONE crc: 1830590829 isvalid: true
+| offset: 0 isValid: true crc: null keySize: -1 valueSize: 6 CreateTime: 1672034989919 baseOffset: 0 lastOffset: 0 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 74 magic: 2 compressType: NONE position: 0 sequence: -1 headerKeys: [] payload: value0
+baseOffset: 1 lastOffset: 1 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 74 CreateTime: 1672034990952 size: 74 magic: 2 compresscodec: NONE crc: 1124278838 isvalid: true
+| offset: 1 isValid: true crc: null keySize: -1 valueSize: 6 CreateTime: 1672034990952 baseOffset: 1 lastOffset: 1 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 74 magic: 2 compressType: NONE position: 74 sequence: -1 headerKeys: [] payload: value5
+baseOffset: 2 lastOffset: 2 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 148 CreateTime: 1672034991976 size: 75 magic: 2 compresscodec: NONE crc: 3760709816 isvalid: true
+| offset: 2 isValid: true crc: null keySize: -1 valueSize: 7 CreateTime: 1672034991976 baseOffset: 2 lastOffset: 2 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 75 magic: 2 compressType: NONE position: 148 sequence: -1 headerKeys: [] payload: value10
+baseOffset: 3 lastOffset: 3 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 223 CreateTime: 1672034992994 size: 75 magic: 2 compresscodec: NONE crc: 3235670643 isvalid: true
+| offset: 3 isValid: true crc: null keySize: -1 valueSize: 7 CreateTime: 1672034992994 baseOffset: 3 lastOffset: 3 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 75 magic: 2 compressType: NONE position: 223 sequence: -1 headerKeys: [] payload: value15
+baseOffset: 4 lastOffset: 4 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 298 CreateTime: 1672034994014 size: 75 magic: 2 compresscodec: NONE crc: 3706759663 isvalid: true
+| offset: 4 isValid: true crc: null keySize: -1 valueSize: 7 CreateTime: 1672034994014 baseOffset: 4 lastOffset: 4 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 75 magic: 2 compressType: NONE position: 298 sequence: -1 headerKeys: [] payload: value20
+baseOffset: 5 lastOffset: 5 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 373 CreateTime: 1672034995031 size: 75 magic: 2 compresscodec: NONE crc: 620151198 isvalid: true
+| offset: 5 isValid: true crc: null keySize: -1 valueSize: 7 CreateTime: 1672034995031 baseOffset: 5 lastOffset: 5 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 75 magic: 2 compressType: NONE position: 373 sequence: -1 headerKeys: [] payload: value25
+```
+

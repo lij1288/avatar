@@ -32,6 +32,16 @@
 
   - none，无重置策略，没有记录的偏移量则抛出错误
 
+- 取消订阅
+
+  ```java
+  consumer.unsubscribe();
+  consumer.subscribe(new ArrayList<String>());
+  consumer.assign(new ArrayList<TopicPartition>());
+  ```
+
+  
+
 ### ProducerDemo
 
 ```java
@@ -82,7 +92,7 @@ import org.apache.kafka.common.record.TimestampType;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
-import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -105,7 +115,7 @@ public class ConsumerDemo {
         // 消费组客户端
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         // 订阅topic，可订阅多个
-        consumer.subscribe(Collections.singletonList("demo"));
+        consumer.subscribe(List.of("demo"));
 
         while (true){
             // 客户端拉取数据时，如果服务端未响应，会保持连接等待服务端响应
@@ -127,6 +137,48 @@ public class ConsumerDemo {
 
                 System.out.println(String.format("key: %s, value: %s, topic: %s, partition: %d ,offset: %d, timestampType: %s, timestamp: %d, leaderEpoch: %s",
                         key,value,topic,partition,offset,timestampType.name,timestamp,leaderEpoch.get()));
+
+                Thread.sleep(200);
+            }
+        }
+    }
+}
+```
+
+### AssignDemo
+
+```java
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
+import java.util.Properties;
+
+public class AssignDemo {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Properties props = new Properties();
+        props.load(AssignDemo.class.getClassLoader().getResourceAsStream("consumer.properties"));
+        props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
+        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG,"g01");
+
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+
+        consumer.assign(List.of(new TopicPartition("demo", 0)));
+
+        // 指定起始partition和offset
+        consumer.seek(new TopicPartition("demo",0),5);
+
+
+        while (true){
+            ConsumerRecords<String, String> msgs = consumer.poll(Duration.ofMillis(Long.MAX_VALUE));
+            for(ConsumerRecord<String, String> msg:msgs){
+                System.out.println(String.format("key: %s, value: %s, topic: %s, partition: %d ,offset: %d, timestampType: %s, timestamp: %d, leaderEpoch: %s",
+                        msg.key(),msg.value(),msg.topic(),msg.partition(),msg.offset(),msg.timestampType().name,msg.timestamp(),msg.leaderEpoch().get()));
 
                 Thread.sleep(200);
             }
