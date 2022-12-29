@@ -19,7 +19,7 @@ Topic: test	TopicId: NsNJpExiQiS_gt2o_mvfyg	PartitionCount: 3	ReplicationFactor:
 
 - 指定副本数量和分区数量
 
-> kafka-topics.sh --zookeeper linux01:2181 --create --topic test --replication-factor 3 --partitions 3
+> kafka-topics.sh --zookeeper 10.0.43.101:2181/kafka --create --topic test --replication-factor 3 --partitions 3
 
 - 指定分配方案
 
