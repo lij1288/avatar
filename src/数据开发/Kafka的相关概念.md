@@ -3,20 +3,15 @@
 - producer
   - 消息生产者，发布消息到kafka集群的终端或服务
 - broker
-  - Kafka集群中安装Kafka的服务器
+  - kafka集群中安装Kafka的服务器
 - topic
   - 每条发布到kafka集群的消息属于的类，即kafka是面向topic的 (相当于数据库中的表)
 - partition
-  - 物理上的概念，每个topic包含一个或多个partition
+  - 物理上的概念，每个topic包含一个或多个partition，kafka分配的单位是partition
 - consumer
-  - 从Kafka集群中消费消息的终端或服务
-  - 消费者消费一个不存在的topic时，会自动创建分区数和副本数为1的该topic
+  - 从kafka集群中消费消息的终端或服务
 - consumer group
-  - 是一种为了提高消费并行度的机制，每个consumer都属于一个consumer group，每条消息只能被consumer group中的一个consumer消费，但可以被多个consumer group消费，consumer group中分配消息的最小单位是分区
-
-- offset
-  - offset在各个分区内独立维护，kafka定期记录消费者组在每个分区消费数据的偏移量到 __consumer_offsets
-
+  - high-level consumer API中，每个consumer都属于一个consumer group，每条消息只能被consumer group中的一个consumer消费，但可以被多个consumer group消费
 - replica
   - partition的副本，保障partition的高可用
 - leader
@@ -24,4 +19,4 @@
 - follower
   - replica中的一个角色，从leader中复制数据
 - zookeeper
-  - Kafka通过zookeeper来存储集群的meta信息
+  - kafka通过zookeeper来存储集群的meta信息

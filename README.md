@@ -344,6 +344,8 @@
 
 [基于事务的ExactlyOnce数据消费](src/数据开发/基于事务的ExactlyOnce数据消费)
 
+[Kafka的Timed_out_waiting_for_connection_while_in_state_CONNECTING问题处理](src/数据开发/Kafka的Timed_out_waiting_for_connection_while_in_state_CONNECTING问题处理)
+
 
 ## Flume
 
