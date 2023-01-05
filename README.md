@@ -332,6 +332,8 @@
 
 [Kafka的acks应答机制](src/数据开发/Kafka的acks应答机制)
 
+[Kafka的一致性实现机制](src/数据开发/Kafka的一致性实现机制)
+
 [消费者组的再均衡分配策略](src/数据开发/消费者组的再均衡分配策略)
 
 [消费者组的再均衡流程](src/数据开发/消费者组的再均衡流程)
@@ -342,7 +344,7 @@
 
 [Kafka的物理存储结构](src/数据开发/Kafka的物理存储结构)
 
-[基于事务的ExactlyOnce数据消费](src/数据开发/基于事务的ExactlyOnce数据消费)
+[基于目标端事务的ExactlyOnce数据消费](src/数据开发/基于目标端事务的ExactlyOnce数据消费)
 
 [Kafka的Timed_out_waiting_for_connection_while_in_state_CONNECTING问题处理](src/数据开发/Kafka的Timed_out_waiting_for_connection_while_in_state_CONNECTING问题处理)
 

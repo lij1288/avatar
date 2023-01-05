@@ -8,3 +8,8 @@
   - all，2.8之后默认，等同于-1，所有的in-sync replicas将记录写入本地日志后，应答写入成功
   - 1，2.8之前默认，leader将记录写入本地日志后，应答写入成功
   - 0，producer不等待应答
+
+```java
+props.setProperty(ProducerConfig.ACKS_CONFIG, "all");
+```
+

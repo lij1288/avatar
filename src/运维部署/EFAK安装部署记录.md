@@ -34,6 +34,21 @@ efak.username=root
 efak.password=Unidata101.
 ```
 
+### 修改Kafka启动脚本
+
+> vi kafka-server-start.sh
+
+```shell
+if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
+    export KAFKA_HEAP_OPTS="-Xmx1G -Xms1G"
+    export JMX_PORT="9999"
+fi
+```
+
+> scp kafka-server-start.sh 10.0.43.102:$PWD
+
+> scp kafka-server-start.sh 10.0.43.103:$PWD
+
 ### 启动eagle
 
 > ke.sh start

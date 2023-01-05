@@ -2,6 +2,8 @@
 
 ### 问题记录
 
+- 宕机节点重启失败
+
 - 报错内容
 
 > kafka.zookeeper.ZooKeeperClientTimeoutException: Timed out waiting for connection while in state: CONNECTING

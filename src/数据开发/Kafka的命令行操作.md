@@ -72,9 +72,9 @@ partition0所在broker为0、1且leader为0，partition1所在broker为1、2且l
 > kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic __consumer_offsets --formatter "kafka.coordinator.group.GroupMetadataManager\\$OffsetsMessageFormatter" --consumer.config /opt/app/kafka_2.12-2.8.1/config/server.properties --from-beginning | grep g01
 
 ```
-[g01,test,1]::OffsetAndMetadata(offset=6, leaderEpoch=Optional[0], metadata=, commitTimestamp=1671087356104, expireTimestamp=None)
-[g01,test,0]::OffsetAndMetadata(offset=6, leaderEpoch=Optional[0], metadata=, commitTimestamp=1671087356104, expireTimestamp=None)
-[g01,test,2]::OffsetAndMetadata(offset=7, leaderEpoch=Optional[0], metadata=, commitTimestamp=1671087356104, expireTimestamp=None)
+[g01,test,0]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=, commitTimestamp=1672913436699, expireTimestamp=None)
+[g01,test,1]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=, commitTimestamp=1672913436699, expireTimestamp=None)
+[g01,test,2]::OffsetAndMetadata(offset=1, leaderEpoch=Optional[0], metadata=, commitTimestamp=1672913436699, expireTimestamp=None)
 ```
 
 ### 在zkCli查看broker信息

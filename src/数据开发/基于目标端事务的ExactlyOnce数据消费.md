@@ -1,4 +1,4 @@
-## **基于事务的ExactlyOnce数据消费**
+## **基于目标端事务的ExactlyOnce数据消费**
 
 ```java
 import org.apache.kafka.clients.consumer.*;
