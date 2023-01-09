@@ -324,6 +324,10 @@
 
 ## Kafka
 
+<!-- panels:start -->
+
+<!-- div:left-panel -->
+
 [Kafka的相关概念](src/数据开发/Kafka的相关概念)
 
 [Kafka的命令行操作](src/数据开发/Kafka的命令行操作)
@@ -333,6 +337,12 @@
 [Kafka的acks应答机制](src/数据开发/Kafka的acks应答机制)
 
 [Kafka的一致性实现机制](src/数据开发/Kafka的一致性实现机制)
+
+[Kafka的幂等性实现](src/数据开发/Kafka的幂等性实现)
+
+[Kafka的事务控制](src/数据开发/Kafka的事务控制)
+
+<!-- div:right-panel -->
 
 [消费者组的再均衡分配策略](src/数据开发/消费者组的再均衡分配策略)
 
@@ -347,6 +357,8 @@
 [基于目标端事务的ExactlyOnce数据消费](src/数据开发/基于目标端事务的ExactlyOnce数据消费)
 
 [Kafka的Timed_out_waiting_for_connection_while_in_state_CONNECTING问题处理](src/数据开发/Kafka的Timed_out_waiting_for_connection_while_in_state_CONNECTING问题处理)
+
+<!-- panels:end -->
 
 
 ## Flume

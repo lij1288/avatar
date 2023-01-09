@@ -67,10 +67,10 @@ public class ProducerDemo {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         for(int i=0; i<100; i++){
             // 指定key
-//            ProducerRecord<String, String> msg = new ProducerRecord<>("demo", "key"+i, "value"+i);
+//            ProducerRecord<String, String> record = new ProducerRecord<>("demo", "key"+i, "value"+i);
             // 指定分区编号
-            ProducerRecord<String, String> msg = new ProducerRecord<>("demo", i%3,null, "value"+i);
-            producer.send(msg);
+            ProducerRecord<String, String> record = new ProducerRecord<>("demo", i%3,null, "value"+i);
+            producer.send(record);
             Thread.sleep(200);
         }
         
@@ -120,20 +120,20 @@ public class ConsumerDemo {
         while (true){
             // 客户端拉取数据时，如果服务端未响应，会保持连接等待服务端响应
             // 指定客户端等待的最大时长
-            ConsumerRecords<String, String> msgs = consumer.poll(Duration.ofMillis(Long.MAX_VALUE));
-            for(ConsumerRecord<String, String> msg:msgs){
-                String key = msg.key();
-                String value = msg.value();
-                String topic = msg.topic();
-                int partition = msg.partition();
-                long offset = msg.offset();
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(Long.MAX_VALUE));
+            for(ConsumerRecord<String, String> record:records){
+                String key = record.key();
+                String value = record.value();
+                String topic = record.topic();
+                int partition = record.partition();
+                long offset = record.offset();
                 // 时间戳类型
-                TimestampType timestampType = msg.timestampType();
-                long timestamp = msg.timestamp();
+                TimestampType timestampType = record.timestampType();
+                long timestamp = record.timestamp();
                 // 当前这条数据所在分区的leader的纪年
-                Optional<Integer> leaderEpoch = msg.leaderEpoch();
+                Optional<Integer> leaderEpoch = record.leaderEpoch();
                 // 生产者写入数据时添加的数据头
-//                Headers headers = msg.headers();
+//                Headers headers = record.headers();
 
                 System.out.println(String.format("key: %s, value: %s, topic: %s, partition: %d ,offset: %d, timestampType: %s, timestamp: %d, leaderEpoch: %s",
                         key,value,topic,partition,offset,timestampType.name,timestamp,leaderEpoch.get()));
@@ -175,10 +175,10 @@ public class AssignDemo {
 
 
         while (true){
-            ConsumerRecords<String, String> msgs = consumer.poll(Duration.ofMillis(Long.MAX_VALUE));
-            for(ConsumerRecord<String, String> msg:msgs){
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(Long.MAX_VALUE));
+            for(ConsumerRecord<String, String> record:records){
                 System.out.println(String.format("key: %s, value: %s, topic: %s, partition: %d ,offset: %d, timestampType: %s, timestamp: %d, leaderEpoch: %s",
-                        msg.key(),msg.value(),msg.topic(),msg.partition(),msg.offset(),msg.timestampType().name,msg.timestamp(),msg.leaderEpoch().get()));
+                        record.key(),record.value(),record.topic(),record.partition(),record.offset(),record.timestampType().name,record.timestamp(),record.leaderEpoch().get()));
 
                 Thread.sleep(200);
             }
@@ -258,10 +258,10 @@ object ConsumerDemo {
 
     while(true){
       // 指定超时时长
-      val msgs: ConsumerRecords[String, String] = consumer.poll(2000)
+      val records: ConsumerRecords[String, String] = consumer.poll(2000)
 
       import scala.collection.JavaConversions._
-      for(cr <- msgs){
+      for(cr <- records){
         println(cr)
       }
     }

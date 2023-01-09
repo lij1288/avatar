@@ -162,3 +162,101 @@ baseOffset: 5 lastOffset: 5 count: 1 baseSequence: -1 lastSequence: -1 producerI
 | offset: 5 isValid: true crc: null keySize: -1 valueSize: 7 CreateTime: 1672034995031 baseOffset: 5 lastOffset: 5 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 75 magic: 2 compressType: NONE position: 373 sequence: -1 headerKeys: [] payload: value25
 ```
 
+### 生产者性能测试
+
+- throughput：最大吞吐量（每秒消息数量）限制，-1为不限制
+
+> kafka-producer-perf-test.sh --topic test --num-records 1000000 --record-size 1024 --throughput -1 --producer-props bootstrap.servers=10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 acks=-1
+
+```
+usage: producer-performance [-h] --topic TOPIC --num-records NUM-RECORDS [--payload-delimiter PAYLOAD-DELIMITER] --throughput THROUGHPUT
+                            [--producer-props PROP-NAME=PROP-VALUE [PROP-NAME=PROP-VALUE ...]] [--producer.config CONFIG-FILE] [--print-metrics]
+                            [--transactional-id TRANSACTIONAL-ID] [--transaction-duration-ms TRANSACTION-DURATION] (--record-size RECORD-SIZE | --payload-file PAYLOAD-FILE)
+
+This tool is used to verify the producer performance.
+
+optional arguments:
+  -h, --help             show this help message and exit
+  --topic TOPIC          produce messages to this topic
+  --num-records NUM-RECORDS
+                         number of messages to produce
+  --payload-delimiter PAYLOAD-DELIMITER
+                         provides delimiter to be used when --payload-file is provided. Defaults to  new  line.  Note that this parameter will be ignored if --payload-file is not
+                         provided. (default: \n)
+  --throughput THROUGHPUT
+                         throttle maximum message throughput to *approximately* THROUGHPUT messages/sec. Set this to -1 to disable throttling.
+  --producer-props PROP-NAME=PROP-VALUE [PROP-NAME=PROP-VALUE ...]
+                         kafka producer related configuration properties like bootstrap.servers,client.id  etc.  These  configs  take precedence over those passed via --producer.
+                         config.
+  --producer.config CONFIG-FILE
+                         producer config properties file.
+  --print-metrics        print out metrics at the end of the test. (default: false)
+  --transactional-id TRANSACTIONAL-ID
+                         The transactionalId to use if transaction-duration-ms is >  0.  Useful  when  testing  the performance of concurrent transactions. (default: performance-
+                         producer-default-transactional-id)
+  --transaction-duration-ms TRANSACTION-DURATION
+                         The max age of each transaction. The commitTransaction will  be  called  after  this  time  has  elapsed.  Transactions are only enabled if this value is
+                         positive. (default: 0)
+
+  either --record-size or --payload-file must be specified but not both.
+
+  --record-size RECORD-SIZE
+                         message size in bytes. Note that you must provide exactly one of --record-size or --payload-file.
+  --payload-file PAYLOAD-FILE
+                         file to read the message payloads from. This works only  for  UTF-8  encoded  text  files.  Payloads  will  be  read from this file and a payload will be
+                         randomly selected when sending messages. Note that you must provide exactly one of --record-size or --payload-file.
+```
+
+### 消费者性能测试
+
+> kafka-consumer-perf-test.sh --topic test --messages 1000000 --bootstrap-server=10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092
+
+```
+Option                                   Description                            
+------                                   -----------                            
+--bootstrap-server <String: server to    REQUIRED unless --broker-list          
+  connect to>                              (deprecated) is specified. The server
+                                           (s) to connect to.                   
+--broker-list <String: broker-list>      DEPRECATED, use --bootstrap-server     
+                                           instead; ignored if --bootstrap-     
+                                           server is specified.  The broker     
+                                           list string in the form HOST1:PORT1, 
+                                           HOST2:PORT2.                         
+--consumer.config <String: config file>  Consumer config properties file.       
+--date-format <String: date format>      The date format to use for formatting  
+                                           the time field. See java.text.       
+                                           SimpleDateFormat for options.        
+                                           (default: yyyy-MM-dd HH:mm:ss:SSS)   
+--fetch-size <Integer: size>             The amount of data to fetch in a       
+                                           single request. (default: 1048576)   
+--from-latest                            If the consumer does not already have  
+                                           an established offset to consume     
+                                           from, start with the latest message  
+                                           present in the log rather than the   
+                                           earliest message.                    
+--group <String: gid>                    The group id to consume on. (default:  
+                                           perf-consumer-50407)                 
+--help                                   Print usage information.               
+--hide-header                            If set, skips printing the header for  
+                                           the stats                            
+--messages <Long: count>                 REQUIRED: The number of messages to    
+                                           send or consume                      
+--num-fetch-threads <Integer: count>     DEPRECATED AND IGNORED: Number of      
+                                           fetcher threads. (default: 1)        
+--print-metrics                          Print out the metrics.                 
+--reporting-interval <Integer:           Interval in milliseconds at which to   
+  interval_ms>                             print progress info. (default: 5000) 
+--show-detailed-stats                    If set, stats are reported for each    
+                                           reporting interval as configured by  
+                                           reporting-interval                   
+--socket-buffer-size <Integer: size>     The size of the tcp RECV size.         
+                                           (default: 2097152)                   
+--threads <Integer: count>               DEPRECATED AND IGNORED: Number of      
+                                           processing threads. (default: 10)    
+--timeout [Long: milliseconds]           The maximum allowed time in            
+                                           milliseconds between returned        
+                                           records. (default: 10000)            
+--topic <String: topic>                  REQUIRED: The topic to consume from.   
+--version                                Display Kafka version.         
+```
+
