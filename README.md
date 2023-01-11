@@ -332,7 +332,7 @@
 
 [Kafka的命令行操作](src/数据开发/Kafka的命令行操作)
 
-[Kafka的API使用](src/数据开发/Kafka的API使用)
+[Kafka的基础API使用](src/数据开发/Kafka的基础API使用)
 
 [Kafka的acks应答机制](src/数据开发/Kafka的acks应答机制)
 
