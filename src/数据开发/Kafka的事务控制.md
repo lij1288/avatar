@@ -10,10 +10,29 @@
 
 - 开始事务
   - 发送ControlBatch消息（事务开始）
-- 提交事务
+
+  提交事务
   - 发送ControlBatch消息（事务提交）
-- 终止事务
+
+  终止事务
   - 发送ControlBatch消息（事务终止）
+
+- 事务状态持久化到__transaction_state
+
+```
+......
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=15, txnTimeoutMs=60000, state=Empty, pendingState=None, topicPartitions=Set(), txnStartTimestamp=-1, txnLastUpdateTimestamp=1673256845462)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=15, txnTimeoutMs=60000, state=Ongoing, pendingState=None, topicPartitions=Set(__consumer_offsets-20), txnStartTimestamp=1673256845546, txnLastUpdateTimestamp=1673256845546)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=15, txnTimeoutMs=60000, state=Ongoing, pendingState=None, topicPartitions=Set(__consumer_offsets-20, demo2-0), txnStartTimestamp=1673256845546, txnLastUpdateTimestamp=1673256845550)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=16, txnTimeoutMs=60000, state=PrepareAbort, pendingState=None, topicPartitions=Set(__consumer_offsets-20, demo2-0), txnStartTimestamp=1673256845546, txnLastUpdateTimestamp=1673256880912)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=16, txnTimeoutMs=60000, state=CompleteAbort, pendingState=None, topicPartitions=Set(), txnStartTimestamp=1673256845546, txnLastUpdateTimestamp=1673256880913)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=17, txnTimeoutMs=60000, state=Empty, pendingState=None, topicPartitions=Set(), txnStartTimestamp=-1, txnLastUpdateTimestamp=1673256881020)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=17, txnTimeoutMs=60000, state=Ongoing, pendingState=None, topicPartitions=Set(__consumer_offsets-20), txnStartTimestamp=1673256881115, txnLastUpdateTimestamp=1673256881115)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=17, txnTimeoutMs=60000, state=Ongoing, pendingState=None, topicPartitions=Set(__consumer_offsets-20, demo2-2), txnStartTimestamp=1673256881115, txnLastUpdateTimestamp=1673256881119)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=17, txnTimeoutMs=60000, state=PrepareCommit, pendingState=None, topicPartitions=Set(__consumer_offsets-20, demo2-2), txnStartTimestamp=1673256881115, txnLastUpdateTimestamp=1673256881252)
+trans01::TransactionMetadata(transactionalId=trans01, producerId=12001, producerEpoch=17, txnTimeoutMs=60000, state=CompleteCommit, pendingState=None, topicPartitions=Set(), txnStartTimestamp=1673256881115, txnLastUpdateTimestamp=1673256881253)
+......
+```
 
 ### KafKa的事务API使用
 
@@ -137,4 +156,3 @@ baseOffset: 6 lastOffset: 6 count: 1 baseSequence: -1 lastSequence: -1 producerI
 | offset: 6 isValid: true crc: null keySize: 4 valueSize: 6 CreateTime: 1673256747845 baseOffset: 6 lastOffset: 6 baseSequence: -1 lastSequence: -1 producerEpoch: 12 partitionLeaderEpoch: 0 batchSize: 78 magic: 2 compressType: NONE position: 411 sequence: -1 headerKeys: [] endTxnMarker: COMMIT coordinatorEpoch: 0
 ......
 ```
-

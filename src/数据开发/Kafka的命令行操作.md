@@ -162,6 +162,12 @@ baseOffset: 5 lastOffset: 5 count: 1 baseSequence: -1 lastSequence: -1 producerI
 | offset: 5 isValid: true crc: null keySize: -1 valueSize: 7 CreateTime: 1672034995031 baseOffset: 5 lastOffset: 5 baseSequence: -1 lastSequence: -1 producerEpoch: -1 partitionLeaderEpoch: 0 batchSize: 75 magic: 2 compressType: NONE position: 373 sequence: -1 headerKeys: [] payload: value25
 ```
 
+### 内部topic解析
+
+> kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic __consumer_offsets --formatter "kafka.coordinator.group.GroupMetadataManager\\$GroupMetadataMessageFormatter" --from-beginning
+
+> kafka-console-consumer.sh --bootstrap-server 10.0.43.101:9092,10.0.43.102:9092,10.0.43.103:9092 --topic __transaction_state --formatter "kafka.coordinator.transaction.TransactionLog\\$TransactionLogMessageFormatter" --from-beginning
+
 ### 生产者性能测试
 
 - throughput：最大吞吐量（每秒消息数量）限制，-1为不限制
