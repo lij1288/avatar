@@ -16,18 +16,18 @@
 - 框架通过RegionCoprocessor接口的getRegionObserver方法，获取一个RegionObserver对象
 
 
-![](assets/HBase的协处理器/2191564-20210506092151446-1599492280.jpg)
+![](assets/HBase的协处理器/RegionCoprocessor.jpg)
 
 
 
 
 
 
-- 然后调用RegionObserver上方的preXX或postXX方法对各种操作进行拦截处理
+- 然后调用RegionObserver的preXX或postXX方法对各种操作进行拦截处理
 
 
 
-![](assets/HBase的协处理器/2191564-20210506092200145-660575905.jpg)
+![](assets/HBase的协处理器/RegionObserver.jpg)
 
 
 

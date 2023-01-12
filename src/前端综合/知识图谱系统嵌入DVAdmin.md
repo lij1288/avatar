@@ -1,6 +1,6 @@
 ## **知识图谱系统嵌入DVAdmin**
 
-![](assets/知识图谱系统嵌入DVAdmin/demo3.jpg)
+![](assets/知识图谱系统嵌入DVAdmin/知识图谱系统DVAdmin.jpg)
 
 ### 被嵌入端设置
 

@@ -58,8 +58,8 @@ a1.sinks.k1.hdfs.fileType = DataStream
 
 - 源目录
 
-![](assets/基于Flume和LFTP的非结构化文件同步/2191564-20211028182010728-1237396471.png)
+![](assets/基于Flume和LFTP的非结构化文件同步/源目录.jpg)
 
 - 目标目录
 
-![](assets/基于Flume和LFTP的非结构化文件同步/2191564-20211028182020595-661143967.png)
+![](assets/基于Flume和LFTP的非结构化文件同步/目标目录.jpg)

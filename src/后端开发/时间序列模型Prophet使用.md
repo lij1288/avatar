@@ -40,8 +40,8 @@ turtle.exitonclick()
 
 - 预测结果
 
-![](assets/时间序列模型Prophet使用/预测结果.png)
+![](assets/时间序列模型Prophet使用/预测结果.jpg)
 
 - 整体趋势、周趋势、年趋势
 
-![](assets/时间序列模型Prophet使用/趋势.png)
+![](assets/时间序列模型Prophet使用/趋势.jpg)

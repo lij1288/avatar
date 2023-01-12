@@ -20,7 +20,7 @@
 
 > ./install_server.sh
 
-![](assets/Redis安装部署记录/2191564-20220418170701550-1213362299.jpg)
+![](assets/Redis安装部署记录/安装为系统服务并启动.jpg)
 
 
 
@@ -55,4 +55,4 @@ requirepass ******
 
 > service redis_6379 restart
 
-![](assets/Redis安装部署记录/2191564-20220418170711016-590579136.jpg)
+![](assets/Redis安装部署记录/设置密码.jpg)

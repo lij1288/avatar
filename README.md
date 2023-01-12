@@ -70,9 +70,13 @@
 
 [【Linux】Crontab定时任务设置](src/运维部署/Crontab定时任务设置)
 
-[【MySQL】MySQL5.7.30安装配置记录](src/运维部署/MySQL5.7.30安装配置记录)
+[【Maven】Maven安装配置记录](src/运维部署/Maven安装配置记录)
 
-[【MySQL】Windows版MySQL5.7.30安装记录](src/运维部署/Windows版MySQL5.7.30安装记录)
+[【Maven】Windows版Maven安装配置记录](src/运维部署/Windows版Maven安装配置记录)
+
+[【MySQL】MySQL安装配置记录](src/运维部署/MySQL安装配置记录)
+
+[【MySQL】Windows版MySQL安装记录](src/运维部署/Windows版MySQL安装记录)
 
 [【Navicat】Navicat_Premium15安装方式](src/运维部署/Navicat_Premium15安装方式)
 
@@ -294,8 +298,6 @@
 
 [Docker版Neo4j的neo4j-import](src/数据开发/Docker版Neo4j的neo4j-import)
 
-[Neo4j节点颜色与大小设置](src/数据开发/Neo4j节点颜色与大小设置)
-
 ## HBase
 
 <!-- panels:start -->
@@ -500,6 +502,8 @@
 [pandas导入Excel到数据库](src/后端开发/pandas导入Excel到数据库)
 
 [pandas导入HTML表格到数据库](src/后端开发/pandas导入HTML表格到数据库)
+
+[基于filestools的watermark添加](src/后端开发/基于filestools的watermark添加)
 
 [Python的Microsoft_Visual_C++_14.0_is_required问题处理](src/后端开发/Python的Microsoft_Visual_C++_14.0_is_required问题处理)
 

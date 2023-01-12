@@ -4,7 +4,7 @@
 
 https://github.com/docker-practice/docker-registry-cn-mirror-test/actions
 
-![](assets/Docker的镜像加速设置/2191564-20211124094611368-2008446211.png)
+![](assets/Docker的镜像加速设置/查看可用镜像站.jpg)
 
 
 

@@ -10,62 +10,62 @@
 
 - 点击Patch
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162313458-355343051.jpg)
+![](assets/Navicat_Premium15安装方式/Patch.jpg)
 
 
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162320659-1314862777.jpg)
+![](assets/Navicat_Premium15安装方式/Cracked.jpg)
 
 
 
 - 启动Navicat，点击注册
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162332815-1842096530.jpg)
+![](assets/Navicat_Premium15安装方式/Navicat注册.jpg)
 
 
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162339248-1747858438.jpg)
+![](assets/Navicat_Premium15安装方式/注册页面.jpg)
 
 
 
 - 点击Generate生成密钥并自动填充
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162348205-1640588510.jpg)
+![](assets/Navicat_Premium15安装方式/Generate.jpg)
 
 
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162354426-609311582.jpg)
+![](assets/Navicat_Premium15安装方式/Generate注册页面.jpg)
 
 
 
 - 点击激活
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162402248-491849388.jpg)
+![](assets/Navicat_Premium15安装方式/点击激活.jpg)
 
 
 
 - 点击手动激活
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162408678-622213882.jpg)
+![](assets/Navicat_Premium15安装方式/点击手动激活.jpg)
 
 
 
 - 复制请求码到Request Code
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162415480-1814472414.jpg)
+![](assets/Navicat_Premium15安装方式/复制请求码.jpg)
 
 
 
 - 点击Activication Code的Generate生成激活码并自动填充
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162422567-1753833344.jpg)
+![](assets/Navicat_Premium15安装方式/生成激活码.jpg)
 
 
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162429707-1237582242.jpg)
+![](assets/Navicat_Premium15安装方式/生成激活码2.jpg)
 
 
 
 - 完成激活
 
-![](assets/Navicat_Premium15安装方式/2191564-20220318162436925-609287711.jpg)
+![](assets/Navicat_Premium15安装方式/完成激活.jpg)

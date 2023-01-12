@@ -12,7 +12,7 @@ Mysql中utf8字符集默认是不区分内容大小写的，因为默认校对�
 show character set
 ```
 
-![](assets/MySQL中utf8的校对规则/2191564-20220110175844776-2070135108.png)
+![](assets/MySQL中utf8的校对规则/Charset.jpg)
 
 
 
@@ -20,7 +20,7 @@ show character set
 show collation
 ```
 
-![](assets/MySQL中utf8的校对规则/2191564-20220110175851517-630881567.png)
+![](assets/MySQL中utf8的校对规则/Collation.jpg)
 
 
 

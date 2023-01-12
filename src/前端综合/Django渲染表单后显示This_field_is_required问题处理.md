@@ -4,7 +4,7 @@
 
 - Django通过表单自动渲染的页面显示This field is required
 
-![](assets/Django渲染表单后显示This_field_is_required问题处理/2191564-20220419153402174-2040740384.jpg)
+![](assets/Django渲染表单后显示This_field_is_required问题处理/渲染表单问题记录.jpg)
 
 
 
@@ -29,4 +29,4 @@ def index(request):
     return render(request, 'kg.html', {'form1': form1})
 ```
 
-![](assets/Django渲染表单后显示This_field_is_required问题处理/2191564-20220419153411864-1122368926.jpg)
+![](assets/Django渲染表单后显示This_field_is_required问题处理/渲染表单问题解决.jpg)

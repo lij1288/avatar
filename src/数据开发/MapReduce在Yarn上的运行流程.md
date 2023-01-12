@@ -1,6 +1,6 @@
 ## **MR在Yarn上的运行流程**
 
-![](assets/MapReduce在Yarn上的运行流程/2191564-20210312155704286-1607210609.jpg)
+![](assets/MapReduce在Yarn上的运行流程/MR在Yarn上的运行流程.jpg)
 
 
 1. Client向Resource Manager申请运行一个app

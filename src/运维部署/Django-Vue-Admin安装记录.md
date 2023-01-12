@@ -35,7 +35,7 @@ VUE_APP_API = "http://10.0.43.107:8000"
 
 > npm run dev
 
-![](assets/Django-Vue-Admin安装记录/2191564-20220419155004668-994444139.jpg)
+![](assets/Django-Vue-Admin安装记录/启动服务.jpg)
 
 
 
@@ -115,7 +115,7 @@ pymysql.install_as_MySQLdb()
 
 > python3 manage.py migrate
 
-![](assets/Django-Vue-Admin安装记录/2191564-20220419155052947-1844545709.jpg)
+![](assets/Django-Vue-Admin安装记录/迁移数据库.jpg)
 
 
 
@@ -127,7 +127,7 @@ pymysql.install_as_MySQLdb()
 
 > python3 manage.py init_area
 
-![](assets/Django-Vue-Admin安装记录/2191564-20220419155100559-416541686.jpg)
+![](assets/Django-Vue-Admin安装记录/初始化省市县数据.jpg)
 
 
 
@@ -135,7 +135,7 @@ pymysql.install_as_MySQLdb()
 
 > python3 manage.py runserver 0.0.0.0:8000
 
-![](assets/Django-Vue-Admin安装记录/2191564-20220419155112277-479759172.jpg)
+![](assets/Django-Vue-Admin安装记录/启动项目.jpg)
 
 
 
@@ -145,8 +145,8 @@ pymysql.install_as_MySQLdb()
   - 用户名：superadmin
   - 密码：admin123456
 
-![](assets/Django-Vue-Admin安装记录/2191564-20220419155120070-1222398106.jpg)
+![](assets/Django-Vue-Admin安装记录/DVAdmin登录.jpg)
 
 
 
-![](assets/Django-Vue-Admin安装记录/2191564-20220419155126687-1908986128.jpg)
+![](assets/Django-Vue-Admin安装记录/DVAdmin页面.jpg)

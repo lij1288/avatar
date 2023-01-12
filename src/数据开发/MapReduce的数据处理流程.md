@@ -1,6 +1,6 @@
 ## **MapReduce的数据处理流程**
 
-![](assets/MapReduce的数据处理流程/2191564-20210310153036434-1314968147.jpg)
+![](assets/MapReduce的数据处理流程/MapReduce的数据处理流程.jpg)
 
 
 1. MapTask的run方法调用Mapper对象的run方法

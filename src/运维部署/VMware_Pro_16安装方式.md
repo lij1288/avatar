@@ -4,7 +4,7 @@
 > https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html
 - 输入许可证密钥
 
-![](assets/VMware_Pro_16安装方式/2191564-20220318161637522-1664804792.jpg)
+![](assets/VMware_Pro_16安装方式/输入许可证密钥.jpg)
 
 
 

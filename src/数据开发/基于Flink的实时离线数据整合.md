@@ -717,4 +717,4 @@ public class MysqlSink2 extends RichSinkFunction<TestBean> {
 </project>
 ```
 
-![](assets/基于Flink的实时离线数据整合/2191564-20211215165620089-690210162.png)
+![](assets/基于Flink的实时离线数据整合/基于Flink的实时离线数据整合.jpg)

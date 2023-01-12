@@ -2,7 +2,7 @@
 
 ### Checkpoint机制
 
-![](assets/HDFS的Checkpoint机制/2191564-20201024111906453-391906364.jpg)
+![](assets/HDFS的Checkpoint机制/HDFS的Checkpoint机制.jpg)
 
 - NameNode负责管理元数据，元数据存在内存中，但在磁盘上有元数据镜像文件FSimage和操作日志文件edits
 

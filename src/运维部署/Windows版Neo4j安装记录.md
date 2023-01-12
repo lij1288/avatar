@@ -18,11 +18,11 @@
 neo4j console
 ```
 
-![](assets/Windows版Neo4j安装记录/2191564-20220207094453500-1134232949.png)
+![](assets/Windows版Neo4j安装记录/启动命令行客户端1.jpg)
 
 
 
-![](assets/Windows版Neo4j安装记录/2191564-20220207094504149-2085831163.png)
+![](assets/Windows版Neo4j安装记录/启动命令行客户端2.jpg)
 
 
 
@@ -34,4 +34,4 @@ neo4j console
 neo4j install-service
 ```
 
-![](assets/Windows版Neo4j安装记录/2191564-20220207094515641-307873178.png)
+![](assets/Windows版Neo4j安装记录/启动服务.jpg)

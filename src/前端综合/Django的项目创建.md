@@ -82,4 +82,4 @@ ALLOWED_HOSTS = ['192.168.1.101']
 
 > python3 manage.py runserver 192.168.1.101:8000
 
-![](assets/Django的项目创建/2191564-20220419160523207-553761018.png)
+![](assets/Django的项目创建/Django的项目创建.jpg)

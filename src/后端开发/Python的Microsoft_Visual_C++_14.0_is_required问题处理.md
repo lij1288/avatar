@@ -10,13 +10,13 @@
 
 - 下载whl包，访问https://www.lfd.uci.edu/~gohlke/pythonlibs/
 
-![](assets/Python的Microsoft_Visual_C++_14.0_is_required问题处理/2191564-20220303171248530-2047540383.png)
+![](assets/Python的Microsoft_Visual_C++_14.0_is_required问题处理/下载whl包.jpg)
 
 - 下载对应版本
 
   sasl‑0.3.1‑cp38‑cp38‑win_amd64.whl，cp38对应python3.8，amd64为位数
 
-![](assets/Python的Microsoft_Visual_C++_14.0_is_required问题处理/2191564-20220303171300580-969467188.png)
+![](assets/Python的Microsoft_Visual_C++_14.0_is_required问题处理/下载对应版本.jpg)
 
 
 - 安装whl包
@@ -25,4 +25,4 @@
 
   > pip install D:\Develop\whl\sasl-0.3.1-cp38-cp38-win_amd64.whl
 
-![](assets/Python的Microsoft_Visual_C++_14.0_is_required问题处理/2191564-20220303171317388-167687008.png)
+![](assets/Python的Microsoft_Visual_C++_14.0_is_required问题处理/安装whl包.jpg)

@@ -5,8 +5,9 @@
   - python <= 3.9（ddddocr1.4）
 
 - 安装命令
+  
 
-  > pip install ddddocr
+> pip install ddddocr
 
 ```python
 import ddddocr

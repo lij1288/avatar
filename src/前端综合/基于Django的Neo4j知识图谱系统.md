@@ -1,6 +1,6 @@
 ## **基于Django的Neo4j知识图谱系统**
 
-![](assets/基于Django的Neo4j知识图谱系统/2191564-20220426172900186-409320148.jpg)
+![](assets/基于Django的Neo4j知识图谱系统/知识图谱页面美化.jpg)
 
 
 
@@ -312,7 +312,7 @@ urlpatterns = [
 ]
 ```
 
-![](assets/基于Django的Neo4j知识图谱系统/2191564-20220426172916655-1093938710.jpg)
+![](assets/基于Django的Neo4j知识图谱系统/知识图谱.jpg)
 
 
 

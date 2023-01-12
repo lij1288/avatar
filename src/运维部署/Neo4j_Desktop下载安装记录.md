@@ -2,88 +2,88 @@
 
 ### 下载
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110350754-1354238920.png)
+![](assets/Neo4j_Desktop下载安装记录/下载1.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110359560-2013936475.png)
+![](assets/Neo4j_Desktop下载安装记录/下载2.jpg)
 
 
 
 ### 同意协议
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110410432-121590034.png)
+![](assets/Neo4j_Desktop下载安装记录/同意协议.jpg)
 
 
 
 ### 选择数据存储位置
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110427005-947419545.png)
+![](assets/Neo4j_Desktop下载安装记录/选择数据存储位置.jpg)
 
 
 
 ### 输入下载时的激活码
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110439330-1802140368.png)
+![](assets/Neo4j_Desktop下载安装记录/输入下载时的激活码1.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110447691-131575823.png)
+![](assets/Neo4j_Desktop下载安装记录/输入下载时的激活码2.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110458529-1564071450.png)
+![](assets/Neo4j_Desktop下载安装记录/输入下载时的激活码3.jpg)
 
 
 
 ### 创建项目
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110508340-1694037944.png)
+![](assets/Neo4j_Desktop下载安装记录/创建项目.jpg)
 
 
 
 ### 重命名项目
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110518541-889660268.png)
+![](assets/Neo4j_Desktop下载安装记录/重命名项目.jpg)
 
 
 
 ### 创建本地数据库
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110528613-860179420.png)
+![](assets/Neo4j_Desktop下载安装记录/创建本地数据库1.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110536262-654426932.png)
+![](assets/Neo4j_Desktop下载安装记录/创建本地数据库2.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110544793-1454213590.png)
+![](assets/Neo4j_Desktop下载安装记录/创建本地数据库3.jpg)
 
 
 
 ### 连接远程数据库
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110602925-1058794668.png)
+![](assets/Neo4j_Desktop下载安装记录/连接远程数据库1.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110618805-1187786329.png)
+![](assets/Neo4j_Desktop下载安装记录/连接远程数据库2.jpg)
 
 
 
-!![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110630208-715739890.png)
+!![](assets/Neo4j_Desktop下载安装记录/连接远程数据库3.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110639372-848796548.png)
+![](assets/Neo4j_Desktop下载安装记录/连接远程数据库4.jpg)
 
 
 
 ### 命令行工具
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110704524-1785322905.png)
+![](assets/Neo4j_Desktop下载安装记录/命令行工具1.jpg)
 
 
 
-![](assets/Neo4j_Desktop下载安装记录/2191564-20220207110712479-1182633529.png)
+![](assets/Neo4j_Desktop下载安装记录/命令行工具2.jpg)

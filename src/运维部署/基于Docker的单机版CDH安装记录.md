@@ -114,7 +114,7 @@ Starting ntpd:                                             [  OK  ]
 
 - 192.168.101.12:7180 账号: cloudera 密码: cloudera
 
-![](assets/基于Docker的单机版CDH安装记录/2191564-20211104144449857-936868791.png)
+![](assets/基于Docker的单机版CDH安装记录/访问页面.jpg)
 
 ```
 [root@quickstart /]# hdfs dfs -ls /

@@ -13,7 +13,7 @@ where
         help_topic_id < (length('王金鑫、王金金、高方泳、高方垚、王胜楠') - length(replace('王金鑫、王金金、高方泳、高方垚、王胜楠','、','')))/3 + 1
 ```
 
-![](assets/MySQL拆分字段转为多行/00.jpg)
+![](assets/MySQL拆分字段转为多行/MySQL拆分字段转为多行.jpg)
 
 - 拆分原表字段
 

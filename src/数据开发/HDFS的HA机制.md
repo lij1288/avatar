@@ -1,6 +1,6 @@
 ## **HDFS的HA机制**
 
-![](assets/HDFS的HA机制/2191564-20210219125434866-13607009.jpg)
+![](assets/HDFS的HA机制/HDFS的HA机制.jpg)
 
 ### ZKFailoverController进程
 
@@ -12,7 +12,7 @@ ActiveStandbyElector负责完成自动的主备选举，内部封装了Zookeeper
 
 ### NameNode主备切换流程
 
-![](assets/HDFS的HA机制/2191564-20210219125449605-984519216.jpg)
+![](assets/HDFS的HA机制/NameNode主备切换流程.jpg)
 
 1. HealthMonitor初始化完成后启动内部线程来定时调用NameNode的HAServiceProtocol (RPC)接口的方法，监控健康状态
 2. HealthMonitor如果监控到NameNode的健康状态发生变化，会回调ZKFailoverController注册的相应方法进行通知

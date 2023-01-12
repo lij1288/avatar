@@ -40,7 +40,14 @@
   consumer.assign(new ArrayList<TopicPartition>());
   ```
 
-  
+
+```xml
+<dependency>
+    <groupId>org.apache.kafka</groupId>
+    <artifactId>kafka-clients</artifactId>
+    <version>2.8.1</version>
+</dependency>
+```
 
 ### ProducerDemo
 
