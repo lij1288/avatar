@@ -42,6 +42,6 @@ export PATH=$PATH:$MAVEN_HOME/bin
 
 > source /etc/profile
 
-### 验证安装
+### 查看安装结果
 
 > mvn -v

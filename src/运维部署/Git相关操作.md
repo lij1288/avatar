@@ -43,6 +43,10 @@
   > git config --global user.name "Avatar"
 
   > git config --global user.email "lij1288@outlook.com"
+  
+- the remote end hung up unexpectedly问题处理
+
+  > git config --global http.postBuffer 524288000
 
 ### 提交与修改
 

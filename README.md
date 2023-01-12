@@ -28,6 +28,12 @@
 
 [【DolphinScheduler】DolphinScheduler安装部署记录](src/运维部署/DolphinScheduler安装部署记录)
 
+[【Git】Git编译安装记录](src/运维部署/Git编译安装记录)
+
+[【Git】Windows版Git安装记录](src/运维部署/Windows版Git安装记录)
+
+[【Git】Git相关操作](src/运维部署/Git相关操作)
+
 [【Hadoop】Hadoop安装部署记录](src/运维部署/Hadoop安装部署记录)
 
 [【Hadoop】DataNode的上线下线操作](src/运维部署/DataNode的上线下线操作)
@@ -37,8 +43,6 @@
 [【Hive】Hive安装部署记录](src/运维部署/Hive安装部署记录)
 
 [【Java】JDK安装配置记录](src/运维部署/JDK安装配置记录)
-
-[【Java】卸载CentOS自带JDK记录](src/运维部署/卸载CentOS自带JDK记录)
 
 [【Kafka】Kafka安装部署记录](src/运维部署/Kafka安装部署记录)
 
@@ -770,10 +774,6 @@
 <!-- panels:end -->
 
 # **其他内容**
-
-[Windows版Git安装记录](src/其他内容/Windows版Git安装记录)
-
-[Git相关操作](src/其他内容/Git相关操作)
 
 [Markdown公式语法](src/其他内容/Markdown公式语法)
 

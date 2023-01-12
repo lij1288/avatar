@@ -49,7 +49,7 @@
 
 - D:\Develop\apache-maven-3.6.3\bin
 
-### 验证安装
+### 查看安装结果
 
 
 > mvn -v
