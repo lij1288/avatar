@@ -24,9 +24,10 @@
   - [Tomcat](https://tomcat.apache.org/tomcat-8.0-doc/index.html)
   - [Vue](https://cn.vuejs.org/api/)
 - [**网页工具**]()
-  
-  - [文献搜索](https://www.semanticscholar.org/)
+
   - [书籍搜索](https://www.jiumodiary.com)
+  - [文献搜索](https://www.semanticscholar.org/)
+  - [牛津词典](https://www.oxfordlearnersdictionaries.com/)
   - [在线执行](https://ide.judge0.com/)
   - [前端执行](https://jsbin.com/)
   - [正则测试](https://regexr.com/)
@@ -46,7 +47,5 @@
   - [Google](https://www.google.com/)
   - [Bing](https://www.bing.com/)
   - [Gitee](https://gitee.com/)
-  - [CDNJS](https://cdnjs.com/)
-  - [CnBlogs](https://www.cnblogs.com/)
   - [MyBlog](https://www.lijiong.cn/#/blog/)
 

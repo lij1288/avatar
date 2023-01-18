@@ -82,9 +82,7 @@ alter 'user',METHOD => 'table_att_unset', NAME=> 'coprocessor$1'
 
 ### Observer Coprocessor示例
 
-#### 需求
-
-- 对粉丝 -> 被关注者表插入数据同时, 向被关注者 -> 粉丝表插入数据
+- 对关注者 -> 被关注者表插入数据同时, 向被关注者 -> 关注者表插入数据
 
   > t_follower
   >
@@ -95,10 +93,6 @@ alter 'user',METHOD => 'table_att_unset', NAME=> 'coprocessor$1'
   > t_followed
   >
   > rowkey---followed, columnfamily---f, qualifier---follower, value---follower
-
-
-
-#### Demo
 
 ```java
 import org.apache.commons.logging.Log;
@@ -143,7 +137,7 @@ public class FollowerCoprocessor implements RegionCoprocessor, RegionObserver {
         log.info("--------------------------------------------entered coprocessor--------------------------------------------");
         
         // 解剖拦截到的put数据内容，rowkey:follower, columnfamily:f, qualifier:followed, value:followed
-        // 获取行键 --- 粉丝, 获取列名 --- 被关注者
+        // 获取行键 --- 关注者, 获取列名 --- 被关注者
         NavigableMap<byte[], List<Cell>> familyCellMap = put.getFamilyCellMap();
         List<Cell> cells = familyCellMap.get("f".getBytes());
 
@@ -177,10 +171,6 @@ public class FollowerCoprocessor implements RegionCoprocessor, RegionObserver {
     }
 }
 ```
-
-
-
-#### 装载测试
 
 > create 't_follower','f'
 >

@@ -106,7 +106,7 @@ pymysql.install_as_MySQLdb()
 - 报错及处理
   1. ModuleNotFoundError: No module named '_ctypes'
      - pip3 install --upgrade pip
-  2. Can not execute `setup.py` since setuptools is not available in the build environment.
+  2. Can not execute \`setup.py` since setuptools is not available in the build environment.
      - pip3 install --upgrade setuptools
 
 #### 迁移数据库
