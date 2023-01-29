@@ -433,6 +433,14 @@
 
 # **数据管理**
 
+## 数据管理 Data Management
+
+[数据管理基本概念 Data Management Essential Concepts](src/数据管理/数据管理基本概念)
+
+[数据管理框架 Data Management Frameworks](src/数据管理/数据管理框架)
+
+[数据管理知识领域 Data Management Knowledge Areas](src/数据管理/数据管理知识领域)
+
 # **后端开发**
 
 ## Java
@@ -464,8 +472,6 @@
 [Lambda表达式的使用](src/后端开发/Lambda表达式的使用)
 
 [DateTimeFormatter的使用](src/后端开发/DateTimeFormatter的使用)
-
-[枚举类的实现原理](src/后端开发/枚举类的实现原理)
 
 <!-- panels:end -->
 
