@@ -74,6 +74,8 @@
 
 [【Linux】Crontab定时任务设置](src/运维部署/Crontab定时任务设置)
 
+[【Linux】Ubuntu的apt-get源设置](src/运维部署/Ubuntu的apt-get源设置)
+
 [【Maven】Maven安装配置记录](src/运维部署/Maven安装配置记录)
 
 [【Maven】Windows版Maven安装配置记录](src/运维部署/Windows版Maven安装配置记录)
@@ -435,11 +437,25 @@
 
 ## 数据管理 Data Management
 
-[数据管理基本概念 Data Management Essential Concepts](src/数据管理/数据管理基本概念)
+[数据管理基本概念](src/数据管理/数据管理基本概念)
 
-[数据管理框架 Data Management Frameworks](src/数据管理/数据管理框架)
+[数据管理框架](src/数据管理/数据管理框架)
 
-[数据管理知识领域 Data Management Knowledge Areas](src/数据管理/数据管理知识领域)
+[数据管理的知识领域](src/数据管理/数据管理的知识领域)
+
+[数据管理的其他主题](src/数据管理/数据管理的其他主题)
+
+## 数据处理道德 Data Handling Ethics
+
+[数据处理道德框架](src/数据管理/数据处理道德框架)
+
+[数据处理道德的基本概念](src/数据管理/数据处理道德的基本概念)
+
+[数据隐私法背后的原则](src/数据管理/数据隐私法背后的原则)
+
+[违反道德原则的数据实践](src/数据管理/违反道德原则的数据实践)
+
+[数据道德文化的建立](src/数据管理/数据道德文化的建立)
 
 # **后端开发**
 

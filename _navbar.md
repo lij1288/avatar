@@ -43,10 +43,11 @@
 - [**常用链接**]()
   
   - [GitHub](https://github.com/)
+  - [Wiki](https://en.wikipedia.org/)
   - [Gitlogs](https://www.gitlogs.com/)
   - [Stack](https://stackoverflow.com/)
   - [Google](https://www.google.com/)
   - [Bing](https://www.bing.com/)
   - [Gitee](https://gitee.com/)
-  - [MyBlog](https://www.lijiong.cn/#/blog/)
+  - [LijBlog](https://www.lijiong.cn/#/blog/)
 
