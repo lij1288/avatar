@@ -457,6 +457,8 @@
 
 [数据道德文化的建立](src/数据管理/数据道德文化的建立)
 
+## 数据治理 Data Governance
+
 # **后端开发**
 
 ## Java
@@ -759,7 +761,7 @@
 
 ## 数据结构和算法
 
-## 项目管理
+## 项目管理 Project Management
 
 <!-- panels:start -->
 
