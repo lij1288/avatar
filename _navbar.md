@@ -49,5 +49,5 @@
   - [Google](https://www.google.com/)
   - [Bing](https://www.bing.com/)
   - [Gitee](https://gitee.com/)
-  - [LijBlog](https://www.lijiong.cn/#/blog/)
+  - [Blog](https://www.lijiong.cn/#/blog/)
 

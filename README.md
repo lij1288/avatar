@@ -82,8 +82,6 @@
 
 [【MySQL】MySQL安装配置记录](src/运维部署/MySQL安装配置记录)
 
-[【MySQL】MySQL数据库备份](src/运维部署/MySQL数据库备份)
-
 [【MySQL】Windows版MySQL安装记录](src/运维部署/Windows版MySQL安装记录)
 
 [【Navicat】Navicat_Premium15安装方式](src/运维部署/Navicat_Premium15安装方式)
@@ -428,6 +426,8 @@
 [MySQL中utf8的校对规则](src/数据开发/MySQL中utf8的校对规则)
 
 [MySQL拆分字段转为多行](src/数据开发/MySQL拆分字段转为多行)
+
+[MySQL数据库备份](src/数据开发/MySQL数据库备份)
 
 [Excel自定义日期通过Navicat入库后转为5位数字问题处理](src/数据开发/Excel自定义日期通过Navicat入库后转为5位数字问题处理)
 
