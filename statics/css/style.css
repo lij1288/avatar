@@ -51,12 +51,15 @@ aside.sidebar ul ul ul li a {
 img {
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .1), 0 4px 12px rgba(0, 0, 0, .15);
+    pointer-events: none;
 }
 img[data-origin="assets/README/本站地图.jpg"] {
     box-shadow: 0 0 0 0;
+    pointer-events: none;
 }
 #mypic {
     box-shadow: 0 0 0 0;
+    pointer-events: none;
 }
 /* 代码复制 */
 .docsify-copy-code-button {
