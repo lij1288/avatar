@@ -571,6 +571,8 @@
 
 [基于filestools的watermark添加](src/后端开发/基于filestools的watermark添加)
 
+[基于pyDes的加密解密](src/后端开发/基于pyDes的加密解密)
+
 [Python的Microsoft_Visual_C++_14.0_is_required问题处理](src/后端开发/Python的Microsoft_Visual_C++_14.0_is_required问题处理)
 
 [Python的Can_not_execute_setup.py问题处理](src/后端开发/Python的Can_not_execute_setup.py问题处理)

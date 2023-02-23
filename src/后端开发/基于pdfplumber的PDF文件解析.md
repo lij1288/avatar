@@ -46,7 +46,7 @@ import hanlp
 import os
 import sys
 
-conn_str = 'mysql+pymysql://root:%s@********:3306/seg?charset=utf8' % quote_plus('********')
+conn_str = 'mysql+pymysql://root:%s@********:3306/******?charset=utf8' % quote_plus('********')
 conn = create_engine(conn_str, echo=True)
 
 
