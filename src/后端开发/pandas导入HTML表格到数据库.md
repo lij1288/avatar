@@ -40,6 +40,6 @@ def data_load(log_file):
     pandas.io.sql.to_sql(result, f"loujian{now_time}", conn, if_exists="replace", index=False, schema="ds_analysis")
 
 
-# data_load('C:\\Users\\综合运营中心\\Downloads\\全员核酸检测漏检风险人员核查情况汇总表2022-09-07 11_08_45.xls')
+# data_load('C:\\Users\\综合运营中心\\Downloads\\********.xls')
 ```
 

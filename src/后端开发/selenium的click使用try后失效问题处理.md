@@ -13,7 +13,7 @@
 # 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 import time
-import MHLogin
+
 
 def log_download():
     global driver  #添加后解决下载按钮click失效问题
@@ -23,12 +23,12 @@ def log_download():
         # driver = webdriver.Edge()
         Keys = webdriver.common.keys.Keys
         By = webdriver.common.by.By
-        driver.get(MHLogin.get_addr('jzrj'))
+        driver.get('********')
         time.sleep(1)
         # print(driver.page_source)
-        driver.find_element(By.NAME, 'F_email').send_keys(MHLogin.get_user('jzrj'))
+        driver.find_element(By.NAME, 'F_email').send_keys('********')
         driver.find_element(By.NAME, 'F_email').send_keys(Keys.TAB)
-        driver.find_element(By.NAME, 'F_password').send_keys(MHLogin.get_pwd('jzrj'))
+        driver.find_element(By.NAME, 'F_password').send_keys('********')
         driver.find_element(By.NAME, 'action').click()
         time.sleep(3)
         driver.switch_to.frame('main')

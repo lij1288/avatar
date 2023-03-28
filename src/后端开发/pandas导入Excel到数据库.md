@@ -57,6 +57,7 @@ def data_load(log_file):
             result.loc[line] = df.iloc[line]
 
         result.rename(columns={'康希诺': '康希诺腺病毒'}, inplace=True)
+        result["镇街园区接种点"] = result["镇街园区接种点"].str.replace("'", "")
         result.rename(columns={'镇街园区接种点': '接种点'}, inplace=True)
 
         pandas.io.sql.to_sql(result, f"kucun{now_time}", conn, if_exists="replace", index=False, schema="ym_log_new")
@@ -72,7 +73,7 @@ def data_load(log_file):
         return '【失败】库存数据导入kucun' + now_time + '失败'
 
 
-data_load('C:\\Users\\lijiong\\Downloads\\接种日志\\库存\\库存及接种数.xlsx')
+data_load('C:\\Users\\lijiong\\Downloads\\接种日志\\库存\\********.xlsx')
 
 ```
 

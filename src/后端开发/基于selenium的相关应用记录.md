@@ -7,7 +7,6 @@
 # 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 import time
-import loginutils
 
 def log_download():
     global driver
@@ -16,12 +15,12 @@ def log_download():
         # driver = webdriver.Edge()
         Keys = webdriver.common.keys.Keys
         By = webdriver.common.by.By
-        driver.get(loginutils.get_addr('jzrj'))
+        driver.get('********')
         time.sleep(1)
         # print(driver.page_source)
-        driver.find_element(By.NAME, 'F_email').send_keys(loginutils.get_user('jzrj'))
+        driver.find_element(By.NAME, 'F_email').send_keys('********')
         driver.find_element(By.NAME, 'F_email').send_keys(Keys.TAB)
-        driver.find_element(By.NAME, 'F_password').send_keys(loginutils.get_pwd('jzrj'))
+        driver.find_element(By.NAME, 'F_password').send_keys('********')
         driver.find_element(By.NAME, 'action').click()
         time.sleep(3)
         driver.switch_to.frame('main')
@@ -43,7 +42,7 @@ log_download()
 
 
 
-### 图片验证码识别+列表遍历
+### 图片验证码识别&列表遍历
 
 ```python
 # https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
@@ -55,7 +54,6 @@ import shutil
 import time
 import ddddocr
 import base64
-import loginutils
 
 
 # 图片验证码识别
@@ -65,14 +63,14 @@ def yzm_ocr(img):
     return ocr.classification(img_bytes).lower()
 
 
-# 场所码下载
+# 数据下载
 @retry(stop=stop_after_attempt(10))  # 重试10次
 def csm_download():
 
     # 删除下载目录
     shutil.rmtree('c:\\csm_files')
 
-    # 下载场所码
+    # 下载数据
     # driver = webdriver.Edge()
     options = webdriver.ChromeOptions()
     # 设置下载目录（若不存在自动创建）
@@ -83,11 +81,11 @@ def csm_download():
 
     Keys = webdriver.common.keys.Keys
     By = webdriver.common.by.By
-    driver.get(loginutils.get_addr('csm'))
+    driver.get('********')
     time.sleep(1)
     # print(driver.page_source)
-    driver.find_element(By.NAME, 'username').send_keys(loginutils.get_user('csm'))
-    driver.find_element(By.NAME, 'password').send_keys(loginutils.get_pwd('csm'))
+    driver.find_element(By.NAME, 'username').send_keys('********')
+    driver.find_element(By.NAME, 'password').send_keys('********')
     img = driver.find_element(By.XPATH, '//html//body//div//div//form//div[4]//div//div[2]//img').get_attribute('src').split(',')[1]
     yzm_res = yzm_ocr(img)
     print(yzm_res)
@@ -124,7 +122,6 @@ csm_download()
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-import loginutils
 
 
 options = Options()
@@ -132,7 +129,7 @@ driver = webdriver.Chrome()
 # driver = webdriver.Edge()
 Keys = webdriver.common.keys.Keys
 By = webdriver.common.by.By
-driver.get(loginutils.get_addr('qyml'))
+driver.get('********')
 time.sleep(1)
 # print(driver.page_source)
 with open('D:\\WorkSpace\\unicloud\\企业基本信息\\企业名录.txt', 'a', encoding='utf8') as file:
@@ -157,7 +154,6 @@ from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 import datetime
 import time
-import loginutils
 
 
 now_time = datetime.datetime.now().strftime('%Y%m%d')
@@ -197,7 +193,7 @@ driver = webdriver.Chrome()
 # driver = webdriver.Edge()
 Keys = webdriver.common.keys.Keys
 By = webdriver.common.by.By
-driver.get(loginutils.get_addr('qyxx'))
+driver.get('********')
 time.sleep(5)
 # print(driver.page_source)
 
@@ -356,7 +352,6 @@ import ddddocr
 import os
 from PIL import Image
 from io import BytesIO
-import loginutils
 
 
 # 图片验证码识别
@@ -367,7 +362,7 @@ def yzm_ocr(img):
     return ocr.classification(img_bytes).lower()
 
 
-# 场所码下载
+# 数据下载
 @retry(stop=stop_after_attempt(10))  # 重试10次
 def loujian_download():
 
@@ -375,7 +370,7 @@ def loujian_download():
     shutil.rmtree('c:\\python_file')
     os.mkdir('c:\\python_file')
 
-    # 下载场所码
+    # 下载数据
     # driver = webdriver.Edge()
     options = webdriver.ChromeOptions()
     # 设置下载目录（若不存在自动创建）
@@ -388,11 +383,11 @@ def loujian_download():
 
     Keys = webdriver.common.keys.Keys
     By = webdriver.common.by.By
-    driver.get(loginutils.get_addr('louj'))
+    driver.get('********')
     time.sleep(1)
     # print(driver.page_source)
-    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[1]//input').send_keys(loginutils.get_user('louj'))
-    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[2]//input').send_keys(loginutils.get_pwd('louj'))
+    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[1]//input').send_keys('********')
+    driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[2]//input').send_keys('********')
     img = driver.find_element(By.XPATH, '//html//body//div[3]//div//div[2]//form//div[3]//div[2]//img')
     # x, y = img.location.values()
     h, w = img.size.values()
@@ -419,5 +414,200 @@ def loujian_download():
 
 
 loujian_download()
+```
+
+### 通用文章列表信息爬取
+
+```python
+# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
+# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
+from selenium import webdriver
+from sqlalchemy import create_engine
+from urllib.parse import quote_plus
+import time
+
+# 参数设置
+type = '********'
+url = 'https://********/public/info/1rsrm.html'
+url2 = 'https://********/public/info/1rsrm.html?cname=1rsrm&page=2'
+cnt = 20
+page = 5
+element_path = '/html/body/div[4]/div/div[2]/ul/li['
+
+conn_str = 'mysql+pymysql://root:%s@********:3306/qjdata?charset=utf8' % quote_plus('********')
+conn = create_engine(conn_str, echo=True)
+
+driver = webdriver.Chrome()
+Keys = webdriver.common.keys.Keys
+By = webdriver.common.by.By
+driver.get(url)
+time.sleep(1)
+# print(driver.page_source)
+
+
+# 插入数据库
+def insert_detail(type, title, time, target_url):
+    sql = f"""
+        insert into rsrm_data (
+             type
+            ,title
+            ,time
+            ,url
+        )
+        values (
+             '{type}'
+            ,'{title}'
+            ,'{time}'
+            ,'{target_url}'
+        )
+        """
+    sql_res = conn.execute(sql)
+
+
+# 获取文章链接
+def get_target_url(driver):
+    for n in range(1, cnt+1):
+        try:
+            target_url = driver.find_element(By.XPATH, element_path + str(n) + ']/a').get_attribute('href')
+            title = driver.find_element(By.XPATH, element_path + str(n) + ']/a').text
+            # time_str = driver.find_element(By.XPATH, element_path + str(n) + ']').text
+            # time = time_str[len(time_str)-10:]
+            time = driver.find_element(By.XPATH, element_path + str(n) + ']/span').text
+            # print(type, title, time, target_url)
+            insert_detail(type, title, time, target_url)
+        except Exception as e:
+            print(e)
+
+
+for n in range(1, page+1):
+    try:
+        # 处理翻页网址
+        if n == 1:
+            page_url = url
+        else:
+            page_url = url2 + str(n) + '.html'
+        driver.get(page_url)
+        time.sleep(1)
+        get_target_url(driver)
+    except Exception as e:
+        print(e)
+```
+
+### 文章列表及文章详情爬取
+
+```python
+# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
+# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
+from selenium import webdriver
+from sqlalchemy import create_engine
+from urllib.parse import quote_plus
+import time
+import math
+
+conn_str = 'mysql+pymysql://root:%s@********:3306/qjdata?charset=utf8' % quote_plus('********')
+conn = create_engine(conn_str, echo=True)
+
+driver = webdriver.Chrome()
+Keys = webdriver.common.keys.Keys
+By = webdriver.common.by.By
+type = '********'
+url = 'https://********/html/main/djzwcf/index.html'
+driver.get(url)
+time.sleep(1)
+# print(driver.page_source)
+# 获取页数
+# 通过属性获取隐藏文本
+page_total_str = driver.find_element(By.CLASS_NAME, 'page_total').get_attribute('textContent')
+print(page_total_str)
+page_total = int("".join(list(filter(str.isdigit, page_total_str))))
+print(page_total)
+page = math.ceil(page_total/10)
+print(page)
+
+
+# 插入数据库
+def insert_target_url(type, target_url):
+    sql = f"""
+        insert into qjsjw_data (
+             type
+            ,url
+        )
+        values (
+             '{type}'
+            ,'{target_url}'
+        )
+        """
+    sql_res = conn.execute(sql)
+
+
+# 获取文章链接
+def get_target_url(driver):
+    for n in range(1, 11):
+        try:
+            target_url = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[2]/ul/li[' + str(n) + ']/a').get_attribute('href')
+            print(target_url)
+            insert_target_url(type, target_url)
+        except Exception as e:
+            print(e)
+
+
+for n in range(1, page+1):
+    # 处理翻页网址
+    if n == 1:
+        page_url = url
+    else:
+        page_url = url[0:len(url)-10] + str(n) + '.html'
+    driver.get(page_url)
+    time.sleep(1)
+    get_target_url(driver)
+```
+
+```python
+# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
+# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
+from selenium import webdriver
+from sqlalchemy import create_engine
+from urllib.parse import quote_plus
+import time
+
+
+conn_str = 'mysql+pymysql://root:%s@********:3306/qjdata?charset=utf8' % quote_plus('********')
+conn = create_engine(conn_str, echo=True)
+
+driver = webdriver.Chrome()
+Keys = webdriver.common.keys.Keys
+By = webdriver.common.by.By
+
+
+# 插入数据库
+def insert_detail(url, title, source, time):
+    sql = f"""
+        update qjsjw_data set title='{title}',source='{source}',time='{time}' where url='{url}';
+        """
+    sql_res = conn.execute(sql)
+
+
+sql = f"""
+    select url from qjsjw_data where title is null
+    """
+sql_res = conn.execute(sql)
+sql_data = []
+for row in sql_res:
+    cur = dict()
+    for k, v in row._mapping.items():
+        cur[k] = v
+    sql_data.append(cur)
+len = len(sql_data)
+for n in range(0, len):
+    print(n)
+    res = sql_data.pop(0)
+    url = res.get('url')
+    print(url)
+    driver.get(url)
+    time.sleep(1)
+    title = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[1]/p').text.replace('\n', '')
+    source = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[1]/div/span[1]').text[4:]
+    time2 = driver.find_element(By.XPATH, '/html/body/div/div[2]/div[1]/div/span[2]').text[6:]
+    insert_detail(url, title, source, time2)
 ```
 
