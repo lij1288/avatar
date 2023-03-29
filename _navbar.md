@@ -40,6 +40,7 @@
   - [文件转换](https://convertio.co/zh/)
   - [HTML拾色](https://www.runoob.com/tags/html-colorpicker.html)
   - [CSS处理](https://www.runoob.com/csspack/)
+  - [谷歌翻译](https://translate.google.com/?hl=zh-CN)
 - [**常用链接**]()
   
   - [GitHub](https://github.com/)
