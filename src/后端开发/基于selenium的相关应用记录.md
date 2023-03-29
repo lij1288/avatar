@@ -1,10 +1,12 @@
 ## **基于selenium的相关应用记录**
 
+- https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
+
+  或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
+
 ### 邮箱附件下载
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 import time
 
@@ -45,9 +47,6 @@ log_download()
 ### 图片验证码识别&列表遍历
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
-
 from selenium import webdriver
 from tenacity import *
 import shutil
@@ -117,8 +116,6 @@ csm_download()
 ### 页码遍历数据爬取
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
@@ -341,9 +338,6 @@ while True:
 ### 加密验证码截图识别
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
-
 from selenium import webdriver
 from tenacity import *
 import shutil
@@ -419,8 +413,6 @@ loujian_download()
 ### 通用文章列表信息爬取
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
@@ -496,8 +488,6 @@ for n in range(1, page+1):
 ### 文章列表及文章详情爬取
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
@@ -563,8 +553,6 @@ for n in range(1, page+1):
 ```
 
 ```python
-# https://chromedriver.storage.googleapis.com/index.html下载对应版本chromedriver.exe放到Scripts目录
-# 或https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/下载对应版本msedgedriver.exe放到Scripts目录
 from selenium import webdriver
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
