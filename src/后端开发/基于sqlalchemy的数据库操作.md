@@ -6,6 +6,7 @@
 from selenium import webdriver
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
+import pymysql
 import time
 
 
