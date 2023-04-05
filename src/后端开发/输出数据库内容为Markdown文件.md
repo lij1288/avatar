@@ -100,7 +100,7 @@ def print_schema():
              t1.资源名称 资源名称
             ,t1.序号 序号
             ,t1.信息项 信息项
-            ,t1.数据类型 数据类型
+            ,t1.数据格式 数据格式
         from hlj_field t1
         """
     sql_res = conn.execute(sql)
@@ -113,7 +113,7 @@ def print_schema():
         zwmc = cur.get('信息项')
         # 提取中文首字母
         zdm = pinyin.get_initial(zwmc.split(' ')[0], delimiter="")
-        sjgs = cur.get('数据类型')
+        sjgs = cur.get('数据格式')
         btx = '是'
         bz = ''
 
