@@ -75,11 +75,11 @@ and
 
 ```sql
 select
-         t1.资源名称
+         t1.序号
+        ,t1.资源名称
 				,t2.help_topic_id + 1 序号
         ,substring_index(substring_index(t1.信息项,'|',t2.help_topic_id + 1),'|',-1) 信息项
         ,'varchar' 数据类型
-
 from
         hlj_data t1
 join
@@ -88,5 +88,6 @@ where
         t1.信息项 regexp '\\|' and t1.信息项 is not null
 and     
         t2.help_topic_id < (length(t1.信息项) - length(replace(t1.信息项, '|', '')))/1 + 1
+order by t1.序号*1,t2.help_topic_id + 1
 ```
 
