@@ -427,7 +427,11 @@
 
 [MySQL拆分字段转为多行](src/数据开发/MySQL拆分字段转为多行)
 
+[MySQL空间函数的使用](src/数据开发/MySQL空间函数的使用)
+
 [MySQL数据库备份](src/数据开发/MySQL数据库备份)
+
+[MySQL的表关联修改](src/数据开发/MySQL的表关联修改)
 
 [Excel自定义日期通过Navicat入库后转为5位数字问题处理](src/数据开发/Excel自定义日期通过Navicat入库后转为5位数字问题处理)
 
@@ -604,6 +608,8 @@
 [基于pyDes的加密解密](src/后端开发/基于pyDes的加密解密)
 
 [输出数据库内容为Markdown文件](src/后端开发/输出数据库内容为Markdown文件)
+
+[基于logging的日志打印](src/后端开发/基于logging的日志打印)
 
 [Python的Microsoft_Visual_C++_14.0_is_required问题处理](src/后端开发/Python的Microsoft_Visual_C++_14.0_is_required问题处理)
 
