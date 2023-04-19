@@ -599,3 +599,42 @@ for n in range(0, len):
     insert_detail(url, title, source, time2)
 ```
 
+### 多级目录内容下载&重命名
+
+```python
+from selenium import webdriver
+import time
+import os
+
+
+options = webdriver.ChromeOptions()
+prefs = {'download.default_directory': 'D:\\Workspace\\tmp\\', 'profile.default_content_setting_values.automatic_downloads': 1}
+options.add_experimental_option('prefs', prefs)
+driver = webdriver.Chrome(chrome_options=options)
+Keys = webdriver.common.keys.Keys
+By = webdriver.common.by.By
+
+url = 'http://********/zk/indexce.html'
+driver.get(url)
+driver.switch_to.frame('contents')
+
+# print(driver.page_source)
+time.sleep(1)
+
+for i in range(1,10):
+    for j in range(1,55):
+        try:
+            element = driver.find_element(By.XPATH, '/html/body/center/div/table/tbody/tr[3]/th/ul/ul[1]/ul/ul[' + str(i) + ']/li[' + str(j) + ']/a')
+            element.click()
+            time.sleep(1)
+            target_name = element.text
+            file_name = element.get_attribute('href').split('/')[-1]
+            print(file_name)
+            path = 'D:\\Workspace\\tmp\\' + file_name
+            target_path = 'D:\\Workspace\\tmp\\' + target_name + '.xls'
+            print(path, target_path)
+            os.rename(path, target_path)
+        except Exception as e:
+            print(e)
+```
+
