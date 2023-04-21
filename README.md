@@ -441,7 +441,9 @@
 
 # **数据管理**
 
-## 数据管理 Data Management
+## 数据管理
+
+- Data Management
 
 [数据管理基本概念](src/数据管理/数据管理基本概念)
 
@@ -451,7 +453,9 @@
 
 [数据管理的其他主题](src/数据管理/数据管理的其他主题)
 
-## 数据治理 Data Governance
+## 数据治理
+
+- Data Governance
 
 [数据治理框架](src/数据管理/数据治理框架)
 
@@ -471,7 +475,9 @@
 
 [数据治理指标](src/数据管理/数据治理指标)
 
-## 数据架构 Data Architecture
+## 数据架构
+
+- Data Architecture
 
 [数据架构框架](src/数据管理/数据架构框架)
 
@@ -489,7 +495,9 @@
 
 [数据架构治理](src/数据管理/数据架构治理)
 
-## 数据建模和设计 Data Modeling and Design
+## 数据建模和设计
+
+- Data Modeling and Design
 
 [数据建模和设计框架](src/数据管理/数据建模和设计框架)
 
@@ -509,7 +517,9 @@
 
 [数据模型治理](src/数据管理/数据模型治理)
 
-## 数据存储和操作框架 Data Storage and Operations
+## 数据存储和操作框架
+
+- Data Storage and Operations
 
 [数据存储和操作框架](src/数据管理/数据存储和操作框架)
 
@@ -523,13 +533,15 @@
 
 [数据存储介质](src/数据管理/数据存储介质)
 
-[数据库环境](src/数据管理/数据库环境)
+[数据库环境类型](src/数据管理/数据库环境类型)
 
-[数据库组织](src/数据管理/数据库组织)
+[数据库组织方式](src/数据管理/数据库组织方式)
 
 [常见的数据库过程](src/数据管理/常见的数据库过程)
 
-## 数据处理道德 Data Handling Ethics
+## 数据处理道德
+
+- Data Handling Ethics
 
 [数据处理道德框架](src/数据管理/数据处理道德框架)
 
@@ -849,7 +861,9 @@
 
 # **基础知识**
 
-## 项目管理 Project Management
+## 项目管理
+
+- Project Management
 
 <!-- panels:start -->
 
