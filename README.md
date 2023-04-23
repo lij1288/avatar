@@ -2,7 +2,7 @@
 
 ![](assets/README/本站地图.jpg)
 
-![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic :size=78%')
+![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic :size=950x154')
 
 # **运维部署**
 
