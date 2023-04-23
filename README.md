@@ -2,6 +2,8 @@
 
 ![](assets/README/本站地图.jpg)
 
+![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic :size=78%')
+
 # **运维部署**
 
 <!-- panels:start -->
@@ -517,7 +519,7 @@
 
 [数据模型治理](src/数据管理/数据模型治理)
 
-## 数据存储和操作框架
+## 数据存储和操作
 
 - Data Storage and Operations
 
