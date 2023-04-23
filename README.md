@@ -653,6 +653,8 @@
 
 [selenium的click使用try后失效问题处理](src/后端开发/selenium的click使用try后失效问题处理)
 
+[无法加载文件activate.ps1问题处理](src/后端开发/无法加载文件activate.ps1问题处理)
+
 <!-- panels:end -->
 
 ## Scala
