@@ -2,7 +2,7 @@
 
 ![](assets/README/本站地图.jpg)
 
-![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic :size=950x154')
+![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic1')
 
 # **运维部署**
 
@@ -912,4 +912,4 @@
 [Windows查看保存的wifi密码](src/其他内容/Windows查看保存的wifi密码)
 
 ***
-![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic :size=100%')
+![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic2 :size=100%')

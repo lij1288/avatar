@@ -56,8 +56,14 @@ img {
 img[data-origin="assets/README/本站地图.jpg"] {
     box-shadow: 0 0 0 0;
     pointer-events: none;
+    width:80%;
 }
-#mypic {
+#mypic1 {
+    box-shadow: 0 0 0 0;
+    pointer-events: none;
+    width:80%;
+}
+#mypic2 {
     box-shadow: 0 0 0 0;
     pointer-events: none;
 }
