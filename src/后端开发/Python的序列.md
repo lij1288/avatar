@@ -528,6 +528,7 @@ for k,v in d.items():
 ```python
 s = {1,3,5,3,8,9}
 s = set([1,3,5,3,8,9])
+s = set()
 print(s,type(s)) #{1, 3, 5, 8, 9} <class 'set'>
 
 s = set('abc')

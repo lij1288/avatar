@@ -14,10 +14,13 @@ database = '********'
 conn_str = ('mysql+pymysql://' + user + ':%s@' + host + ':3306/' + database + '?charset=utf8') % quote_plus(psd)
 conn = create_engine(conn_str, echo=True)
 
-logging.basicConfig(handlers=[logging.FileHandler("water_process.log", encoding="utf-8")], level=logging.INFO, format='%(asctime)s %(message)s')
+logger = logging.getLogger()
+handler = logging.FileHandler(filename='water_process.log', encoding='utf-8', mode='w')
+handler.setLevel(logging.WARNING)
+handler.setFormatter(logging.Formatter('%(asctime)s %(filename)s : %(levelname)s  %(message)s'))
+logger.addHandler(handler)
 
-# 插入原始数据
-logging.info('--------插入原始数据--------')
+logger.warning('--------插入原始数据')
 try:
     sql = f"""
         insert into tmp (jd,wd,stnm,source,status,type) select LGTD,LTTD,PUMP_NAME,'att_pump_base',status,'2' from att_pump_base where status=0;
@@ -52,10 +55,9 @@ try:
         """
     conn.execute(sql)
 except Exception as e:
-    logging.error(e)
+    logger.error(e)
 
-# tmp表数据过滤
-logging.info('--------tmp表数据过滤--------')
+logger.warning('--------tmp表数据过滤')
 try:
     sql = f"""
         delete t1
@@ -65,10 +67,9 @@ try:
         """
     conn.execute(sql)
 except Exception as e:
-    logging.error(e)
+    logger.error(e)
 
-# 处理行政区划
-logging.info('--------处理行政区划--------')
+logger.warning('--------处理行政区划')
 try:
     sql = f"""
         update tmp t1
@@ -80,10 +81,9 @@ try:
         """
     conn.execute(sql)
 except Exception as e:
-    logging.error(e)
+    logger.error(e)
 
-# 插入rel_water_object_code
-logging.info('--------插入rel_water_object_code--------')
+logger.warning('--------插入rel_water_object_code')
 try:
     source_dict = dict(att_pump_base='HP010'
                        , att_st_base='MS001'
@@ -115,10 +115,9 @@ try:
             """
         conn.execute(sql)
 except Exception as e:
-    logging.error(e)
+    logger.error(e)
 
-# stcd拼接主键
-logging.info('--------stcd拼接主键--------')
+logger.warning('--------stcd拼接主键')
 try:
     sql = f"""
         select id,stcd from rel_water_object_code where status=9;
@@ -138,10 +137,9 @@ try:
             """
         conn.execute(sql)
 except Exception as e:
-    logging.error(e)
+    logger.error(e)
 
-# 生成校验码
-logging.info('--------生成校验码--------')
+logger.warning('--------生成校验码')
 try:
     A1_dict = {'0': '0', '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9',
                'A': '10'
@@ -173,7 +171,6 @@ try:
             """
         conn.execute(sql)
 except Exception as e:
-    logging.error(e)
-
+    logger.error(e)
 ```
 
