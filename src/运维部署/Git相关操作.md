@@ -230,6 +230,12 @@
 - 修改仓库名
 
   > git remote rename [alias1] [alias2]
+  
+- 取消本地关联的远程库
+
+  > git remote remove origin
+
+  > git config --list
 
 #### git fetch
 
@@ -305,3 +311,10 @@
 
   > git branch -d [branch_name]
 
+### 创建关联
+
+- 设置Token
+- 初始化Git仓库
+- 关联远程仓库
+
+![](assets\Git相关操作\创建关联.jpg)
