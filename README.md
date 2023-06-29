@@ -316,6 +316,8 @@
 
 [HBase的API使用](src/数据开发/HBase的API使用)
 
+[Python连接HBase](src/数据开发/Python连接HBase)
+
 [HBase的RowKey设计原则](src/数据开发/HBase的RowKey设计原则)
 
 [HBase的BulkLoadar](src/数据开发/HBase的BulkLoadar)
