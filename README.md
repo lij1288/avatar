@@ -94,6 +94,8 @@
 
 [【Neo4j】Neo4j_Desktop下载安装记录](src/运维部署/Neo4j_Desktop下载安装记录)
 
+[【Nginx】Nginx安装记录](src/运维部署/Nginx安装记录)
+
 [【Node】Node环境安装记录](src/运维部署/Node环境安装记录)
 
 [【PowerDesiger】PowerDesiger安装记录](src/运维部署/PowerDesiger安装记录)
