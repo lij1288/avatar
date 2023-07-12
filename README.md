@@ -98,6 +98,8 @@
 
 [【Node】Node环境安装记录](src/运维部署/Node环境安装记录)
 
+[【Oracle】Oracle安装配置记录](src/运维部署/Oracle安装配置记录)
+
 [【PowerDesiger】PowerDesiger安装记录](src/运维部署/PowerDesiger安装记录)
 
 [【Python】Python环境安装记录](src/运维部署/Python环境安装记录)
@@ -444,6 +446,8 @@
 ## Oracle
 
 [Oracle的TRANSLATE函数](src/数据开发/Oracle的TRANSLATE函数)
+
+[Oracle导入导出dmp文件](src/数据开发/Oracle导入导出dmp文件)
 
 # **数据管理**
 
