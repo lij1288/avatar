@@ -13,29 +13,17 @@ select * from dba_directories where directory_name='DATA_PUMP_DIR';
 
   > expdp test2/test2_pwd@orcl dumpfile=test2.dmp
 
-- 删除test2
-
-  > drop user test2 cascade;
-
-- 导入文件
+- 导入文件（可不存在test2用户，如果test2中存在同名表则跳过）
 
   > impdp test/test_pwd@orcl dumpfile=test2.dmp
 
 ### 导出导入目标表
 
-- 导出test2下的table1和table2（数据库中表名需大写，需存在test2用户）
+- 导出test2下的table1和table2（数据库中表名需大写）
 
   > expdp test2/test2_pwd@orcl tables=table1,table2 dumpfile=table.dmp
 
-- 删除并创建test2用户
-
-  > drop user test2 cascade;
-  >
-  > create user test2 identified by test2_pwd;
-  >
-  > grant connect,resource,dba to test2;
-
-- 导入文件
+- 导入文件（需存在test2用户）
 
   > impdp test/test_pwd@orcl tables=test2.table1,test2.table2 dumpfile=table.dmp
 
@@ -50,10 +38,6 @@ select * from dba_directories where directory_name='DATA_PUMP_DIR';
 - 导出test2下所有表
 
   > expdp test2/test2_pwd@orcl directory=dmp_dir dumpfile=test2.dmp
-
-- 删除test2
-
-  > drop user test2 cascade;
 
 - 导入文件
 
