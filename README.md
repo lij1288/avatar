@@ -449,6 +449,8 @@
 
 [Oracle导入导出dmp文件](src/数据开发/Oracle导入导出dmp文件)
 
+[Navicat连接Oracle的ORA-28547问题处理](src/数据开发/Navicat连接Oracle的ORA-28547问题处理)
+
 # **数据管理**
 
 ## 数据管理

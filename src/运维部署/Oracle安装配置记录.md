@@ -222,9 +222,9 @@ LISTENER_START=""LISTENER"" # 监听器启动的名称
 
 - （监听的开启/关闭）
 
-> /data/oracle/product/11.2.0/db_1/bin/lsnrctl start
+> /opt/oracle/oracle/product/11.2.0/db_1/bin/lsnrctl start
 
-> /data/oracle/product/11.2.0/db_1/bin/lsnrctl stop
+> /opt/oracle/oracle/product/11.2.0/db_1/bin/lsnrctl stop
 
 ### 启动数据库实例
 
