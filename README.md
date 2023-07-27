@@ -439,6 +439,8 @@
 
 [MySQL数据库备份](src/数据开发/MySQL数据库备份)
 
+[MySQL锁表问题处理](src/数据开发/MySQL锁表问题处理)
+
 [MySQL的表关联修改](src/数据开发/MySQL的表关联修改)
 
 [Excel自定义日期通过Navicat入库后转为5位数字问题处理](src/数据开发/Excel自定义日期通过Navicat入库后转为5位数字问题处理)
