@@ -1,5 +1,5 @@
 window.$docsify = {
-    name: "Li Jiong's Notes",
+    name: "个人知识库",
     nameLink: {
         '/blog/': '#/blog/',
         '/': '#/',

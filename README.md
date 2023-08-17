@@ -30,6 +30,8 @@
 
 [【DolphinScheduler】DolphinScheduler安装部署记录](src/运维部署/DolphinScheduler安装部署记录)
 
+[【FTP】FTP安装部署及虚拟用户创建记录](src/运维部署/FTP安装部署及虚拟用户创建记录)
+
 [【Git】Git编译安装记录](src/运维部署/Git编译安装记录)
 
 [【Git】Windows版Git安装记录](src/运维部署/Windows版Git安装记录)
