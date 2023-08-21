@@ -285,8 +285,10 @@ wurstmeister/zookeeper   latest    3f43f72cb283   2 years ago      510MB
 
 > docker container prune
 
-#### 上传到容器
+#### 文件导入/导出
 > docker cp [本地路径] <容器ID或容器名>:[容器路径]
+
+> docker cp <容器ID或容器名>:[容器路径] [本地路径]
 
 #### 查看每个容器占用空间
 > docker system df -v
