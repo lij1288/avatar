@@ -35,7 +35,7 @@ ftpuser_new
 ftpuser_pwd
 ```
 
-- 生产db文件
+- 生成db文件
 
 > db_load -T -t hash -f vuser vuser.db
 
