@@ -1,22 +1,16 @@
-@SpringBootApplication声明是一个SpringBoot应用，主程序类
+# **SpringBoot基本使用**
 
-@Controller
+@SpringBootApplication：声明是一个SpringBoot应用，主程序类
 
-@ResponseBody
+@Controller：声明控制类
 
-@RequestMapping
+@ResponseBody：表示返回结果直接写入HTTP response body
 
-@RestController
+@RestController：@Controller + @ResponseBody
 
-@Configuration声明配置类，相当于配置文件
+@RequestMapping：映射的请求路径
 
-@Bean向容器中添加组件，方法名对应组件id（可添加参数指定id），返回类型对应组件类型，返回值对应组件在容器中的实例
-
-@Import给容器中自动创建组件
-
-## 基本使用
-
-### 相关依赖
+## 相关依赖
 
 ```xml
 <parent>
@@ -42,7 +36,7 @@
 </build>
 ```
 
-### 主程序
+## 主程序
 
 ```java
 package cn.lijiong.boot;
@@ -58,7 +52,7 @@ public class MainApplication {
 }
 ```
 
-### 业务逻辑
+## 业务逻辑
 
 ```java
 package cn.lijiong.boot.controller;
@@ -75,13 +69,13 @@ public class DemoController {
 }
 ```
 
-### 修改配置
+## 修改配置
 
 - resources目录下的application.properties
 
 > https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/reference/html/appendix-application-properties.html
 
-### 打包部署
+## 打包部署
 
 - clean+package进行打包后直接在目标服务器执行
 
@@ -121,11 +115,20 @@ public class DemoController {
 
       @ComponentScan("cn.lijiong")
 
-- 默认配置最终都是映射到某个类上，这个类会在容器中创建对象，引入场景后开启对应的自动配置，SpringBoot所有的自动配置功能都在spring-boot-autoconfigure包
+- 默认配置最终都是映射到某个类上，这个类会在容器中创建对象，引入场景后开启对应的自动配置，SpringBoot所有的自动配置功能都在spring-boot-autoconfigure包。
 
+- SpringBoot启动时会加载所有的自动配置类XxxAutoConfiguration。
 
+- 自动配置类按照条件装配规则（@Conditional）按需生效，默认都会绑定配置文件指定的值（从XxxProperties中读取，XxxProperties与配置文件进行了绑定。
 
-## Configuration
+- 定制化配置
+
+  - 方式1：@Bean替换底层的组件。
+  - 方式2：根据该组件获取的配置文件值进行设置。
+
+## 底层注解
+
+### Configuration
 
 - 声明配置类
 
@@ -181,12 +184,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
-public class DemoConfig {
+@Configuration(proxyBeanMethods = false)
+public class ConfigTest {
     @Bean
     public User user01(){
-        User avatar = new User("Avatar", 10);
-        avatar.setPet(pet01());
+        User avatar = new User("Avatar", pet01());
         return avatar;
     }
     @Bean
@@ -199,45 +201,33 @@ public class DemoConfig {
 ```java
 package cn.lijiong.boot.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class User {
     private String name;
-    private Integer age;
     private Pet pet;
-    public User() {}
-    public User(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
-    public Pet getPet() {
-        return pet;
-    }
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
 }
 ```
 
 ```java
 package cn.lijiong.boot.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Pet {
     private String name;
-    public Pet() {}
-    public Pet(String name){
-        this.name = name;
-    }
 }
 ```
 
-## Import
+### Import
 
 - 给容器中自动创建组件，默认组件名为全类名，调用无参构造器创建
-
-```
-------------
-cn.lijiong.boot.bean.User
-user01
-```
 
 ```java
 package cn.lijiong.boot;
@@ -272,43 +262,38 @@ public class MainApplication {
 ```java
 package cn.lijiong.boot.config;
 
-import cn.lijiong.boot.bean.Pet;
 import cn.lijiong.boot.bean.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Import(User.class)
 @Configuration
-public class DemoConfig {
-    @Bean
-    public User user01(){
-        User avatar = new User("Avatar", 10);
-        avatar.setPet(pet01());
-        return avatar;
-    }
-    @Bean
-    public Pet pet01(){
-        return new Pet("Appa");
-    }
+public class ConfigTest {
 }
 ```
 
-## Conditional
+```java
+package cn.lijiong.boot.bean;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    private String name;
+}
+```
+
+### Conditional
 
 - 满足指定的条件，则进行组件注入 
 
-![](assets/SpringBoot基础使用/Conditional.jpg)
+![](assets/SpringBoot基本使用/Conditional.jpg)
 
-## ImportResource
-
-- 导入Spring配置文件
-
-  > @ImportResource(classpath:bean.xml)
-
-
-
-## ConfigurationProperties
+### ConfigurationProperties
 
 - 配置绑定，读取properties内容绑定到JavaBean
 
@@ -327,6 +312,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DemoController {
+
     @Autowired
     User user;
 
@@ -337,41 +323,25 @@ public class DemoController {
 }
 ```
 
-### @Component
+#### 方式1：@Component
 
 ```java
 package cn.lijiong.boot.bean;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+@Data
 @Component
 @ConfigurationProperties(prefix = "user01")
 public class User {
     private String name;
     private String pwd;
-    public User() {
-    }
-    public User(String name, String pwd) {
-        this.name = name;
-        this.pwd = pwd;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getPwd() {
-        return pwd;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
 }
 ```
 
-### @EnableConfigurationProperties
+#### 方式2：@EnableConfigurationProperties
 
 开启配置绑定功能
 
@@ -421,35 +391,19 @@ public class DemoConfig {
 }
 ```
 
-### @Import
+#### 方式3：@Import
 
 ```java
 package cn.lijiong.boot.bean;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+@Data
 @ConfigurationProperties(prefix = "user01")
 public class User {
     private String name;
     private String pwd;
-    public User() {
-    }
-    public User(String name, String pwd) {
-        this.name = name;
-        this.pwd = pwd;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getPwd() {
-        return pwd;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
 }
 ```
 
@@ -460,34 +414,9 @@ import cn.lijiong.boot.bean.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@Import(User.class)
 @Configuration
-public class DemoConfig {
+@Import(User.class)
+public class ConfigTest {
 }
 ```
 
-## 自动配置原理
-
-### SpringBootConfiguration
-
-- Configuration
-  - 声明是一个配置类
-
-### ComponentScan
-
-- 包扫描路径
-
-### EnableAutoConfiguration
-
-- AutoConfigurationPackage
-  - Import({AutoConfigurationPackages.Registrar.class})
-    - 通过Registrar给容器中导入一系列组件
-    - 将指定包下的所有组件导入MainApplication所在包下
-
-- Import({AutoConfigurationImportSelector.class})
-  - 通过`getAutoConfigurationEntry(annotationMetadata)`向容器批量导入一系列组件
-  - 调用`List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes)`获取所有需要导入到容器中的配置类
-  - 通过`SpringFactoriesLoader`加载 `Map<String, List<String>> loadSpringFactories(@Nullable ClassLoader classLoader)`得到所有的组件
-  - 从`META-INF/spring.factories`位置来加载一个文件
-    - 默认扫描当前系统中每个jar包`META-INF/spring.factories`位置的文件
-      - 包括`spring-boot-autoconfigure-2.3.5.RELEASE.jar`中的`META-INF/spring.factories`，其中有spring-boot启动时需要向容器中加载的所有配置类。
