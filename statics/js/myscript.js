@@ -1,5 +1,5 @@
 window.$docsify = {
-    name: "个人知识库",
+    name: "<b>个人知识库</b>",
     nameLink: {
         '/blog/': '#/blog/',
         '/': '#/',
