@@ -1047,6 +1047,8 @@
 
 [PotPlayer快捷键](src/其他内容/PotPlayer快捷键)
 
+[Google翻译设置记录](src/其他内容/Google翻译设置记录)
+
 [Windows查看保存的wifi密码](src/其他内容/Windows查看保存的wifi密码)
 
 ***
