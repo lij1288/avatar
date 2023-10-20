@@ -38,6 +38,8 @@
 
 [【Git】Git相关操作](src/运维部署/Git相关操作)
 
+[【Go】Go安装部署记录](src/运维部署/Go安装部署记录)
+
 [【Hadoop】Hadoop安装部署记录](src/运维部署/Hadoop安装部署记录)
 
 [【Hadoop】DataNode的上线下线操作](src/运维部署/DataNode的上线下线操作)
