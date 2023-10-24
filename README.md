@@ -26,6 +26,8 @@
 
 [【Docker】Docker环境变量失效问题处理](src/运维部署/Docker环境变量失效问题处理)
 
+[【Docker】Docker-Compose安装部署记录](src/运维部署/Docker-Compose安装部署记录)
+
 [【Docsify】Docsify安装记录](src/运维部署/Docsify安装记录)
 
 [【DolphinScheduler】DolphinScheduler安装部署记录](src/运维部署/DolphinScheduler安装部署记录)
