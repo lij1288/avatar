@@ -767,9 +767,9 @@
 
 [基于pdfplumber的PDF文件解析](src/后端开发/基于pdfplumber的PDF文件解析)
 
-<!-- div:right-panel -->
-
 [基于Place API和Geocoder的经纬度查询](src/后端开发/基于Place_API和Geocoder的经纬度查询)
+
+<!-- div:right-panel -->
 
 [基于ddddocr的图片验证码识别](src/后端开发/基于ddddocr的图片验证码识别)
 
