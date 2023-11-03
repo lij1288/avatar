@@ -62,3 +62,9 @@ Flink的相关概念
   - 集群slots资源可扩展，算子任务实例可扩展。
   - 每一个算子都可以成为一个独立的task任务，也可根据需要将连续的多个算子合并为一个task。
     - Spark中一个stage是一个taskset，内部各算子并行度相同，Flink中可以对算子指定不同的并行度（如map—>filter）
+
+### DataStream相关理解
+
+- 代表一个数据流，可以是有界的或无界的。
+- 类似于RDD，是不可变的。无法对一个DataStream添加、删除或修改元素，只能通过算子对其中的数据进行转换，将一个DataStrem转为另一个DataStream。
+- DataStream可以通过Source算子加载、映射外部数据或从已存在的DataStream转换而来。

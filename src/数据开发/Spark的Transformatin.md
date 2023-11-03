@@ -17,6 +17,8 @@
 #### mapPartition
 
 - 以分区为单位进行map操作，一个分区一个迭代器
+- 与map区别
+  - 在调用用户函数时，调用机制不同，mapPartition是每个分区执行一次，map是每条数据执行一次。
 
 #### mapPartitionWithIndex
 
