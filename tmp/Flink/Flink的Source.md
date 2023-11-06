@@ -2,6 +2,16 @@
 
 ### Kafka Source
 
+```
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka</artifactId>
+            <version>1.15.3</version>
+        </dependency>
+```
+
+
+
 ### 文件Source
 
 ```java
