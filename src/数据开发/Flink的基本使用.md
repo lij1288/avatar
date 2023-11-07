@@ -7,7 +7,7 @@
   - 通过Sink算子指定计算结果的输出方式
   - 通过env提交、运行程序
 
-```
+```xml
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
@@ -27,7 +27,7 @@
 
 - 本地运行开启WebUI
 
-```
+```xml
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-runtime-web</artifactId>

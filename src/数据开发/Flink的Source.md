@@ -2,7 +2,7 @@
 
 ### Kafka Source
 
-```
+```xml
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka</artifactId>

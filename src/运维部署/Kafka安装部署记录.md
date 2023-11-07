@@ -13,6 +13,10 @@
 ```properties
 # 指定broker的id
 broker.id=0
+# socket地址
+listeners=PLAINTEXT://192.168.1.101:9092
+# broker地址
+advertised.listeners=PLAINTEXT://192.168.1.101:9092
 # 数据存储目录
 log.dirs=/opt/data/kafka-logs
 # 数据留存时间
@@ -21,10 +25,6 @@ log.retention.hours=168
 log.segment.bytes=1073741824
 # zk地址
 zookeeper.connect=192.168.1.101:2181,192.168.1.102:2181,192.168.1.103:2181/kafka
-# socket地址
-listeners=PLAINTEXT://192.168.1.101:9092
-# broker地址
-advertised.listeners=PLAINTEXT://192.168.1.101:9092
 ```
 
 ### 将配置好的kafka拷贝到其他节点
@@ -47,6 +47,8 @@ advertised.listeners=PLAINTEXT://192.168.1.101:9092
 export KAFKA_HOME=/opt/app/kafka_2.12-2.8.1
 export PATH=$PATH:$KAFKA_HOME/bin
 ```
+
+> source /etc/profile
 
 ### 在所有节点启动Kafka
 
