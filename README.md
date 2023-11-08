@@ -108,6 +108,8 @@
 
 [【Oracle】Oracle安装配置记录](src/运维部署/Oracle安装配置记录)
 
+[【PIG】PIG开发平台部署记录](src/运维部署/PIG开发平台部署记录)
+
 [【PowerDesiger】PowerDesiger安装记录](src/运维部署/PowerDesiger安装记录)
 
 [【Python】Python环境安装记录](src/运维部署/Python环境安装记录)
@@ -1061,7 +1063,7 @@
 
 [Google翻译设置记录](src/其他内容/Google翻译设置记录)
 
-[Windows查看保存的wifi密码](src/其他内容/Windows查看保存的wifi密码)
+[Windows相关问题处理](src/其他内容/Windows相关问题处理)
 
 ***
 ![](https://ghchart.rshah.org/4b8acd/lij1288 ':id=mypic2 :size=100%')

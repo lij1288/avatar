@@ -28,6 +28,10 @@
 
 > docsify serve D:\WorkSpace\Repository
 
+- 指定端口启动
+
+> docsify serve -p 3001 D:\WorkSpace\Repository
+
 ### 本地预览
 
 > http://localhost:3000
