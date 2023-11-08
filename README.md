@@ -787,6 +787,8 @@
 
 [输出数据库内容为Markdown文件](src/后端开发/输出数据库内容为Markdown文件)
 
+[基于faker的模拟数据创建](src/后端开发/基于faker的模拟数据创建)
+
 [基于logging的日志打印](src/后端开发/基于logging的日志打印)
 
 [Python的Microsoft_Visual_C++_14.0_is_required问题处理](src/后端开发/Python的Microsoft_Visual_C++_14.0_is_required问题处理)
