@@ -739,6 +739,18 @@
 
 <!-- panels:end -->
 
+## PIG
+
+[PIG微服务二次开发](src/后端开发/PIG微服务二次开发)
+
+[PIG令牌获取与接口调用](src/后端开发/PIG令牌获取与接口调用)
+
+[PIG新增微服务接入Swagger](src/后端开发/PIG新增微服务接入Swagger)
+
+[PIG开放平台功能使用](src/后端开发/PIG开放平台功能使用)
+
+[PIG分布式文件上传MinIO](src/后端开发/PIG分布式文件上传MinIO)
+
 ## Python
 
 <!-- panels:start -->
