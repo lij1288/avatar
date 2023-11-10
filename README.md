@@ -453,6 +453,8 @@
 
 [MySQL数据库备份](src/数据开发/MySQL数据库备份)
 
+[MySQL的slow_query_log使用](src/数据开发/MySQL的slow_query_log使用)
+
 [MySQL锁表问题处理](src/数据开发/MySQL锁表问题处理)
 
 [MySQL的表关联修改](src/数据开发/MySQL的表关联修改)
