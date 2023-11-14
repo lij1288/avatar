@@ -90,6 +90,8 @@
 
 [【Maven】Windows版Maven安装配置记录](src/运维部署/Windows版Maven安装配置记录)
 
+[【MinIO】Windows版MinIO安装部署记录](src/运维部署/Windows版MinIO安装部署记录)
+
 [【MySQL】MySQL安装配置记录](src/运维部署/MySQL安装配置记录)
 
 [【MySQL】Windows版MySQL安装记录](src/运维部署/Windows版MySQL安装记录)
@@ -738,6 +740,8 @@
 [Lambda表达式的使用](src/后端开发/Lambda表达式的使用)
 
 [DateTimeFormatter的使用](src/后端开发/DateTimeFormatter的使用)
+
+[cannot_resolve私服仓库问题处理](src/后端开发/cannot_resolve私服仓库问题处理)
 
 <!-- panels:end -->
 
