@@ -687,6 +687,18 @@
 
 [文档和内容管理相关概念](src/数据管理/文档和内容管理相关概念)
 
+## 数据仓库和商业智能
+
+- Data Warehousing and Business Intelligence
+
+## 元数据管理
+
+- Metadata Management
+
+## 数据质量
+
+- Data Quality
+
 ## 数据处理道德
 
 - Data Handling Ethics
