@@ -691,13 +691,19 @@
 
 - Data Warehousing and Business Intelligence
 
+[数据仓库和商业智能框架](src/数据管理/数据仓库和商业智能框架)
+
 ## 元数据管理
 
 - Metadata Management
 
+[元数据管理框架](src/数据管理/元数据管理框架)
+
 ## 数据质量
 
 - Data Quality
+
+[数据质量框架](src/数据管理/数据质量框架)
 
 ## 数据处理道德
 

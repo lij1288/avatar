@@ -21,7 +21,7 @@ for i in range(1, 10000):
     nl = 2023 - int(csrq[:4])
     lxfs = faker.phone_number()
     djsyd = faker.random_element(elements=('和平区', '河东区', '河西区', '南开区', '河北区', '红桥区', '滨海新区', '东丽区', '西青区', '津南区', '北辰区', '武清区', '宝坻区', '宁河区', '静海区', '蓟州区'))
-    whcd = faker.random_element(elements=('高中1', '高中2', '高中3', '大学', '大学1', '高中'))
+    whcd = faker.random_element(elements=('高中', '高中1', '高中2', '大学', '大学1'))
     mz = '汉族'
     hy_type = faker.random_element(elements=('制造业', '电力、热力、燃气及水生产和供应业', '建筑业', '批发和零售业', '交通运输仓储和邮政业', '住宿和餐饮业', '信息传输、软件和信息技术服务业', '金融业', '房地产业', '租赁和商务服务业', '科学研究和技术服务业', '水利、环境和公共设施管理业', '居民服务、修理和其他服务业', '教育', '卫生和社会工作', '文化、体育和娱乐业', '公共管理、社会保障和社会组织'))
     sysj = str(faker.date_between(start_date='-1y', end_date='-0y'))
