@@ -18,11 +18,9 @@
   - [Kafka](https://kafka.apache.org/documentation/)
   - [Kubernetes](https://kubernetes.io/zh/docs/home/)
   - [Kudu](https://kudu.apache.org/docs/)
-  - [Nginx](http://nginx.org/en/docs/)
   - [Python](https://docs.python.org/3/)
   - [Scala](https://docs.scala-lang.org/)
   - [Spark](https://spark.apache.org/documentation.html)
-  - [Tomcat](https://tomcat.apache.org/tomcat-8.0-doc/index.html)
   - [Vue](https://cn.vuejs.org/api/)
 - [**网页工具**]()
 
