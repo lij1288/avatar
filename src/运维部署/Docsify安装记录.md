@@ -30,7 +30,7 @@
 
 - 指定端口启动
 
-> docsify serve -p 3001 D:\WorkSpace\Repository
+> docsify serve -p 1288 D:\WorkSpace\Repository
 
 ### 本地预览
 
