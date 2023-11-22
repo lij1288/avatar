@@ -44,7 +44,7 @@ export HBASE_MANAGES_ZK=false
 </configuration>
 ```
 
-- regionservers（是给启动脚本看的, master通过zk感知regionserver）
+- regionservers（启动脚本需要此配置文件, master则是通过zk感知regionserver）
 
 ```
 linux01
