@@ -18,6 +18,8 @@ java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
 
 ### 解压安装包
 
+- [Java Archive Downloads - Java SE 8 (oracle.com)](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
+
 > tar -zxvf jdk-8u202-linux-x64.tar.gz
 
 ### 环境变量配置
