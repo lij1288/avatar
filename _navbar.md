@@ -16,7 +16,6 @@
   - [Java](https://docs.oracle.com/javase/8/docs/api/index.html)
   - [JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
   - [Kafka](https://kafka.apache.org/documentation/)
-  - [Kubernetes](https://kubernetes.io/zh/docs/home/)
   - [Kudu](https://kudu.apache.org/docs/)
   - [Python](https://docs.python.org/3/)
   - [Scala](https://docs.scala-lang.org/)
