@@ -174,6 +174,18 @@
 
 以列表形式查看指定文件的提交记录
 
+### 修改历史提交信息
+
+> git rebase -i fd841eb33a633fb6f2512bd2259499fc4e9ee602
+
+- 修改对应版本pick为reword
+
+![](assets/Git相关操作/修改历史提交信息1.jpg)
+
+- 修改提交信息
+
+![](assets/Git相关操作/修改历史提交信息2.jpg)
+
 ### 远程操作
 
 ![](assets/Git相关操作/quicksetup.jpg)
