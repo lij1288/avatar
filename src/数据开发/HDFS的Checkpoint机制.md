@@ -16,4 +16,4 @@
 
 1. 达到触发条件后，Secondary NameNode通知NameNode滚动操作日志
 2. Secondary NameNode下载元数据镜像文件和操作日志
-3. Secondary NameNode加载镜像文件，回放操作日志更新元数据对象，再序列化为新的镜像文件上传到NaemNode
+3. Secondary NameNode加载镜像文件，回放操作日志更新元数据对象，再序列化为新的镜像文件上传到NameNode
