@@ -14,12 +14,12 @@ ActiveStandbyElector负责完成自动的主备选举，内部封装了Zookeeper
 
 ![](assets/HDFS的HA机制/NameNode主备切换流程.jpg)
 
-1. HealthMonitor初始化完成后启动内部线程来定时调用NameNode的HAServiceProtocol (RPC)接口的方法，监控健康状态
+1. HealthMonitor初始化完成后启动内部线程来定时调用NameNode的HAServiceProtocol接口的方法，监控健康状态
 2. HealthMonitor如果监控到NameNode的健康状态发生变化，会回调ZKFailoverController注册的相应方法进行通知
 3. 如果ZKFailoverController判断需要进行主备切换，会通过ActiveStandbyElector来进行自动的主备选举
 4. ActiveStandbyElector与Zookeeper进行交互完成自动的主备选举
 5. ActiveStandbyElector在主备选举完成后，回调ZKFailoverController的相应方法来通知主备选举结果
-6. ZKFailoverController调用对应NameNode的HAServiceProtocol接口的方法将NameNode转换位Active状态或Standby状态
+6. ZKFailoverController调用对应NameNode的HAServiceProtocol接口的方法将NameNode转换为Active状态或Standby状态
 
 ### HAServiceProtocol接口的方法
 

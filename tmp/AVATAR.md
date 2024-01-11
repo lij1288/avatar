@@ -34,3 +34,12 @@
 1. 达到触发条件后，Secondary NameNode通知NameNode滚动操作日志
 2. Secondary NameNode下载元数据镜像文件和操作日志
 3. Secondary NameNode加载镜像文件，回放操作日志更新元数据对象，再序列化为新的镜像文件上传到NameNode
+
+## HDFS的HA机制
+
+1. HealthMonitor初始化完成后启动内部线程来定时调用NameNode的HAServiceProtocol接口的方法，监控健康状态
+2. HealthMonitor如果监控到NameNode的健康状态发生变化，会回调ZKFailoverController注册的相应方法进行通知
+3. 如果ZKFailoverController判断需要进行主备切换，会通过ActiveStandbyElector来进行自动的主备选举
+4. ActiveStandbyElector与Zookeeper进行交互完成自动的主备选举
+5. ActiveStandbyElector在主备选举完成后，回调ZKFailoverController的相应方法来通知主备选举结果
+6. ZKFailoverController调用对应NameNode的HAServiceProtocol接口的方法将NameNode转换为Active状态或Standby状态
