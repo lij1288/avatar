@@ -43,3 +43,25 @@
 4. ActiveStandbyElector与Zookeeper进行交互完成自动的主备选举
 5. ActiveStandbyElector在主备选举完成后，回调ZKFailoverController的相应方法来通知主备选举结果
 6. ZKFailoverController调用对应NameNode的HAServiceProtocol接口的方法将NameNode转换为Active状态或Standby状态
+
+## HQL转化为MapReduce的过程
+
+1. 通过开源**语法分析器**Antlr完成SQL解析，将SQL转化为**抽象语法树**（AST AbstractSyntaxTree）
+2. 遍历抽象语法树，生成查询的基本组成单元**QueryBlock**，是一个递归的过程，QueryBlock包括输入源、计算过程、输出，是一个子查询
+3. 遍历OueryBlock，翻译为执行操作树**OperatorTree**
+4. 对OperatorTree进行优化，如分桶Map端聚合、合并相关的操作、将过滤操作提前
+5. 遍历OperatorTree，翻译为**MapReduce任务**
+6. 进行**物理层优化**，生成最终的执行计划
+
+## HIVE底层与数据库交互过程
+
+1. 命令行或WebUI等Hive接口将查询发送给**Driver**（任何数据库驱动程序如JDBC）
+2. Driver借助编译器进行查询的检查和解析
+3. **编译器**将元数据请求发送给**Metastore**（任何数据库）
+4. Metastore将**元数据**响应给编译器
+5. 编译器生成**最终计划**发送给Driver
+6. Driver将**执行计划**发送给执行引擎
+7. 执行引擎将任务发送到**ResourceManager**，执行MapReduce任务
+8. 任务执行同时，执行引擎可以通过**Metastore**进行元数据操作
+9. 任务执行结束，执行引擎从**DataNode**上获取结果并发送给Driver
+10. Driver将**结果**发送给Hive接口
