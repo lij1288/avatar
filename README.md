@@ -210,6 +210,8 @@
 
 [Hive的调优方法](src/数据开发/Hive的调优方法)
 
+[单个Hive作业参数设置记录](src/数据开发/单个Hive作业参数设置记录)
+
 <!-- panels:end -->
 
 ## Spark
