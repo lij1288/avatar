@@ -278,6 +278,8 @@
 
 <!-- div:left-panel -->
 
+[Flink源码拉取与编译记录](src/数据开发/Flink源码拉取与编译记录)
+
 [Flink的相关概念](src/数据开发/Flink的相关概念)
 
 [Flink的基本使用](src/数据开发/Flink的基本使用)
