@@ -54,6 +54,8 @@
 
 [【Java】JDK安装配置记录](src/运维部署/JDK安装配置记录)
 
+[【Java】Windows版JDK安装配置记录](src/运维部署/Windows版JDK安装配置记录)
+
 [【Kafka】Kafka安装部署记录](src/运维部署/Kafka安装部署记录)
 
 [【Kafka】基于Docker的Kafka安装记录](src/运维部署/基于Docker的Kafka安装记录)
