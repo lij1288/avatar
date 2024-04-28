@@ -453,7 +453,7 @@
 
 ## MySQL
 
-[MySQL中utf8的校对规则](src/数据开发/MySQL中utf8的校对规则)
+[MySQL的字符集和比较规则](src/数据开发/MySQL的字符集和比较规则)
 
 [MySQL拆分字段转为多行](src/数据开发/MySQL拆分字段转为多行)
 
