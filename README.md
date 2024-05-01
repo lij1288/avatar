@@ -467,6 +467,8 @@
 
 [MySQL的表关联修改](src/数据开发/MySQL的表关联修改)
 
+[MySQL的SQL执行流程](src/数据开发/MySQL的SQL执行流程)
+
 [Excel自定义日期通过Navicat入库后转为5位数字问题处理](src/数据开发/Excel自定义日期通过Navicat入库后转为5位数字问题处理)
 
 ## Oracle
@@ -474,6 +476,8 @@
 [Oracle的TRANSLATE函数](src/数据开发/Oracle的TRANSLATE函数)
 
 [Oracle导入导出dmp文件](src/数据开发/Oracle导入导出dmp文件)
+
+[Oracle的SQL执行流程](src/数据开发/Oracle的SQL执行流程)
 
 [Navicat连接Oracle的ORA-28547问题处理](src/数据开发/Navicat连接Oracle的ORA-28547问题处理)
 
