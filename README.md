@@ -711,13 +711,19 @@
 
 - Data Warehousing and Business Intelligence
 
+[数据仓库和商业智能的目标和原则](src/数据管理/数据仓库和商业智能的目标和原则)
+
 ## 元数据管理
 
 - Metadata Management
 
+[元数据管理的目标和原则](src/数据管理/元数据管理的目标和原则)
+
 ## 数据质量
 
 - Data Quality
+
+[数据质量管理的目标和原则](src/数据管理/数据质量管理的目标和原则)
 
 ## 数据处理道德
 
