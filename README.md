@@ -453,7 +453,7 @@
 
 ## MySQL
 
-[MySQL的索引机制和使用](src/数据开发/MySQL的索引机制和使用)
+[MySQL的索引机制与使用](src/数据开发/MySQL的索引机制与使用)
 
 [MySQL的字符集和比较规则](src/数据开发/MySQL的字符集和比较规则)
 
