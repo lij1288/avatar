@@ -713,6 +713,10 @@
 
 [文档和记录](src/数据管理/文档和记录)
 
+## 参考数据和主数据
+
+[参考数据和主数据的目标和原则](src/数据管理/参考数据和主数据的目标和原则)
+
 ## 数据仓库和商业智能
 
 - Data Warehousing and Business Intelligence
