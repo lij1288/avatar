@@ -210,9 +210,9 @@
 
 [Hive底层与数据库交互的过程](src/数据开发/Hive底层与数据库交互的过程)
 
-[Hive的调优方法](src/数据开发/Hive的调优方法)
-
 [单个Hive作业参数设置记录](src/数据开发/单个Hive作业参数设置记录)
+
+[](src/数据开发/Hive的调优方法)
 
 <!-- panels:end -->
 
@@ -264,11 +264,11 @@
 
 [SparkSQL的自定义函数](src/数据开发/SparkSQL的自定义函数)
 
-[Spark的开发调优](src/数据开发/Spark的开发调优)
+[](src/数据开发/Spark的开发调优)
 
-[Spark的参数调优](src/数据开发/Spark的参数调优)
+[](src/数据开发/Spark的参数调优)
 
-[Spark的数据倾斜](src/数据开发/Spark的数据倾斜)
+[](src/数据开发/Spark的数据倾斜)
 
 <!-- panels:end -->
 
