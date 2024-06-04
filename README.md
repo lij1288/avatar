@@ -62,6 +62,8 @@
 
 [【Kafka】EFAK安装部署记录](src/运维部署/EFAK安装部署记录)
 
+[【Kubernetes】Kubeadm搭建Kubernetes集群记录](src/运维部署/Kubeadm搭建Kubernetes集群记录)
+
 [【Linux】Centos7安装配置记录](src/运维部署/Centos7安装配置记录)
 
 [【Linux】Linux磁盘挂载记录](src/运维部署/Linux磁盘挂载记录)
