@@ -41,13 +41,6 @@ Federation：提供跨可用区的集群
 
 Fluentd-elasticsearch：提供集群日志采集、存储与查询
 
-## 相关概念
-
-服务分类
-
-- 无状态：不依赖本地环境
-- 有状态：依赖本地环境
-
 ## 资源和对象
 
 - Kubernets中所有内容都被抽象为资源，对象是资源的持久化实体。kubectl可通过配置文件创建对象。
@@ -222,3 +215,419 @@ Fluentd-elasticsearch：提供集群日志采集、存储与查询
   - 对Pod的定义，被包含在其他的Kubernetes对象中，控制器通过PodTemplate信息来创建Pod
 - LimitRange
   - 对集群内Request和Limits的配置做全局的统一的限制，相当于批量设置了某一个范围内（某个命名空间）的Pod的资源使用限制
+
+# Pod相关概念
+
+## Pod配置文件
+
+```yaml
+apiVersion: v1 # api文档版本
+kind: Pod  # 资源对象类型，也可配置为Deployment、StatefulSet等
+metadata: # Pod相关的元数据，用于描述Pod的数据
+  name: nginx-demo # Pod的名称
+  labels: # 定义Pod的标签
+    type: app # 自定义label标签，名字为type，值为app
+    test: 1.0.0 # 自定义label标签，描述Pod版本号
+  namespace: 'default' # 命名空间配置
+spec: # Pod的期望状态
+  containers: # 对Pod中的容器描述
+  - name: nginx # 容器名称
+    image: nginx:latest # 指定容器镜像
+    imagePullPolicy: IfNotPresent # 镜像拉取策略，指定若本地有则使用，若没有则远程拉取
+    command: # 指定容器启动时执行的命令
+    - nginx
+    - -g
+    - 'daemon off;' # nginx -g 'daemon off;'
+    workingDir: /usr/share/nginx/html # 定义容器启动后的工作目录
+    ports: # 端口信息
+    - name: http # 端口名称
+      containerPort: 80 # 描述容器内暴露的端口
+      protocol: TCP # 描述该端口的通信协议
+    env: # 环境变量
+    - name: JVM_OPTS # 环境变量名称
+      value: '-Xms128m -Xmx128m' # 环境变量值
+    resources:
+      requests: # 最少需要的资源
+        cpu: 100m # 限制cpu最少使用0.1个核心
+        memory: 128Mi # 限制内存最少使用128兆
+      limits: # 最多可用的资源
+        cpu: 200m # 限制cpu最多使用0.2个核心
+        memory: 256Mi # 限制内存最多使用256兆
+  restartPolicy: OnFailure # 重启策略，只有失败才会重启
+```
+
+> kubectl create -f nginx-demo.yaml
+
+> kubectl get po -o wide
+
+```
+NAME         READY   STATUS    RESTARTS   AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+nginx-demo   1/1     Running   0          4m26s   10.244.36.68   k8s-node1   <none>           <none>
+```
+
+> route -n
+
+```
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.99    0.0.0.0         UG    100    0        0 ens33
+10.244.36.64    192.168.1.112   255.255.255.192 UG    0      0        0 tunl0
+10.244.169.128  192.168.1.113   255.255.255.192 UG    0      0        0 tunl0
+10.244.235.192  0.0.0.0         255.255.255.192 U     0      0        0 *
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+192.168.1.0     0.0.0.0         255.255.255.0   U     100    0        0 ens33
+```
+
+> kubectl describe po nginx-demo
+
+```
+Name:         nginx-demo
+Namespace:    default
+Priority:     0
+Node:         k8s-node1/192.168.1.112
+Start Time:   Wed, 05 Jun 2024 17:35:45 +0800
+Labels:       test=1.0.0
+              type=app
+Annotations:  cni.projectcalico.org/containerID: 94acf1c24b80cf86e124fe3458479f2ff6f1568d67332cbf9c68a0f16769cc78
+              cni.projectcalico.org/podIP: 10.244.36.68/32
+              cni.projectcalico.org/podIPs: 10.244.36.68/32
+Status:       Running
+IP:           10.244.36.68
+IPs:
+  IP:  10.244.36.68
+Containers:
+  nginx:
+    Container ID:  docker://6edef47e10d71f0f843b3c82fbe672156403dcdf0c6ec157f246d12a292b5609
+    Image:         nginx:latest
+    Image ID:      docker-pullable://nginx@sha256:0f04e4f646a3f14bf31d8bc8d885b6c951fdcf42589d06845f64d18aec6a3c4d
+    Port:          80/TCP
+    Host Port:     0/TCP
+    Command:
+      nginx
+      -g
+      daemon off;
+    State:          Running
+      Started:      Wed, 05 Jun 2024 17:35:46 +0800
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     200m
+      memory:  256Mi
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Environment:
+      JVM_OPTS:  -Xms128m -Xmx128m
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-v5vcm (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-v5vcm:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  59s   default-scheduler  Successfully assigned default/nginx-demo to k8s-node1
+  Normal  Pulled     59s   kubelet            Container image "nginx:latest" already present on machine
+  Normal  Created    59s   kubelet            Created container nginx
+  Normal  Started    59s   kubelet            Started container nginx
+```
+
+## Pod的探针
+
+- 容器内应用的监测机制，根据不同的探针来判断容器应用当前的状态
+
+### 探针的类型
+
+#### StartupProbe
+
+- 用于判断应用程序是否已经启动
+- 配置了StartupProbe后，会先禁用其他探针，直到 startupProbe 成功后，其他探针才会启用
+- 解决不能准确预估应用启动时间，配置其他探针时无法配置初始化时长来检测的问题
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /api/startup
+    port: 80
+```
+
+#### LivenessProbe
+
+- 用于探测容器中的应用是否运行，如果探测失败，kubelet会根据配置的重启策略进行重启，若没有配置，默认容器启动成功，不会执行重启策略
+
+```yaml
+livenessProbe:
+  failureThreshold: 5
+  httpGet:
+    path: /health
+    port: 8080
+    scheme: HTTP
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 5
+```
+
+#### ReadinessProbe
+
+- 用于探测容器中的应用是否健康，若返回值为success，则认为容器已经完全启动，并且该容器是可以接收外部流量的
+
+```yaml
+readinessProbe:
+  failureThreshold: 3 # 错误次数
+  httpGet:
+    path: /ready
+    port: 8181
+    scheme: HTTP
+  periodSeconds: 10 # 间隔时间
+  successThreshold: 1
+  timeoutSeconds: 1
+```
+
+### 探针的探测方式
+
+#### ExecAction
+
+- 在容器内部执行一个命令，如果返回值为0则认为容器健康
+
+```yaml
+livenessProbe:
+  exec:
+    command:
+      - cat
+      - /health
+```
+
+#### TCPSocketAction
+
+- 通过tcp连接监测容器内端口是否开放，如果开放则认为容器健康
+
+```yaml
+livenessProbe:
+  tcpSocket:
+    port: 80
+```
+
+#### HTTPGetAction
+
+- 发送HTTP请求到容器内的应用程序，如果接口返回的状态码在 200~400 之间则认为容器健康
+
+```yaml
+livenessProbe:
+  failureThreshold: 5
+  httpGet:
+    path: /health
+    port: 8080
+    scheme: HTTP
+    httpHeaders:
+      - name: xxx
+        value: xxx
+```
+
+### 探针的参数配置
+
+- 初始化时间
+
+  > initialDelaySeconds: 60
+
+- 超时时间
+
+  > timeoutSeconds: 2
+
+- 监测间隔时间
+
+  > periodSeconds: 5
+
+- 监测成功1次就表示成功
+
+  > successThreshold: 1
+
+- 监测失败2次就表示失败
+
+  > failureThreshold: 2
+
+> kubectl get deploy -n kube-system
+
+> kubectl edit deploy -n kube-system coredns
+
+```yaml
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2024-06-04T09:17:52Z"
+  generation: 1
+  labels:
+    k8s-app: kube-dns
+  name: coredns
+  namespace: kube-system
+  resourceVersion: "4487"
+  uid: 99d3ceca-14a6-4ab7-9d50-430eeb90f908
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: kube-dns
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        k8s-app: kube-dns
+    spec:
+      containers:
+      - args:
+        - -conf
+        - /etc/coredns/Corefile
+        image: registry.aliyuncs.com/google_containers/coredns:v1.8.6
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: coredns
+        ports:
+        - containerPort: 53
+          name: dns
+          protocol: UDP
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 9153
+          name: metrics
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ready
+            port: 8181
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            memory: 170Mi
+          requests:
+            cpu: 100m
+            memory: 70Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
+            drop:
+            - all
+          readOnlyRootFilesystem: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/coredns
+          name: config-volume
+          readOnly: true
+      dnsPolicy: Default
+      nodeSelector:
+        kubernetes.io/os: linux
+      priorityClassName: system-cluster-critical
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: coredns
+      serviceAccountName: coredns
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: Corefile
+            path: Corefile
+          name: coredns
+        name: config-volume
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2024-06-04T10:03:17Z"
+    lastUpdateTime: "2024-06-04T10:03:17Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2024-06-04T10:03:17Z"
+    lastUpdateTime: "2024-06-04T10:03:18Z"
+    message: ReplicaSet "coredns-6d8c4cb4d" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2
+```
+
+
+
+## Pod的生命周期
+
+- init container初始化容器
+- 钩子函数：回调函数
+
+### Pod的退出流程
+
+- Endpoint删除pod的ip地址
+
+- Pod转为Terminating状态
+
+  - 转为删除中的状态后，会给Pod一个宽限期，让Pod执行清理或销毁操作
+
+    ```yaml
+    # 删除操作后保留的时间，作用于Pod中的所有容器
+    terminationGracePeriodSeconds: 30
+    containers:
+      - xxx
+    ```
+
+- 执行preStop的指令
+
+### PreStop的应用
+
+- 注册中心下线
+- 数据清理
+- 数据销毁
