@@ -631,3 +631,487 @@ status:
 - 注册中心下线
 - 数据清理
 - 数据销毁
+
+# Kubernets的资源调度
+
+## Label和Selector
+
+### Label
+
+#### 配置文件
+
+- 在各类资源的metadata.labels中设置
+
+#### kubectl
+
+- 临时创建label（不更新模板）
+
+  > kubectl label po <资源名称> app=demo
+  >
+  > kubectl label po nginx-demo app=demo
+
+- 修改已经存在的label
+
+  > kubectl label po <资源名称> app=demo2 --overwrite
+
+- 查看label
+
+  - 按照label值查找节点
+
+    > kubectl get po -A -l app=demo
+
+  - 查看所有节点的labels
+
+    > kubectl get po --show-labels
+
+### Selector
+
+#### 配置文件
+
+- 在各对象的spec.selector或其他可以写selector的属性中设置
+
+#### kubectl
+
+- 匹配单个值
+
+  - -A 全部命名空间
+
+  > kubectl get po -A -l app=demo
+
+- 匹配多个条件、不等值、语句
+
+  > kubectl get po -A -l app!=demo2,'test in (1.0.0, 1.0.1, 1.0.2)'
+
+### Deployment
+
+#### 功能
+
+- 创建
+
+  - 通过image创建
+
+    > kubectl create deploy nginx-deploy --image=nginx
+
+    - 嵌套关系
+
+    ```shell
+    [root@k8s-master ~]# kubectl get deployments
+    NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx-deploy   1/1     1            1           69s
+    [root@k8s-master ~]# kubectl get replicasets
+    NAME                      DESIRED   CURRENT   READY   AGE
+    nginx-deploy-6c758c8d46   1         1         1       73s
+    [root@k8s-master ~]# kubectl get pods
+    NAME                            READY   STATUS    RESTARTS   AGE
+    nginx-deploy-6c758c8d46-4gjlf   1/1     Running   0          78s
+    ```
+
+    - 获取配置信息
+
+    > kubectl get deploy nginx-deploy -o yaml
+
+  - 通过yaml创建
+
+    > kubectl create -f xxx.yaml --record
+
+- 滚动更新
+
+  - 修改了deployment配置文件template中属性后，触发更新操作
+
+    > kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1
+
+    > kubectl edit deployment/nginx-deployment
+
+  - 查看滚动更新过程
+
+    > kubectl rollout status deploy <deployment_name>
+
+  - 查看部署描述，最后展示发生的event列表也可以看到滚动更新过程
+
+    > kubectl describe deploy <deployment_name>
+
+  - 通过kubectl get deployments获取部署信息，UP-TO-DATE 表示已经有多少副本达到了配置中要求的数目
+
+  - 通过kubectl get rs可以看到增加了一个新的 rs
+
+  - 通过kubectl get pods可以看到所有pod关联的rs变成了新的
+
+- 回滚
+
+  - 通过revision history limit设置保存的revison数（默认为2）
+
+  - 获取revison列表
+
+    - 创建或修改时可通过--record添加CHANGE-CAUSE
+
+    > kubectl rollout history deployment/nginx-deploy
+
+  - 查看详细信息
+
+    > kubectl rollout history deployment/nginx-deploy --revision=2
+
+  - 回退到指定的revision
+
+    > kubectl rollout undo deployment/nginx-deploy --to-revision=2
+
+- 扩容缩容
+
+  - 可通过kube scale进行扩容缩容
+  - 可通过kube edit编辑replcas 进行扩容缩容
+  - 扩容缩容只是直接影响副本数，没有更新pod template，因此不会创建新的 rs
+
+- 暂停与恢复
+
+  - 频繁修改信息会触发多次更新，可以暂停滚动更新
+
+    > kubectl rollout pause deployment <name>
+
+  - 恢复滚动更新
+
+    > kubectl rollout deploy <name>
+
+#### 配置文件
+
+```yaml
+apiVersion: apps/v1 # deployment api 版本
+kind: Deployment # 资源类型为deployment
+metadata: # 元信息
+  labels: # 标签
+    app: nginx-deploy
+  name: nginx-deploy
+  namespace: default
+spec:
+  replicas: 1 # 期望副本数
+  revisionHistoryLimit: 10 # 进行滚动更新后，保留的历史版本数
+  selector: # 选择器，用于找到匹配的RS
+    matchLabels: # 按照标签匹配
+      app: nginx-deploy # 匹配的标签key/value
+  strategy: # 更新策略
+    rollingUpdate: # 滚动更新配置
+      maxSurge: 25% # 进行滚动更新时，更新的个数最多可以超过期望副本数的个数/比例
+      maxUnavailable: 25% # 进行滚动更新时，更新的个数最多可以少于期望副本数的个数/比例
+    type: RollingUpdate # 更新类型，采用滚动更新
+  template: # pod模板
+    metadata: # pod的元信息
+      labels: # pod的标签
+        app: nginx-deploy
+    spec: # pod期望信息
+      containers: # pod的容器
+      - image: nginx # 镜像
+        imagePullPolicy: IfNotPresent # 拉取策略
+        name: nginx # 容器名称
+      restartPolicy: Always # 重启策略
+      terminationGracePeriodSeconds: 30 # 删除操作最多宽限多长时间
+```
+
+### StatefulSet
+
+#### 功能
+
+- 创建
+
+  - 通过yaml文件创建
+
+    > kubectl create -f web.yaml
+
+  - 查看service和statefulset
+
+    > kubectl get svc nginx
+
+    > kubectl get sts web
+
+  - 查看pvc信息
+
+    > kubectl get pvc
+
+  - 查看创建的pod
+
+    > kubectl get pods -l app=nginx
+
+  - 查看pod的dns
+
+    - 运行一个 pod，基础镜像为busybox工具包，通过nslookup查看dns信息
+
+      > kubectl run -i --tty --image busybox dns-test --restart=Never --rm /bin/sh
+
+      > nslookup web-0.nginx
+
+- 镜像更新
+
+  - 目前不支持直接更新 image，需要通过patch来间接实现
+
+    kubectl patch sts web --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":"nginx:1.9.1"}]'
+
+  - RollingUpdate
+
+    - StatefulSet也可以采用滚动更新策略，同样是修改pod template属性后会触发更新，由于pod是有序的，在StatefulSet中更新时是基于pod的顺序倒序更新
+    - 灰度发布
+      - 利用滚动更新中的partition属性，可以实现简易的灰度发布的效果，如有5个pod，如果当前partition设置为3，那么滚动更新时，只会更新序号 >= 3 的pod
+      - 利用该机制可以通过控制partition的值，来只更新其中一部分pod，确认没有问题后再增加更新的pod数量，最终实现全部pod更新
+
+  - OnDelete
+
+    - 只有在pod被删除时会进行更新操作
+
+- 扩容缩容
+
+  > kubectl scale statefulset web --replicas=5
+
+  > kubectl patch statefulset web -p '{"spec":{"replicas":3}}'
+
+- 删除
+
+  - 级联删除
+
+    - 删除statefulset同时删除pods
+
+      > kubectl delete sts web
+
+  - 非级联删除
+
+    - 删除statefulset不删除pods
+
+      > kubectl delte sts web --cascade=false
+
+  - 删除service
+
+    > kubectl delete svc nginx
+
+- 删除pvc
+
+  - StatefulSet删除后PVC还会保留着，数据不再使用的话也需删除
+
+    > kubectl delete pvc www-web-0 www-web-1
+
+#### 配置文件
+
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  serviceName: "nginx"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+      annotations:
+        volume.alpha.kubernetes.io/storage-class: anything
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+```
+
+
+
+### DaemonSet
+
+#### 配置文件
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+spec:
+  selector:
+    matchLabels:
+      app: logging
+  template:
+    metadata:
+      labels:
+        app: logging
+        id: fluentd
+      name: fluentd
+    spec:
+      containers:
+      - name: fluentd-es
+        image: agilestacks/fluentd-elasticsearch:v1.3.0
+        env:
+         - name: FLUENTD_ARGS
+           value: -qq
+        volumeMounts:
+         - name: containers
+           mountPath: /var/lib/docker/containers
+         - name: varlog
+           mountPath: /varlog
+      volumes:
+         - hostPath:
+             path: /var/lib/docker/containers
+           name: containers
+         - hostPath:
+             path: /var/log
+           name: varlog
+```
+
+#### 指定Node节点
+
+- DaemonSet会忽略Node的unschedulable状态，有两种方式来指定 Pod 只运行在指定的 Node节点上
+  - nodeSelector：只调度到匹配指定label的Node上
+  - nodeAffinity：功能更丰富的Node选择器，比如支持集合操作
+  - podAffinity：调度到满足条件的Pod所在的Node上
+
+- nodeSelector
+
+  - 先为Node打上标签
+
+    > kubectl label nodes k8s-node1 svc_type=microsvc
+
+  - 然后在daemonset配置中设置nodeSelector
+
+    ```yaml
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            svc_type: microsvc
+    ```
+
+- nodeAffinity
+
+  - nodeAffinity 目前支持两种：requiredDuringSchedulingIgnoredDuringExecution 和 preferredDuringSchedulingIgnoredDuringExecution，分别代表必须满足条件和优选条件
+
+  - 比如下面的例子代表调度到包含标签 wolfcode.cn/framework-name 并且值为 spring 或 springboot 的 Node 上，并且优选还带有标签 another-node-label-key=another-node-label-value 的Node
+
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: with-node-affinity
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: wolfcode.cn/framework-name
+                operator: In
+                values:
+                - spring
+                - springboot
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: another-node-label-key
+                operator: In
+                values:
+                - another-node-label-value
+      containers:
+      - name: with-node-affinity
+        image: pauseyyf/pause
+    ```
+
+- podAffinity
+
+  - podAffinity 基于 Pod 的标签来选择 Node，仅调度到满足条件Pod 所在的 Node 上，支持 podAffinity 和 podAntiAffinity
+
+    - 如果一个 “Node 所在空间中包含至少一个带有 auth=oauth2 标签且运行中的 Pod”，那么可以调度到该 Node,不调度到 “包含至少一个带有 auth=jwt 标签且运行中 Pod”的 Node 上
+
+      ```yaml
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: with-pod-affinity
+      spec:
+        affinity:
+          podAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: auth
+                  operator: In
+                  values:
+                  - oauth2
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: auth
+                    operator: In
+                    values:
+                    - jwt
+                topologyKey: kubernetes.io/hostname
+        containers:
+        - name: with-pod-affinity
+          image: pauseyyf/pause
+      ```
+
+#### 滚动更新
+
+- 不建议使用RollingUpdate，建议使用OnDelete，避免频繁更新ds
+
+### HPA自动扩容/缩容
+
+#### 开启指标服务
+
+- 下载metrics-server组件配置文件
+
+  > wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml -O metrics-server-components.yaml
+
+- 修改镜像地址为国内的地址
+
+  > sed -i 's/k8s.gcr.io\/metrics-server/registry.cn-hangzhou.aliyuncs.com\/google_containers/g' metrics-server-components.yaml
+
+- 修改容器的tls配置，不验证tls，在containers的args参数中增加--kubelet-insecure-tls参数
+
+- 安装组件
+
+  > kubectl apply -f metrics-server-components.yaml
+
+- 查看pod状态
+
+  > kubectl get pods --all-namespaces | grep metrics
+
+#### CPU、内存指标监控
+
+- 实现CPU或内存监控，必须配置resources.requests.cpu或resources.requests.memory，进一步配置cpu/memory 达到上述配置的百分比后进行扩容或缩容
+
+  > kubectl autoscale deploy nginx-deploy --cpu-percent=20 --min=2 --max=5
+
+#### 自定义metrics
+
+- 控制管理器开启–horizontal-pod-autoscaler-use-rest-clients
+- 控制管理器的–apiserver指向API Server Aggregator
+- 在API Server Aggregator中注册自定义的metrics API
+
+
+
