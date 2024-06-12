@@ -682,7 +682,7 @@ status:
 
   > kubectl get po -A -l app!=demo2,'test in (1.0.0, 1.0.1, 1.0.2)'
 
-### Deployment
+## Deployment
 
 #### 功能
 
@@ -804,7 +804,7 @@ spec:
       terminationGracePeriodSeconds: 30 # 删除操作最多宽限多长时间
 ```
 
-### StatefulSet
+## StatefulSet
 
 #### 功能
 
@@ -939,7 +939,7 @@ spec:
 
 
 
-### DaemonSet
+## DaemonSet
 
 #### 配置文件
 
@@ -1079,7 +1079,7 @@ spec:
 
 - 不建议使用RollingUpdate，建议使用OnDelete，避免频繁更新ds
 
-### HPA自动扩容/缩容
+## HPA自动扩容/缩容
 
 #### 开启指标服务
 
@@ -1113,5 +1113,727 @@ spec:
 - 控制管理器的–apiserver指向API Server Aggregator
 - 在API Server Aggregator中注册自定义的metrics API
 
+# Kubernetes的服务发布
+
+## Service
+
+### 配置文件
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  labels:
+    app: nginx-svc
+spec:
+  ports:
+  - name: http # service 端口配置的名称
+    protocol: TCP # 端口绑定的协议，支持TCP、UDP、SCTP，默认为TCP
+    port: 80 # service 自己的端口
+    targetPort: 9527 # 目标 pod 的端口
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector: # 选中当前service匹配哪些pod，对哪些pod的东西流量进行代理
+    app: nginx
+```
+
+### 命令操作
+
+- 创建service
+
+  > kubectl create -f nginx-svc.yaml
+
+- 查看service信息，通过service的cluster ip进行访问
+
+  > kubectl get svc 
+
+- 查看pod信息，通过pod的ip进行访问
+
+  > kubectl get po -owide
+
+- 创建其他pod通过service name进行访问（推荐）
+
+  > kubectl exec -it busybox -- sh
+
+  > curl http://nginx-svc
+
+- 默认在当前namespace中访问，如果需跨namespace访问pod，则在service name后加 .\<namespace> 即可
+
+  > curl http://nginx-svc.default
+
+### Endpoint
+
+### 代理K8S外部服务
+
+- 实现方式
+
+  1. 编写 service 配置文件时，不指定 selector 属性
+  2. 自己创建 endpoint
+
+  ```yaml
+  apiVersion: v1
+  kind: Endpoints
+  metadata:
+    labels:
+      app: wolfcode-svc-external # 与service一致
+    name: wolfcode-svc-external # 与service一致
+    namespace: default # 与service一致
+  subsets:
+  - addresses:
+    - ip: <target ip> # 目标ip地址
+    ports: # 与service一致
+    - name: http
+      port: 80
+      protocol: TCP
+  ```
+
+- 应用
+  - 各环境访问名称统一
+  - 访问K8S集群外的其他服务
+  - 项目迁移
+
+### 反向代理外部服务
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: wolfcode-external-domain
+  name: wolfcode-external-domain
+spec:
+  type: ExternalName
+  externalName: www.wolfcode.cn
+```
+
+### 常用类型
+
+- ClusterIP
+  - 只能在集群内部使用，不配置类型的话默认就是 ClusterIP
+- ExternalName
+  - 返回定义的 CNAME 别名，可以配置为域名
+- NodePort
+  - 会在所有安装了 kube-proxy 的节点都绑定一个端口，此端口可以代理至对应的 Pod，集群外部可以使用任意节点 ip + NodePort 的端口号访问到集群中对应 Pod 中的服务
+  - 当类型设置为 NodePort 后，可以在 ports 配置中增加 nodePort 配置指定端口，如果不指定会随机指定端口，需要在下方的端口范围内
+    - 端口范围：30000~32767
+    - 端口范围配置在 /usr/lib/systemd/system/kube-apiserver.service 文件中
+- LoadBalancer
+  - 使用云服务商（阿里云、腾讯云等）提供的负载均衡器服务
+
+## Ingress
+
+### 安装ingress-nginx
+
+#### 添加helm仓库
+
+- 添加仓库
+
+  > helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+- 查看仓库列表
+
+  > helm repo list
+
+- 搜索ingress-nginx
+
+  > helm search repo ingress-nginx
+
+#### 下载安装包
+
+> helm pull ingress-nginx/ingress-nginx
+
+#### 配置参数
+
+- 解压安装包
+
+  > tar xf ingress-nginx-xxx.tgz
+
+- 进入目录
+
+  > cd ingress-nginx
+
+- 修改values.yaml镜像地址
+
+  ```yaml
+  registry: registry.cn-hangzhou.aliyuncs.com
+  image: google_containers/nginx-ingress-controller
+  image: google_containers/kube-webhook-certgen
+  tag: v1.3.0
+  
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
+  ```
+  
+- 修改部署配置的 kind: DaemonSet
+
+  ```
+  nodeSelector:
+    ingress: "true" # 增加选择器，如果 node 上有 ingress=true 就部署
+  将 admissionWebhooks.enabled 修改为 false
+  将 service 中的 type 由 LoadBalancer 修改为ClusterIP，如果服务器是云平台才用LoadBalancer
+  ```
+#### 创建Namespace
+
+- 为ingress专门创建一个namespace
+
+  > kubectl create ns ingress-nginx
+
+#### 安装ingress
+
+- 为需要部署ingress的节点上加标签
+
+  > kubectl label node k8s-node1 ingress=true
+
+- 安装ingress-nginx
+
+  > helm install ingress-nginx ./ingress-nginx -n ingress-nginx
+
+### 基本使用
+
+- 创建一个ingress
+
+  ```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress # 资源类型为 Ingress
+  metadata:
+    name: wolfcode-nginx-ingress
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+  spec:
+    rules: # ingress 规则配置，可以配置多个
+    - host: k8s.wolfcode.cn # 域名配置，可以使用通配符 *
+      http:
+        paths: # 相当于 nginx 的 location 配置，可以配置多个
+        - pathType: Prefix # 路径类型，按照路径类型进行匹配 ImplementationSpecific 需要指定 IngressClass，具体匹配规则以 IngressClass 中的规则为准。Exact：精确匹配，URL需要与path完全匹配上，且区分大小写的。Prefix：以 / 作为分隔符来进行前缀匹配
+          backend:
+            service: 
+              name: nginx-svc # 代理到哪个 service
+              port: 
+                number: 80 # service 的端口
+          path: /api # 等价于 nginx 中的 location 的路径前缀匹配
+  ```
+
+- 多域名配置
+
+  ```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress # 资源类型为 Ingress
+  metadata:
+    name: wolfcode-nginx-ingress
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+  spec:
+    rules: # ingress 规则配置，可以配置多个
+    - host: k8s.wolfcode.cn # 域名配置，可以使用通配符 *
+      http:
+        paths: # 相当于 nginx 的 location 配置，可以配置多个
+        - pathType: Prefix # 路径类型，按照路径类型进行匹配 ImplementationSpecific 需要指定 IngressClass，具体匹配规则以 IngressClass 中的规则为准。Exact：精确匹配，URL需要与path完全匹配上，且区分大小写的。Prefix：以 / 作为分隔符来进行前缀匹配
+          backend:
+            service: 
+              name: nginx-svc # 代理到哪个 service
+              port: 
+                number: 80 # service 的端口
+          path: /api # 等价于 nginx 中的 location 的路径前缀匹配
+        - pathType: Exec # 路径类型，按照路径类型进行匹配 ImplementationSpecific 需要指定 IngressClass，具体匹配规则以 IngressClass 中的规则为准。Exact：精确匹配>，URL需要与path完全匹配上，且区分大小写的。Prefix：以 / 作为分隔符来进行前缀匹配
+          backend:
+            service:
+              name: nginx-svc # 代理到哪个 service
+              port:
+                number: 80 # service 的端口
+          path: /
+    - host: api.wolfcode.cn # 域名配置，可以使用通配符 *
+      http:
+        paths: # 相当于 nginx 的 location 配置，可以配置多个
+        - pathType: Prefix # 路径类型，按照路径类型进行匹配 ImplementationSpecific 需要指定 IngressClass，具体匹配规则以 IngressClass 中的规则为准。Exact：精确匹配>，URL需要与path完全匹配上，且区分大小写的。Prefix：以 / 作为分隔符来进行前缀匹配
+          backend:
+            service:
+              name: nginx-svc # 代理到哪个 service
+              port:
+                number: 80 # service 的端口
+          path: /
+  ```
 
 
+
+# Kubernetes的配置管理
+
+### ConfigMap
+
+- 一般用于去存储Pod中应用所需的一些配置信息或环境变量，将配置与Pod分开，避免应为修改配置导致还需要重新构建镜像与容器
+- 使用kubectl create configmap -h查看示例，构建configmap对象
+
+### 加密数据配置Secret
+
+- 与ConfigMap类似，用于存储配置信息，但是主要用于存储敏感信息、需要加密的信息，Secret可以提供数据加密、解密功能
+- 在创建Secret时，要注意如果要加密的字符中，包含了有特殊字符，需要使用转义符转移，例如$转移后为$，也可以对特殊字符使用单引号描述，这样就不需要转移例如 1$289\*-! 转换为 '1$289*-!'
+
+### SubPath的使用
+
+- 使用 ConfigMap 或 Secret 挂载到目录的时候，会将容器中源目录给覆盖掉，此时我们可能只想覆盖目录中的某一个文件，但是这样的操作会覆盖整个文件，因此需要使用到 SubPath
+
+- 配置方式
+
+  1. 定义 volumes 时需要增加 items 属性，配置 key 和 path，且 path 的值不能从 / 开始
+  2. 在容器内的 volumeMounts 中增加 subPath 属性，该值与 volumes 中 items.path 的值相同
+
+  ```yaml
+  ontainers:
+    ......
+    volumeMounts:
+    - mountPath: /etc/nginx/nginx.conf # 挂载到哪里
+      name: config-volume # 使用哪个 configmap 或 secret
+      subPath: etc/nginx/nginx.conf # 与 volumes.[0].items.path 相同
+  volumes:
+  - configMap:
+    name: nginx-conf # configMap 名字
+    items: # subPath 配置
+      key: nginx.conf # configMap 中的文件名
+      path: etc/nginx/nginx.conf # subPath 路径
+  ```
+
+### 配置的热更新
+
+```
+
+```
+
+- 通常会将项目的配置文件作为 configmap 然后挂载到 pod，如果更新 configmap 中的配置，pod更新情况
+  - 默认方式：会更新，更新周期是更新时间 + 缓存时间
+  - subPath：不会更新
+  - 变量形式：如果 pod 中的一个变量是从 configmap 或 secret 中得到，同样也是不会更新的
+- 对于 subPath 的方式，我们可以取消 subPath 的使用，将配置文件挂载到一个不存在的目录，避免目录的覆盖，然后再利用软连接的形式，将该文件链接到目标位置，如果目标位置原本就有文件，可能无法创建软链接，此时可以基于前面讲过的 postStart 操作执行删除命令，将默认的吻技安删除即可
+
+#### 通过 edit 命令直接修改 configmap
+
+#### 通过 replace 替换
+
+- 由于 configmap 我们创建通常都是基于文件创建，并不会编写 yaml 配置文件，因此修改时我们也是直接修改配置文件，而 replace 是没有 --from-file 参数的，因此无法实现基于源配置文件的替换，此时我们可以利用下方的命令实现
+
+- 该命令的重点在于 --dry-run 参数，该参数的意思打印 yaml 文件，但不会将该文件发送给 apiserver，再结合 -oyaml 输出 yaml 文件就可以得到一个配置好但是没有发给 apiserver 的文件，然后再结合 replace 监听控制台输出得到 yaml 数据即可实现替换
+
+  > kubectl create cm --from-file=nginx.conf --dry-run -oyaml | kubectl replace -f-
+
+### 不可变的Secret和ConfigMap
+
+- 对于一些敏感服务的配置文件，在线上有时是不允许修改的，此时在配置 configmap 时可以设置 immutable: true 来禁止修改
+
+# Kubernetes的持久化存储
+
+## Volumes
+
+#### HostPath
+
+- 将节点上的文件或目录挂载到 Pod 上，此时该目录会变成持久化存储目录，即使 Pod 被删除后重启，也可以重新加载到该目录，该目录下的文件不会丢失
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: nginx
+    name: nginx-volume
+    volumeMounts:
+    - mountPath: /test-pd # 挂载到容器的哪个目录
+      name: test-volume # 挂载哪个 volume
+  volumes:
+  - name: test-volume
+    hostPath:
+      path: /data # 节点中的目录
+      type: Directory # 检查类型，在挂载前对挂载目录做什么检查操作，有多种选项，默认为空字符串，不做任何检查
+
+
+类型：
+空字符串：默认类型，不做任何检查
+DirectoryOrCreate：如果给定的 path 不存在，就创建一个 755 的空目录
+Directory：这个目录必须存在
+FileOrCreate：如果给定的文件不存在，则创建一个空文件，权限为 644
+File：这个文件必须存在
+Socket：UNIX 套接字，必须存在
+CharDevice：字符设备，必须存在
+BlockDevice：块设备，必须存在
+```
+
+#### EmptyDir
+
+- EmptyDir 主要用于一个 Pod 中不同的 Container 共享数据使用的，由于只是在 Pod 内部使用，因此与其他 volume 比较大的区别是，当 Pod 如果被删除了，那么 emptyDir 也会被删除
+- 存储介质可以是任意类型，如 SSD、磁盘或网络存储。可以将 emptyDir.medium 设置为 Memory 让 k8s 使用 tmpfs（内存支持文件系统），速度比较快，但是重启 tmpfs 节点时，数据会被清除，且设置的大小会计入到 Container 的内存限制中
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: nginx
+    name: nginx-emptydir
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
+```
+
+## NFS挂载
+
+- nfs 卷能将 NFS (网络文件系统) 挂载到你的 Pod 中。 不像 emptyDir 那样会在删除 Pod 的同时也会被删除，nfs 卷的内容在删除 Pod 时会被保存，卷只是被卸载。 这意味着 nfs 卷可以被预先填充数据，并且这些数据可以在Pod之间共享
+
+#### 安装NFS
+
+```
+
+# 安装 nfs
+yum install nfs-utils -y
+
+# 启动 nfs
+systemctl start nfs-server
+
+# 查看 nfs 版本
+cat /proc/fs/nfsd/versions
+
+# 创建共享目录
+mkdir -p /data/nfs
+cd /data/nfs
+mkdir rw
+mkdir ro
+
+# 设置共享目录 export
+vim /etc/exports
+/data/nfs/rw 192.168.113.0/24(rw,sync,no_subtree_check,no_root_squash)
+/data/nfs/ro 192.168.113.0/24(ro,sync,no_subtree_check,no_root_squash)
+
+# 重新加载
+exportfs -f
+systemctl reload nfs-server
+
+# 到其他测试节点安装 nfs-utils 并加载测试
+mkdir -p /mnt/nfs/rw
+mount -t nfs 192.168.113.121:/data/nfs/rw /mnt/nfs/rw
+```
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: nginx
+    name: test-container
+    volumeMounts:
+    - mountPath: /my-nfs-data
+      name: test-volume
+  volumes:
+  - name: test-volume
+    nfs:
+      server: my-nfs-server.example.com # 网络存储服务地址
+      path: /my-nfs-volume # 网络存储路径
+      readOnly: true # 是否只读
+```
+
+## PV与PVC
+
+- 持久卷（PersistentVolume，PV） 是集群中的一块存储，可以由管理员事先制备， 或者使用存储类（Storage Class）来动态制备。 持久卷是集群资源，就像节点也是集群资源一样。PV 持久卷和普通的 Volume 一样， 也是使用卷插件来实现的，只是它们拥有独立于任何使用 PV 的 Pod 的生命周期。 此 API 对象中记述了存储的实现细节，无论其背后是 NFS、iSCSI 还是特定于云平台的存储系统
+- 持久卷申领（PersistentVolumeClaim，PVC） 表达的是用户对存储的请求。概念上与 Pod 类似。 Pod 会耗用节点资源，而 PVC 申领会耗用 PV 资源。Pod 可以请求特定数量的资源（CPU 和内存）；同样 PVC 申领也可以请求特定的大小和访问模式 （例如，可以要求 PV 卷能够以 ReadWriteOnce、ReadOnlyMany 或 ReadWriteMany 模式之一来挂载）
+
+### 生命周期
+
+#### 构建
+
+- 静态构建
+  - 集群管理员创建若干 PV 卷。这些卷对象带有真实存储的细节信息， 并且对集群用户可用（可见）。PV 卷对象存在于 Kubernetes API 中，可供用户消费（使用）
+- 动态构建
+  - 如果集群中已经有的 PV 无法满足 PVC 的需求，那么集群会根据 PVC 自动构建一个 PV，该操作是通过 StorageClass 实现的
+  - 想要实现这个操作，前提是 PVC 必须设置 StorageClass，否则会无法动态构建该 PV，可以通过启用 DefaultStorageClass 来实现 PV 的构建
+
+#### 绑定
+
+- 当用户创建一个 PVC 对象后，主节点会监测新的 PVC 对象，并且寻找与之匹配的 PV 卷，找到 PV 卷后将二者绑定在一起
+- 如果找不到对应的 PV，则需要看 PVC 是否设置 StorageClass 来决定是否动态创建 PV，若没有配置，PVC 就会一致处于未绑定状态，直到有与之匹配的 PV 后才会申领绑定关系
+
+#### 使用
+
+- Pod 将 PVC 当作存储卷来使用，集群会通过 PVC 找到绑定的 PV，并为 Pod 挂载该卷
+- Pod 一旦使用 PVC 绑定 PV 后，为了保护数据，避免数据丢失问题，PV 对象会受到保护，在系统中无法被删除
+
+#### 回收策略
+
+- 当用户不再使用其存储卷时，他们可以从 API 中将 PVC 对象删除， 从而允许该资源被回收再利用。PersistentVolume 对象的回收策略告诉集群， 当其被从申领中释放时如何处理该数据卷。 目前，数据卷可以被 Retained（保留）、Recycled（回收）或 Deleted（删除）
+
+- Retain
+
+  ```
+  回收策略 Retain 使得用户可以手动回收资源。当 PersistentVolumeClaim 对象被删除时，PersistentVolume 卷仍然存在，对应的数据卷被视为"已释放（released）"。 由于卷上仍然存在这前一申领人的数据，该卷还不能用于其他申领。 管理员可以通过下面的步骤来手动回收该卷：
+  删除 PersistentVolume 对象。与之相关的、位于外部基础设施中的存储资产 （例如 AWS EBS、GCE PD、Azure Disk 或 Cinder 卷）在 PV 删除之后仍然存在。
+  根据情况，手动清除所关联的存储资产上的数据。
+  手动删除所关联的存储资产。
+  如果你希望重用该存储资产，可以基于存储资产的定义创建新的 PersistentVolume 卷对象。
+  ```
+
+- Delete
+
+  - 对于支持 Delete 回收策略的卷插件，删除动作会将 PersistentVolume 对象从 Kubernetes 中移除，同时也会从外部基础设施（如 AWS EBS、GCE PD、Azure Disk 或 Cinder 卷）中移除所关联的存储资产。 动态制备的卷会继承[其 StorageClass 中设置的回收策略](https://kubernetes.io/zh-cn/docs/concepts/storage/persistent-volumes/#reclaim-policy)， 该策略默认为 Delete。管理员需要根据用户的期望来配置 StorageClass； 否则 PV 卷被创建之后必须要被编辑或者修补。
+
+- Recycle
+
+  - 回收策略 Recycle 已被废弃。取而代之的建议方案是使用动态制备
+  - 如果下层的卷插件支持，回收策略 Recycle 会在卷上执行一些基本的擦除 （rm -rf /thevolume/*）操作，之后允许该卷用于新的 PVC 申领
+
+### PV
+
+#### 状态
+
+- Available：空闲，未被绑定
+- Bound：已经被 PVC 绑定
+- Released：PVC 被删除，资源已回收，但是 PV 未被重新使用
+- Failed：自动回收失败
+
+#### 配置文件
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001
+spec:
+  capacity:
+    storage: 5Gi # pv 的容量
+  volumeMode: Filesystem # 存储类型为文件系统
+  accessModes: # 访问模式：ReadWriteOnce、ReadWriteMany、ReadOnlyMany
+    - ReadWriteOnce # 可被单节点独写
+  persistentVolumeReclaimPolicy: Recycle # 回收策略
+  storageClassName: slow # 创建 PV 的存储类名，需要与 pvc 的相同
+  mountOptions: # 加载配置
+    - hard
+    - nfsvers=4.1
+  nfs: # 连接到 nfs
+    path: /data/nfs/rw/test-pv # 存储路径
+    server: 192.168.113.121 # nfs 服务地址
+```
+
+### PVC
+
+#### Pod 绑定 PVC
+
+```yaml
+containers:
+  ......
+  volumeMounts:
+    - mountPath: /tmp/pvc
+      name: nfs-pvc-test
+volumes:
+  - name: nfs-pvc-test
+    persistentVolumeClaim:
+      claimName: nfs-pvc # pvc 的名称
+```
+
+#### 配置文件
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce # 权限需要与对应的 pv 相同
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 8Gi # 资源可以小于 pv 的，但是不能大于，如果大于就会匹配不到 pv
+  storageClassName: slow # 名字需要与对应的 pv 相同
+#  selector: # 使用选择器选择对应的 pv
+#    matchLabels:
+#      release: "stable"
+#    matchExpressions:
+#      - {key: environment, operator: In, values: [dev]}
+```
+
+### StorageClass
+
+- k8s 中提供了一套自动创建 PV 的机制，就是基于 StorageClass 进行的，通过 StorageClass 可以实现仅仅配置 PVC，然后交由 StorageClass 根据 PVC 的需求动态创建 PV
+
+#### 制备器（Provisioner）
+
+#### NFS 动态制备案例
+
+- nfs-provisioner
+
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: nfs-client-provisioner
+    namespace: kube-system
+    labels:
+      app: nfs-client-provisioner
+  spec:
+    replicas: 1
+    strategy:
+      type: Recreate
+    selector:
+      matchLabels:
+        app: nfs-client-provisioner
+    template:
+      metadata:
+        labels:
+          app: nfs-client-provisioner
+      spec:
+        serviceAccountName: nfs-client-provisioner
+        containers:
+          - name: nfs-client-provisioner
+            image: quay.io/external_storage/nfs-client-provisioner:latest
+            volumeMounts:
+              - name: nfs-client-root
+                mountPath: /persistentvolumes
+            env:
+              - name: PROVISIONER_NAME
+                value: fuseim.pri/ifs
+              - name: NFS_SERVER
+                value: 192.168.113.121
+              - name: NFS_PATH
+                value: /data/nfs/rw
+        volumes:
+          - name: nfs-client-root
+            nfs:
+              server: 192.168.113.121
+              path: /data/nfs/rw
+  ```
+
+- StorageClass 配置
+
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: managed-nfs-storage
+    namespace: kube-system
+  provisioner: fuseim.pri/ifs # 外部制备器提供者，编写为提供者的名称
+  parameters:
+    archiveOnDelete: "false" # 是否存档，false 表示不存档，会删除 oldPath 下面的数据，true 表示存档，会重命名路径
+  reclaimPolicy: Retain # 回收策略，默认为 Delete 可以配置为 Retain
+  volumeBindingMode: Immediate # 默认为 Immediate，表示创建 PVC 立即进行绑定，只有 azuredisk 和 AWSelasticblockstore 支持其他值
+  ```
+
+- RBAC 配置
+
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: nfs-client-provisioner
+    namespace: kube-system
+  ---
+  kind: ClusterRole
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: nfs-client-provisioner-runner
+    namespace: kube-system
+  rules:
+    - apiGroups: [""]
+      resources: ["persistentvolumes"]
+      verbs: ["get", "list", "watch", "create", "delete"]
+    - apiGroups: [""]
+      resources: ["persistentvolumeclaims"]
+      verbs: ["get", "list", "watch", "update"]
+    - apiGroups: ["storage.k8s.io"]
+      resources: ["storageclasses"]
+      verbs: ["get", "list", "watch"]
+    - apiGroups: [""]
+      resources: ["events"]
+      verbs: ["create", "update", "patch"]
+  ---
+  kind: ClusterRoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: run-nfs-client-provisioner
+    namespace: kube-system
+  subjects:
+    - kind: ServiceAccount
+      name: nfs-client-provisioner
+      namespace: default
+  roleRef:
+    kind: ClusterRole
+    name: nfs-client-provisioner-runner
+    apiGroup: rbac.authorization.k8s.io
+  ---
+  kind: Role
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: leader-locking-nfs-client-provisioner
+    namespace: kube-system
+  rules:
+    - apiGroups: [""]
+      resources: ["endpoints"]
+      verbs: ["get", "list", "watch", "create", "update", "patch"]
+  ---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: leader-locking-nfs-client-provisioner
+    namespace: kube-system
+  subjects:
+    - kind: ServiceAccount
+      name: nfs-client-provisioner
+  roleRef:
+    kind: Role
+    name: leader-locking-nfs-client-provisioner
+    apiGroup: rbac.authorization.k8s.io
+  ```
+
+- PVC 处于 Pending 状态
+
+  - 在 k8s 1.20 之后，出于对性能和统一 apiserver 调用方式的初衷，移除了对 SelfLink 的支持，而默认上面指定的 provisioner 版本需要 SelfLink 功能，因此 PVC 无法进行自动制备
+
+  - 配置 SelfLink
+
+    ```yaml
+    修改 apiserver 配置文件
+    vim /etc/kubernetes/manifests/kube-apiserver.yaml
+    
+    spec:
+      containers:
+      - command:
+        - kube-apiserver
+        - --feature-gates=RemoveSelfLink=false # 新增该行
+        ......
+    
+    修改后重新应用该配置
+    kubectl apply -f /etc/kubernetes/manifests/kube-apiserver.yaml
+    ```
+    
+  - 不需要 SelfLink 的 provisioner
+    
+    ```yaml
+    将 provisioner 修改为如下镜像之一即可
+    
+    gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.0
+    
+    registry.cn-beijing.aliyuncs.com/pylixm/nfs-subdir-external-provisioner:v4.0.0
+    ```
+
+- PVC 测试配置
+
+  ```yaml
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: auto-pv-test-pvc
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 300Mi
+    storageClassName: managed-nfs-storage
+  ```
+
+  
