@@ -487,6 +487,10 @@
 
 [Navicat连接Oracle的ORA-28547问题处理](src/数据开发/Navicat连接Oracle的ORA-28547问题处理)
 
+## PostgreSQL
+
+[PostgreSQL根据字段注释查询库表](src/数据开发/PostgreSQL根据字段注释查询库表)
+
 # **数据管理**
 
 ## 数据管理
