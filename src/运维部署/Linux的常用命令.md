@@ -98,6 +98,10 @@
   > -f（force） 无需确认强制删除
   >
   > -r/R（recursive） 递归删除
+  
+- 查找30天前的文件并删除
+
+  > find /workspace -mtime +30 -name "*" -exec rm -rf {} \;
 
 #### echo
 
