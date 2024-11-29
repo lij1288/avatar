@@ -198,7 +198,7 @@
 
 [Hive的数据类型](src/数据开发/Hive的数据类型)
 
-[Hive的DDL语言](src/数据开发/Hive的DDL语言)
+[Hive的DDL语法](src/数据开发/Hive的DDL语法)
 
 [Hive的数据导入导出](src/数据开发/Hive的数据导入导出)
 
