@@ -1,16 +1,16 @@
 ## GBase的DDL语法
 
-修改字段名
+时间转字符串
 
 ```sql
-alter table [table_name] change [old_column] [new_column]
+date_format（now(),'%Y%m%d%H%i%s')
 ```
 
 
 
-修改字段名/类型
+字符串转时间
 
 ```sql
-alter table [table_name] change [old_column] [new_column] [type]
+str_to_date('20241213134535','%Y%m%d%H%i%s')
 ```
 
