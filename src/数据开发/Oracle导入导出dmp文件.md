@@ -74,7 +74,7 @@ alter database datafile 'F:\app\Administrator\admin\orcl\dpdump\new_datafile.dbf
 ### 用户或角色不存在
 
 ```sql
-create user USER_NAME indetified by orcl default tablespace USER_NAME;
+create user USER_NAME identified by orcl default tablespace USER_NAME;
 
 grant connect,resource,dba to USER_NAME;
 
