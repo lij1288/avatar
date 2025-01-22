@@ -90,3 +90,7 @@ grant read,write on directory USER_NAME to USER_NAME;
 ### 对象类型TABKE_STATICS创建失败
 
 - EXCLUDE=STATISTICS
+
+### 尚未为作业选择数据或元数据对象&方案表达式不包含有效的方案
+
+> impdp FASP001/orcl@orcl table_exists_action=replace directory=DATA_PUMP_DIR dumpfile=bak001.dmp remap_schema=FASP001:FASP001 data_options=skip_constraint_errors logfile=log.log
