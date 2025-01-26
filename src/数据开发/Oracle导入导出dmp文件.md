@@ -50,8 +50,8 @@ select * from dba_directories where directory_name='DATA_PUMP_DIR';
 - 创建表空间
 
 ```sql
-create tablespace FASP
-datafile 'F:\app\Administrator\admin\orcl\dpdump\FASP.dbf'
+create tablespace BZB0125
+datafile 'F:\app\Administrator\admin\orcl\dpdump\BZB0125.dbf'
 size 500M
 autoextend on next 100M maxize unlimited logging
 extent management local autoallocate
@@ -61,13 +61,13 @@ segement space management auto;
 - 若表空间不足则进行追加
 
 ```sql
-alter tablespace FASP add datafile 'F:\app\Administrator\admin\orcl\dpdump\new_datafile.dbf' size 4096M;
-alter database datafile 'F:\app\Administrator\admin\orcl\dpdump\new_datafile.dbf' autoextend on;
+alter tablespace BZB0125 add datafile 'F:\app\Administrator\admin\orcl\dpdump\BZB01252.dbf' size 4096M;
+alter database datafile 'F:\app\Administrator\admin\orcl\dpdump\BZB01252.dbf' autoextend on;
 ```
 
-- 还原文件（LPP为已有）
+- 还原文件
 
-> impdp LPP/orcl@orcl table_exists_action=replace directory=DATA_PUMP_DIR dumpfile=fasp001.dmp SCHEMAS=FASP logfile=log.log
+> impdp BZB0125/orcl@orcl table_exists_action=replace directory=DATA_PUMP_DIR dumpfile=bzb0124.dmp remap_shcema=FASP:BZB0125 data_options=skip_constraint_errors logfile=log.log
 
 ## 问题处理
 
