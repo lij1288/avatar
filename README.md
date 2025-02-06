@@ -455,6 +455,8 @@
 
 ## DataBase
 
+[【GBase】GBase的常用语法](src/数据开发/GBase的常用语法)
+
 [【MySQL】MySQL的索引机制与使用](src/数据开发/MySQL的索引机制与使用)
 
 [【MySQL】InnoDB的数据存储结构](src/数据开发/InnoDB的数据存储结构)
