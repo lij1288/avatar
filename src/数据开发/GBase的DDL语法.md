@@ -26,3 +26,7 @@ alter table database_name.table_name change column1 column1_new varchar(10);
 timestampdiff(year,'20250103','20240305')
 ```
 
+```sql
+timestampdiff(year,'2025-01-03','2024-03-05')
+```
+
