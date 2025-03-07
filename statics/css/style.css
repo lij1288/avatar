@@ -22,6 +22,11 @@ h1 span{
 .markdown-section h5{
     font-size: 1em;
 }
+/* 六级标题 */
+.markdown-section h6{
+    font-size: 1em;
+    color: #a6a6a6;
+}
 /* 侧边栏设置 */
 aside.sidebar ul ul li a {
     padding-left: 15px;
