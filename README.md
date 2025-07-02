@@ -128,6 +128,8 @@
 
 [【Spark】SparkSQL与Hive整合记录](src/运维部署/SparkSQL与Hive整合记录)
 
+[【TiDB】TiDB使用Dumpling和Lightning导出和恢复](src/运维部署/TiDB使用Dumpling和Lightning导出和恢复)
+
 [【VMware】VMware_Pro_16安装方式](src/运维部署/VMware_Pro_16安装方式)
 
 [【ZooKeeper】ZooKeeper安装部署记录](src/运维部署/ZooKeeper安装部署记录)
