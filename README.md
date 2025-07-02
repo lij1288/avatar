@@ -128,8 +128,6 @@
 
 [【Spark】SparkSQL与Hive整合记录](src/运维部署/SparkSQL与Hive整合记录)
 
-[【TiDB】TiDB使用Dumpling和Lightning导出和恢复](src/运维部署/TiDB使用Dumpling和Lightning导出和恢复)
-
 [【VMware】VMware_Pro_16安装方式](src/运维部署/VMware_Pro_16安装方式)
 
 [【ZooKeeper】ZooKeeper安装部署记录](src/运维部署/ZooKeeper安装部署记录)
@@ -457,6 +455,10 @@
 
 ## DataBase
 
+<!-- panels:start -->
+
+<!-- div:left-panel -->
+
 [【GBase】GBase的DDL语法](src/数据开发/GBase的DDL语法)
 
 [【MySQL】MySQL的索引机制与使用](src/数据开发/MySQL的索引机制与使用)
@@ -481,6 +483,8 @@
 
 [【MySQL】Excel自定义日期通过Navicat入库后转为5位数字问题处理](src/数据开发/Excel自定义日期通过Navicat入库后转为5位数字问题处理)
 
+<!-- div:right-panel -->
+
 [【Oracle】Oracle的TRANSLATE函数](src/数据开发/Oracle的TRANSLATE函数)
 
 [【Oracle】Oracle导入导出dmp文件](src/数据开发/Oracle导入导出dmp文件)
@@ -490,6 +494,12 @@
 [【Oracle】Navicat连接Oracle的ORA-28547问题处理](src/数据开发/Navicat连接Oracle的ORA-28547问题处理)
 
 [【PostgreSQL】PostgreSQL根据字段注释查询库表](src/数据开发/PostgreSQL根据字段注释查询库表)
+
+[【TiDB】TiDB使用Dumpling和Lightning导出和恢复](src/运维部署/TiDB使用Dumpling和Lightning导出和恢复)
+
+[【TiDB】TiDB常用查询语句](src/运维部署/TiDB常用查询语句)
+
+<!-- panels:end -->
 
 # **数据管理**
 
