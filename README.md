@@ -272,6 +272,8 @@
 
 [Spark的数据倾斜](src/数据开发/Spark的数据倾斜)
 
+[SparkSQL不支持开窗函数计算count(distinct)问题处理](src/数据开发/SparkSQL不支持开窗函数计算count(distinct)问题处理)
+
 <!-- panels:end -->
 
 ## Flink
