@@ -193,7 +193,17 @@
   >
   > -name 按名称查找 -iname 忽略大小写 find / -name demo
   >
-  > -siza +/-[大小] +大于，-小于，不写等于（find /etc -size -204800 在etc下查找小于100M的文件）
+  > -type 按类型查找 f文件，d目录
+  >
+  > -siza +/-[大小] 按大小查找 +大于，-小于，不写等于（find /log -size -204800 在log下查找小于100M的文件）
+  >
+  > -mtime +/-[天数] 按修改日期查找 +大于，-小于，不写等于（find /log -mtime +7 在log下查找7天前修过的文件）
+  >
+  > -ctime +/-[天数] 按创建日期查找 +大于，-小于，不写等于
+  >
+  > -atime +/-[天数] 按访问日期查找 +大于，-小于，不写等于
+  >
+  > -exec find /log -mtime +7 -exec rm {} \;（find /log -mtime +7 在log下查找7天前修过的文件并删除）
 
 #### whereis
 
