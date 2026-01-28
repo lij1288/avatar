@@ -12,7 +12,7 @@
 
 6. ResourceManager找到符合条件的NodeManager，将NodeManager的信息返回给ApplicationMaster
 
-7. ApplicationMaster分NodeManager通信
+7. ApplicationMaster向NodeManager通信
 
 8. NodeManager从HDFS下载依赖
 
