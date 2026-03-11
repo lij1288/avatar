@@ -1151,6 +1151,8 @@
 
 <!-- panels:end -->
 
+## 数学基础
+
 # **其他内容**
 
 [Markdown公式语法](src/其他内容/Markdown公式语法)
