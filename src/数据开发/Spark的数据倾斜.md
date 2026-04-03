@@ -40,7 +40,7 @@ sampledWordCounts.foreach(println(_))
 
 1. 通过sample算子进行采样，countByKey确定数据量大的key
 2. 将这些key对应的数据从原来的RDD中过滤出来，打上n以内的前缀，剩余的数据形成另一个RDD
-3. 需要join的另一个RDD，也过滤处倾斜key对应的数据，每条膨胀为n倍，打上前缀，剩余的数据形成另一个RDD
+3. 需要join的另一个RDD，也过滤出倾斜key对应的数据，每条膨胀为n倍，打上前缀，剩余的数据形成另一个RDD
 4. 将随机前缀的RDD和膨胀后的RDD进行join，将原来相同的key打成n份，分散到多个Task中进行join了
 5. 两个普通的RDD照常join
 6. 再将两次计算结果union得到最终join结果
