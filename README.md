@@ -485,6 +485,8 @@
 
 [【MySQL】Excel自定义日期通过Navicat入库后转为5位数字问题处理](src/数据开发/Excel自定义日期通过Navicat入库后转为5位数字问题处理)
 
+[【MySQL】基于递归查询的股权穿透处理记录](src/数据开发/基于递归查询的股权穿透处理记录)
+
 <!-- div:right-panel -->
 
 [【Oracle】Oracle的TRANSLATE函数](src/数据开发/Oracle的TRANSLATE函数)
@@ -497,9 +499,9 @@
 
 [【PostgreSQL】PostgreSQL根据字段注释查询库表](src/数据开发/PostgreSQL根据字段注释查询库表)
 
-[【TiDB】TiDB使用Dumpling和Lightning导出和恢复](src/运维部署/TiDB使用Dumpling和Lightning导出和恢复)
+[【TiDB】TiDB使用Dumpling和Lightning导出和恢复](src/数据开发/TiDB使用Dumpling和Lightning导出和恢复)
 
-[【TiDB】TiDB常用查询语句](src/运维部署/TiDB常用查询语句)
+[【TiDB】TiDB常用查询语句](src/数据开发/TiDB常用查询语句)
 
 <!-- panels:end -->
 
