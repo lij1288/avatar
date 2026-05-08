@@ -26,3 +26,11 @@
 > ssh-copy-id 192.168.1.103
 
 > root@192.168.1.103's password: 
+
+- 生成密钥指定密钥类型和长度
+
+> ssh-keygen -t rsa -b 4096
+
+- 复制公钥指定端口号
+
+> ssh-copy-id -p 28822 root@your-server-ip
