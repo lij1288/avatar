@@ -34,3 +34,8 @@
 - 复制公钥指定端口号
 
 > ssh-copy-id -p 28822 root@your-server-ip
+
+## 问题处理记录
+
+- 配置免密登录后仍无法登录
+  - 检查/etc/ssh/sshd_config最下面有一行AuthenticationMethods password，进行注释后重启sshd服务，重新配置免密登录解决问题
