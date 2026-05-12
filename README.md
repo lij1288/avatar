@@ -46,6 +46,8 @@
 
 [【Hadoop】Hadoop安装部署记录](src/运维部署/Hadoop安装部署记录)
 
+[【Hadoop】Hadoop集群扩容记录](src/运维部署/Hadoop集群扩容记录)
+
 [【Hadoop】DataNode的上线下线操作](src/运维部署/DataNode的上线下线操作)
 
 [【HBase】HBase安装部署记录](src/运维部署/HBase安装部署记录)
