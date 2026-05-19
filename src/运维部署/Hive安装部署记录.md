@@ -78,15 +78,13 @@
 
 > bin/schematool -initSchema -dbType mysql
 
-### 启动Hive
+### 后台启动服务
 
-> bin/hive
+> nohup /opt/hive-1.2.1/bin/hive --service metastore &
+
+> nohup /opt/hive-1.2.1/bin/hive --service hiveserver2 &
 
 ### HiveJDBC访问
-
-- 启动hiveserver2服务
-
-> bin/hiveserver2
 
 - 启动beeline
 
@@ -105,3 +103,4 @@
 - 启动beeline并连接hiveserver2
 
 > bin/beeline -u jdbc:hive2://192.168.1.101:10000 -n root
+
