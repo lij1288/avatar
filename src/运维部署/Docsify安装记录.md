@@ -12,9 +12,19 @@
 >
 > npm -v
 
+### 安装yarn
+
+> npm install --global yarn
+>
+> yarn -v
+
 ### 安装docsify
 
-> npm install -g docsify-cli
+> yarn global add docsify-cli
+
+- 查询并配置环境变量
+
+> yarn global bin
 
 验证安装
 
