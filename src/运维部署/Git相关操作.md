@@ -326,8 +326,12 @@
 ### 创建关联
 
 - 设置Token
+
 - 初始化Git仓库
+
 - 关联远程仓库
+
+  > lij1288/avatar.git
 
 ![](assets\Git相关操作\创建关联.jpg)
 
